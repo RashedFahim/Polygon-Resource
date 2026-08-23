@@ -465,7 +465,7 @@ function CEOMessage() {
             {/* Right - Image Side (Premium) */}
             <div className="order-1 lg:order-2 relative overflow-hidden min-h-[300px] sm:min-h-[400px] lg:min-h-[450px] group">
               <img 
-                src="/public/dp.jpeg"
+                src="/dp.jpeg"
                 alt="CEO - Md. Rashed Shamim Chowdhury"
                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
               />
