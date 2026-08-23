@@ -771,18 +771,17 @@ function ContactSection() {
                 <div className="space-y-4">
                   <div>
                     <h4 className="font-['Space_Mono',monospace] text-xs sm:text-sm text-[#6BA539] uppercase tracking-wider mb-1">Call Support</h4>
-                    <p className="text-[#1C1A14] font-medium">+8801711-234567</p>
+                    <p className="text-[#1C1A14] font-medium">+8801713017391</p>
                   </div>
                   <div>
                     <h4 className="font-['Space_Mono',monospace] text-xs sm:text-sm text-[#6BA539] uppercase tracking-wider mb-1">Email Support</h4>
-                    <p className="text-[#1C1A14] font-medium">trade@polygonresource.com</p>
+                    <p className="text-[#1C1A14] font-medium">polygonresource@gmailcom</p>
                   </div>
                   <div>
                     <h4 className="font-['Space_Mono',monospace] text-xs sm:text-sm text-[#6BA539] uppercase tracking-wider mb-1">Our Head Office</h4>
                     <p className="text-[#1C1A14] leading-relaxed">
-                      House 42, Road 12, Sector 3,<br />
-                      Uttara, Dhaka-1230<br />
-                      Bangladesh
+                      68, Dilkusha C/A,,<br />
+                      Dhaka-1000, Bangladesh<br />
                     </p>
                   </div>
                 </div>
@@ -865,17 +864,17 @@ function Footer() {
         <div>
           <h5 className="font-['Space_Mono',monospace] text-[0.65rem] sm:text-[0.72rem] uppercase tracking-[0.1em] text-[#6BA539] mb-3 sm:mb-4">Contact</h5>
           <p className="text-[0.8rem] sm:text-[0.88rem] text-[#e5dfc9] mb-1.5 sm:mb-2">+880 1713-017391</p>
-          <p className="text-[0.8rem] sm:text-[0.88rem] text-[#e5dfc9] mb-1.5 sm:mb-2">trade@polygonresource.com</p>
-          <p className="text-[0.8rem] sm:text-[0.88rem] text-[#e5dfc9] mb-1.5 sm:mb-2">www.polygonresource.com</p>
+          <p className="text-[0.8rem] sm:text-[0.88rem] text-[#e5dfc9] mb-1.5 sm:mb-2">polygonresource@gmail.com.com</p>
+          <p className="text-[0.8rem] sm:text-[0.88rem] text-[#e5dfc9] mb-1.5 sm:mb-2">polygonresource.com</p>
         </div>
         <div>
           <h5 className="font-['Space_Mono',monospace] text-[0.65rem] sm:text-[0.72rem] uppercase tracking-[0.1em] text-[#6BA539] mb-3 sm:mb-4">Address</h5>
-          <p className="text-[0.8rem] sm:text-[0.88rem] text-[#e5dfc9] mb-1.5 sm:mb-2">House 42, Road 12, Sector 3,<br/>Uttara, Dhaka-1230, Bangladesh</p>
+          <p className="text-[0.8rem] sm:text-[0.88rem] text-[#e5dfc9] mb-1.5 sm:mb-2">68, Dilkusha C/A,<br/>Dhaka-1000, Bangladesh</p>
         </div>
       </div>
       <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 mt-[30px] sm:mt-[40px] lg:mt-[50px] pt-4 sm:pt-5 lg:pt-6 border-t border-[rgba(237,230,212,0.15)] text-[0.65rem] sm:text-[0.75rem] text-[#8a8368] flex justify-between flex-wrap gap-2 sm:gap-2.5">
         <span>© 2026 Polygon Resource. All rights reserved.</span>
-        <span>Website preview — built from your business profile</span>
+        
       </div>
     </footer>
   );
