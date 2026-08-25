@@ -463,7 +463,7 @@ function LoadingScreen({ onComplete }) {
         <div
           className="h-full rounded-full"
           style={{
-            background: 'linear-gradient(90deg, #DD8F2A, #6BA539)',
+            background: 'linear-gradient(90deg, #1F4732, #6BA539)',
             animation: 'loaderBarFill 1.6s ease-out forwards',
           }}
         />
@@ -505,6 +505,9 @@ function App() {
   return (
     <>
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;900&family=Lora:wght@400;500;600;700&display=swap');
+      `}</style>
       <div className="App font-['Barlow',sans-serif] text-[#666666] bg-cream w-full text-[16px] leading-[1.5]">
         <Header onGetInTouch={scrollToContact} />
 
@@ -574,7 +577,7 @@ function Header({ onGetInTouch }) {
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${
         scrolled 
           ? 'bg-white/95 backdrop-blur-xl shadow-lg shadow-black/5 border-b border-[#1F4732]/10' 
-          : 'bg-[#0A2A1A]/60 backdrop-blur-sm border-b border-[#DD8F2A]/10'
+          : 'bg-[#0A2A1A]/60 backdrop-blur-sm border-b border-[#DAA520]/10'
       }`}
     >
       <nav className="w-full px-3 sm:px-4 md:px-6 lg:px-8 flex items-center justify-between py-[14px] sm:py-[18px] transition-all duration-300">
@@ -586,7 +589,7 @@ function Header({ onGetInTouch }) {
               className="w-full h-full object-contain transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
             />
             <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500" style={{
-              background: 'radial-gradient(circle, rgba(221,143,42,0.3) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(184,134,11,0.3) 0%, transparent 70%)',
               filter: 'blur(8px)',
             }}></div>
           </div>
@@ -619,8 +622,8 @@ function Header({ onGetInTouch }) {
                     isHovered ? 'w-full' : 'w-0'
                   }`}
                   style={{
-                    background: scrolled ? 'linear-gradient(90deg, #1F4732, #6BA539)' : 'linear-gradient(90deg, #DD8F2A, #6BA539)',
-                    boxShadow: scrolled ? '0 0 20px rgba(31,71,50,0.3)' : '0 0 20px rgba(221,143,42,0.4)',
+                    background: scrolled ? 'linear-gradient(90deg, #1F4732, #6BA539)' : 'linear-gradient(90deg, #B8860B, #DAA520)',
+                    boxShadow: scrolled ? '0 0 20px rgba(31,71,50,0.3)' : '0 0 20px rgba(184,134,11,0.4)',
                   }}
                 />
                 <span className={`absolute -bottom-0.5 left-0 w-0 h-[1px] transition-all duration-300 group-hover:w-full ${
@@ -633,8 +636,8 @@ function Header({ onGetInTouch }) {
 
         <button 
           onClick={onGetInTouch}
-          className={`hidden md:block group relative font-['Space_Mono',monospace] text-[0.65rem] sm:text-[0.72rem] uppercase tracking-[0.08em] px-3 sm:px-4 py-[7px] sm:py-[9px] rounded-[2px] overflow-hidden transition-all duration-300 hover:scale-105 ${
-            scrolled ? 'bg-[#1F4732] text-white hover:bg-[#6BA539] shadow-md shadow-[#1F4732]/20' : 'bg-[#DD8F2A]/20 backdrop-blur-sm border border-[#DD8F2A]/40 text-cream hover:bg-[#DD8F2A] hover:text-[#12301F]'
+          className={`hidden md:block group relative font-['Barlow',sans-serif] text-[0.65rem] sm:text-[0.72rem] uppercase tracking-[0.08em] px-3 sm:px-4 py-[7px] sm:py-[9px] rounded-[2px] overflow-hidden transition-all duration-300 hover:scale-105 ${
+            scrolled ? 'bg-[#1F4732] text-white hover:bg-[#6BA539] shadow-md shadow-[#1F4732]/20' : 'bg-[#DAA520]/20 backdrop-blur-sm border border-[#DAA520]/40 text-cream hover:bg-[#DAA520] hover:text-[#12301F]'
           }`}
         >
           <span className="relative z-10">Contact US</span>
@@ -643,7 +646,7 @@ function Header({ onGetInTouch }) {
 
         <button 
           className={`md:hidden ml-2 transition-colors ${
-            scrolled ? 'text-[#1F4732] hover:text-[#6BA539]' : 'text-cream hover:text-[#DD8F2A]'
+            scrolled ? 'text-[#1F4732] hover:text-[#6BA539]' : 'text-cream hover:text-[#DAA520]'
           }`}
           onClick={() => setMenuOpen((v) => !v)} 
           aria-label="Toggle menu"
@@ -654,7 +657,7 @@ function Header({ onGetInTouch }) {
 
       {menuOpen && (
         <div className={`lg:hidden px-4 pb-4 flex flex-col gap-3 max-h-[70vh] overflow-y-auto backdrop-blur-xl border-t ${
-          scrolled ? 'bg-white/98 border-[#1F4732]/10' : 'bg-[#0A2A1A]/95 border-[#DD8F2A]/10'
+          scrolled ? 'bg-white/98 border-[#1F4732]/10' : 'bg-[#0A2A1A]/95 border-[#DAA520]/10'
         }`}>
           {navItems.map((item) => (
             <a
@@ -673,7 +676,7 @@ function Header({ onGetInTouch }) {
             <button 
               onClick={() => { onGetInTouch(); setMenuOpen(false); }}
               className={`w-full text-sm font-medium py-2 px-3 rounded transition-all duration-300 ${
-                scrolled ? 'bg-[#1F4732] text-white hover:bg-[#6BA539]' : 'bg-[#DD8F2A] text-[#12301F] hover:bg-[#f0a746] hover:scale-[1.02]'
+                scrolled ? 'bg-[#1F4732] text-white hover:bg-[#6BA539]' : 'bg-[#DAA520] text-[#12301F] hover:bg-[#C9A030] hover:scale-[1.02]'
               }`}
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
@@ -701,7 +704,7 @@ function NewHero({ onGetInTouch, startWriting = false }) {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex items-center overflow-hidden bg-[linear-gradient(135deg,#07140c_0%,#0e1813_35%,#1F4732_70%,#6BA539_100%)] pt-16"
+      className="relative w-full min-h-screen flex items-center overflow-visible pb-0 bg-[linear-gradient(135deg,#07140c_0%,#0e1813_35%,#1F4732_70%,#6BA539_100%)] pt-16"
     >
       {/* Honeycomb Pattern - Light and subtle */}
       <HoneycombPattern color="#DD8F2A" opacity={0.08} size={50} />
@@ -710,7 +713,7 @@ function NewHero({ onGetInTouch, startWriting = false }) {
       <div className="pointer-events-none absolute inset-0 z-[2] overflow-hidden" aria-hidden="true">
         {/* Large green sweep from the top-right */}
         <svg
-          className="absolute -top-[8%] -right-[9%] w-[72%] md:w-[62%] lg:w-[55%] h-auto opacity-90"
+          className="absolute -top-[8%] -right-[9%] w-[72%] md:w-[62%] lg:w-[55%] h-auto opacity-40 md:opacity-90"
           viewBox="0 0 700 520"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -728,7 +731,7 @@ function NewHero({ onGetInTouch, startWriting = false }) {
 
         {/* Broad leaf-like sweep from the left */}
         <svg
-          className="absolute top-[7%] -left-[15%] w-[76%] md:w-[68%] lg:w-[61%] h-auto opacity-95"
+          className="absolute top-[7%] -left-[15%] w-[76%] md:w-[68%] lg:w-[61%] h-auto opacity-40 md:opacity-95"
           viewBox="0 0 760 430"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -744,9 +747,9 @@ function NewHero({ onGetInTouch, startWriting = false }) {
           />
         </svg>
 
-        {/* White/cream negative-space swoosh */}
+        {/* White/cream negative-space swoosh - HIDDEN ON MOBILE */}
         <svg
-          className="absolute top-[14%] right-[5%] w-[48%] md:w-[42%] lg:w-[38%] h-auto opacity-[0.92] hidden sm:block"
+          className="absolute top-[14%] right-[5%] w-[48%] md:w-[42%] lg:w-[38%] h-auto opacity-[0.92] hidden md:block"
           viewBox="0 0 580 300"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -757,8 +760,8 @@ function NewHero({ onGetInTouch, startWriting = false }) {
           />
         </svg>
 
-        {/* Circular agriculture image integrated with the curves */}
-        <div className="absolute top-[19%] right-[5%] md:right-[7%] lg:right-[8%] w-[190px] h-[190px] sm:w-[230px] sm:h-[230px] md:w-[280px] md:h-[280px] lg:w-[330px] lg:h-[330px] xl:w-[370px] xl:h-[370px] rounded-full border-[10px] sm:border-[12px] border-[#F7F4EA] shadow-[0_28px_80px_rgba(0,0,0,0.32)] overflow-hidden opacity-95">
+        {/* Circular agriculture image - HIDDEN ON MOBILE */}
+        <div className="absolute top-[19%] right-[5%] md:right-[7%] lg:right-[8%] w-[190px] h-[190px] sm:w-[230px] sm:h-[230px] md:w-[280px] md:h-[280px] lg:w-[330px] lg:h-[330px] xl:w-[370px] xl:h-[370px] rounded-full border-[10px] sm:border-[12px] border-[#F7F4EA] shadow-[0_28px_80px_rgba(0,0,0,0.32)] overflow-hidden opacity-95 hidden sm:block">
           <img
             src="/bg.jpeg"
             alt=""
@@ -771,7 +774,7 @@ function NewHero({ onGetInTouch, startWriting = false }) {
 
         {/* Bottom-left organic curve */}
         <svg
-          className="absolute -bottom-[16%] -left-[12%] w-[48%] md:w-[40%] lg:w-[34%] h-auto opacity-95"
+          className="absolute -bottom-[16%] -left-[12%] w-[48%] md:w-[40%] lg:w-[34%] h-auto opacity-40 md:opacity-95"
           viewBox="0 0 460 360"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -783,23 +786,23 @@ function NewHero({ onGetInTouch, startWriting = false }) {
         </svg>
       </div>
 
-      <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-12 md:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
             <div className="text-cream">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-px bg-[#DD8F2A]/50"></div>
-                <div className="inline-block px-4 py-1.5 rounded-full border border-[#DD8F2A]/30 bg-[#DD8F2A]/15 backdrop-blur-sm shadow-lg shadow-[#DD8F2A]/5">
-                  <span className="text-[0.6rem] sm:text-[0.7rem] font-['Space_Mono',monospace] uppercase tracking-[0.15em] text-[#DD8F2A] font-semibold">
+              <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-4">
+                <div className="w-4 sm:w-8 h-px bg-[#DD8F2A]/50"></div>
+                <div className="inline-block px-2 sm:px-4 py-0.5 sm:py-1.5 rounded-full border border-[#DD8F2A]/30 bg-[#DD8F2A]/15 backdrop-blur-sm shadow-lg shadow-[#DD8F2A]/5">
+                  <span className="text-[0.45rem] sm:text-[0.6rem] md:text-[0.7rem] font-['Barlow',sans-serif] uppercase tracking-[0.08em] sm:tracking-[0.15em] text-[#DD8F2A] font-semibold whitespace-nowrap">
                     🌱 Navigating New Pathways
                   </span>
                 </div>
                 <div className="flex-1 h-px bg-[#DD8F2A]/20"></div>
               </div>
               
-              <h1 className="mb-4 min-h-[140px] sm:min-h-[160px]">
+              <h1 className="mb-2 sm:mb-4">
                 <div className="
-                  font-['Dancing_Script',cursive,serif]
+                  font-['Dancing_Script',cursive]
                   font-bold
                   text-white
                   drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)]
@@ -809,6 +812,7 @@ function NewHero({ onGetInTouch, startWriting = false }) {
                   lg:text-[5rem]
                   xl:text-[6rem]
                   leading-[1.05]
+                  break-words
                 ">
                   {showContent && (
                     <ScriptWritingText 
@@ -822,7 +826,7 @@ function NewHero({ onGetInTouch, startWriting = false }) {
                 </div>
 
                 <div className="
-                  font-['Dancing_Script',cursive,serif]
+                  font-['Dancing_Script',cursive]
                   font-bold
                   text-[#DD8F2A]
                   drop-shadow-[0_4px_30px_rgba(221,143,42,0.3)]
@@ -832,7 +836,7 @@ function NewHero({ onGetInTouch, startWriting = false }) {
                   lg:text-[5rem]
                   xl:text-[6rem]
                   leading-[1.05]
-                  mt-0
+                  break-words
                 ">
                   {showContent && (
                     <ScriptWritingText 
@@ -849,12 +853,12 @@ function NewHero({ onGetInTouch, startWriting = false }) {
               
               {/* Subtitle text - appears with the cards */}
               <div className={`transition-all duration-700 ${isTypingComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                <p className="font-['Barlow',sans-serif] text-[16px] sm:text-[18px] leading-[1.5] text-white/95 max-w-xl mb-6 drop-shadow-[0_2px_15px_rgba(0,0,0,0.5)]">
+                <p className="font-['Barlow',sans-serif] text-[15px] sm:text-[16px] md:text-[18px] leading-[1.4] sm:leading-[1.5] text-white/95 max-w-xl mb-3 sm:mb-6 drop-shadow-[0_2px_15px_rgba(0,0,0,0.5)]">
                   From Bangladesh's fertile lands to global markets — delivering farm-fresh produce with quality you can trust, naturally.
                 </p>
                 <button 
                   onClick={onGetInTouch}
-                  className="lg:hidden group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#DD8F2A] to-[#f0a746] text-[#12301F] font-['Barlow',sans-serif] text-[16px] leading-[1.5] font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-lg shadow-[#DD8F2A]/30 hover:shadow-[#DD8F2A]/50"
+                  className="lg:hidden group inline-flex items-center gap-2 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-gradient-to-r from-[#DD8F2A] to-[#f0a746] text-[#12301F] font-['Barlow',sans-serif] text-[14px] sm:text-[16px] leading-[1.5] font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-lg shadow-[#DD8F2A]/30 hover:shadow-[#DD8F2A]/50"
                 >
                   Contact us
                   <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -863,16 +867,16 @@ function NewHero({ onGetInTouch, startWriting = false }) {
             </div>
             
             {/* Stats Cards - appear with the subtitle */}
-            <div className={`grid grid-cols-2 gap-4 lg:translate-y-28 xl:translate-y-32 transition-all duration-700 ${isTypingComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`grid grid-cols-2 gap-2 sm:gap-4 lg:translate-y-28 xl:translate-y-32 transition-all duration-700 ${isTypingComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               {[
                 { value: '15+', label: 'Years in Agri-Trade' },
                 { value: '8', label: 'Export Countries' },
                 { value: '#1', label: 'Own Grading Plant in BD' },
                 { value: '100+', label: 'Farmers Partnered' }
               ].map((stat, i) => (
-                <div key={i} className="group bg-black/35 backdrop-blur-md border border-white/20 rounded-xl p-4 sm:p-6 hover:bg-black/45 transition-all duration-500 hover:scale-105 hover:border-[#DD8F2A]/50 shadow-xl shadow-black/20 hover:shadow-[#DD8F2A]/10">
-                  <div className="text-2xl sm:text-3xl font-['Fraunces',serif] font-bold text-[#DD8F2A] group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_2px_10px_rgba(221,143,42,0.3)]">{stat.value}</div>
-                  <div className="text-[0.55rem] sm:text-[0.6rem] text-white/90 font-['Space_Mono',monospace] uppercase tracking-[0.08em] mt-1 drop-shadow-[0_2px_6px_rgba(0,0,0,0.3)]">{stat.label}</div>
+                <div key={i} className="group bg-black/35 backdrop-blur-md border border-white/20 rounded-xl p-2.5 sm:p-4 md:p-6 hover:bg-black/45 transition-all duration-500 hover:scale-105 hover:border-[#DD8F2A]/50 shadow-xl shadow-black/20 hover:shadow-[#DD8F2A]/10">
+                  <div className="text-xl sm:text-2xl md:text-3xl font-['Lora',serif] font-bold text-[#DD8F2A] group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_2px_10px_rgba(221,143,42,0.3)]">{stat.value}</div>
+                  <div className="text-[0.5rem] sm:text-[0.55rem] md:text-[0.6rem] text-white/90 font-['Barlow',sans-serif] uppercase tracking-[0.05em] sm:tracking-[0.08em] mt-0.5 sm:mt-1 drop-shadow-[0_2px_6px_rgba(0,0,0,0.3)] leading-tight">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -880,9 +884,40 @@ function NewHero({ onGetInTouch, startWriting = false }) {
         </div>
       </div>
 
+      {/* Paper Tear / Wave Effect at Bottom */}
+      <div className="absolute bottom-0 left-0 right-0 z-[3] w-full overflow-hidden pointer-events-none">
+        <svg
+          className="relative w-full h-[60px] sm:h-[80px] md:h-[100px] lg:h-[120px]"
+          viewBox="0 0 1440 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          {/* Main wave shape - creates a paper tear effect */}
+          <path
+            d="M0 120 L0 40 Q180 80 360 45 Q540 10 720 50 Q900 90 1080 35 Q1260 -20 1440 40 L1440 120 L0 120 Z"
+            fill="#f8fcf4"
+          />
+          {/* Second wave layer for depth */}
+          <path
+            d="M0 120 L0 60 Q200 100 400 55 Q600 10 800 60 Q1000 110 1200 45 Q1320 15 1440 60 L1440 120 L0 120 Z"
+            fill="rgba(248, 252, 244, 0.5)"
+          />
+          {/* Third wave layer for more organic feel */}
+          <path
+            d="M0 120 L0 80 Q150 110 300 75 Q450 40 600 85 Q750 130 900 70 Q1050 10 1200 80 Q1320 115 1440 80 L1440 120 L0 120 Z"
+            fill="rgba(248, 252, 244, 0.2)"
+          />
+        </svg>
+      </div>
+
       {/* Add Google Font for Dancing Script */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+        .break-words {
+          word-break: break-word;
+          overflow-wrap: break-word;
+        }
       `}</style>
     </section>
   );
@@ -900,7 +935,7 @@ function Divider() {
 // ----- SHARED ORGANIC SECTION BACKGROUND -----
 function OrganicSectionDecoration({ dark = false, flip = false }) {
   const primary = dark ? '#6BA539' : '#1F7A31';
-  const secondary = dark ? '#DD8F2A' : '#6BA539';
+  const secondary = dark ? '#1F4732' : '#6BA539';
   const negative = dark ? '#F7F4EA' : '#FFFFFF';
 
   return (
@@ -996,7 +1031,7 @@ function About() {
       "
     >
       {/* Honeycomb Pattern */}
-      <EdgeHoneycombCluster side="right" position="top" color="#DD8F2A" fillColor="#6BA539" opacity={0.48} />
+      <EdgeHoneycombCluster side="right" position="top" color="#1F4732" fillColor="#6BA539" opacity={0.48} />
       
       {/* Existing organic decoration */}
       <OrganicSectionDecoration />
@@ -1188,7 +1223,7 @@ function About() {
           <div className="max-w-4xl mb-10 sm:mb-14 lg:mb-16">
             <div
               className="
-                font-['Space_Mono',monospace]
+                font-['Barlow',sans-serif]
                 uppercase
                 text-[0.62rem]
                 sm:text-[0.7rem]
@@ -1207,7 +1242,7 @@ function About() {
             <h2
               className="
                 font-['Lora',serif]
-                font-normal
+                font-bold
                 text-[2rem]
                 sm:text-[2.7rem]
                 lg:text-[3.5rem]
@@ -1281,8 +1316,8 @@ function About() {
                     h-[3px]
                     bg-gradient-to-r
                     from-[#1F4732]
-                    via-[#6BA539]
-                    to-[#DD8F2A]
+                    via-[#3D7A4A]
+                    to-[#6BA539]
                   "
                 />
 
@@ -1343,7 +1378,7 @@ function About() {
 
                     <span
                       className="
-                        font-['Space_Mono',monospace]
+                        font-['Barlow',sans-serif]
                         uppercase
                         tracking-[0.12em]
                         text-[0.58rem]
@@ -1492,7 +1527,7 @@ function About() {
                   <div>
                     <div
                       className="
-                        font-['Space_Mono',monospace]
+                        font-['Barlow',sans-serif]
                         uppercase
                         text-[0.58rem]
                         sm:text-[0.65rem]
@@ -1507,7 +1542,7 @@ function About() {
                     <div
                       className="
                         text-[#DD8F2A]
-                        font-['Space_Mono',monospace]
+                        font-['Barlow',sans-serif]
                         text-[0.7rem]
                         tracking-[0.16em]
                         uppercase
@@ -1566,7 +1601,7 @@ function About() {
 
                     <span
                       className="
-                        font-['Space_Mono',monospace]
+                        font-['Barlow',sans-serif]
                         text-[0.58rem]
                         uppercase
                         tracking-[0.14em]
@@ -1615,7 +1650,7 @@ function About() {
               >
                 <div
                   className="
-                    font-['Space_Mono',monospace]
+                    font-['Barlow',sans-serif]
                     uppercase
                     text-[0.58rem]
                     sm:text-[0.64rem]
@@ -1645,7 +1680,7 @@ function About() {
                     <span
                       key={market}
                       className="
-                        font-['Space_Mono',monospace]
+                        font-['Barlow',sans-serif]
                         text-[0.58rem]
                         sm:text-[0.64rem]
                         px-3
@@ -1689,7 +1724,7 @@ function About() {
               >
                 <div
                   className="
-                    font-['Space_Mono',monospace]
+                    font-['Barlow',sans-serif]
                     uppercase
                     text-[0.58rem]
                     sm:text-[0.64rem]
@@ -1768,7 +1803,7 @@ function About() {
               >
                 <div
                   className="
-                    font-['Space_Mono',monospace]
+                    font-['Barlow',sans-serif]
                     uppercase
                     text-[0.58rem]
                     sm:text-[0.64rem]
@@ -1882,7 +1917,7 @@ function About() {
                 <div className="relative z-10">
                   <div
                     className="
-                      font-['Space_Mono',monospace]
+                      font-['Barlow',sans-serif]
                       uppercase
                       text-[0.6rem]
                       tracking-[0.18em]
@@ -1967,7 +2002,7 @@ function About() {
                 <div className="relative z-10">
                   <div
                     className="
-                      font-['Space_Mono',monospace]
+                      font-['Barlow',sans-serif]
                       uppercase
                       text-[0.6rem]
                       tracking-[0.18em]
@@ -2043,7 +2078,7 @@ function About() {
               <div>
                 <div
                   className="
-                    font-['Space_Mono',monospace]
+                    font-['Barlow',sans-serif]
                     uppercase
                     text-[0.6rem]
                     sm:text-[0.66rem]
@@ -2124,8 +2159,8 @@ function About() {
                         h-[3px]
                         bg-gradient-to-r
                         from-[#1F4732]
-                        via-[#6BA539]
-                        to-[#DD8F2A]
+                        via-[#3D7A4A]
+                        to-[#6BA539]
                         transition-all
                         duration-500
                       "
@@ -2134,7 +2169,7 @@ function About() {
                     <div className="flex items-center justify-between mb-4">
                       <span
                         className="
-                          font-['Space_Mono',monospace]
+                          font-['Barlow',sans-serif]
                           text-[0.65rem]
                           text-[#6BA539]
                         "
@@ -2211,7 +2246,7 @@ function About() {
 function CEOMessage() {
   return (
     <section className="relative min-h-screen py-[60px] sm:py-[80px] lg:py-[100px] w-full bg-gradient-to-b from-[#fafcf8] to-[#f0f5ed] flex items-center overflow-hidden" id="ceo-message">
-      <EdgeHoneycombCluster side="left" position="top" color="#DD8F2A" fillColor="#6BA539" opacity={0.45} />
+      <EdgeHoneycombCluster side="left" position="top" color="#1F4732" fillColor="#6BA539" opacity={0.45} />
       <OrganicSectionDecoration flip />
       <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-10">
         <div className="max-w-7xl mx-auto">
@@ -2220,32 +2255,32 @@ function CEOMessage() {
               <div className="w-16 h-px bg-gradient-to-r from-transparent to-[#6BA539]"></div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#6BA539]"></span>
-                <span className="font-['Space_Mono',monospace] uppercase text-[0.6rem] sm:text-[0.7rem] tracking-[0.25em] text-[#6BA539] font-semibold">Message from Our CEO</span>
+                <span className="font-['Barlow',sans-serif] uppercase text-[0.6rem] sm:text-[0.7rem] tracking-[0.25em] text-[#6BA539] font-semibold">Message from Our CEO</span>
                 <span className="w-2 h-2 rounded-full bg-[#6BA539]"></span>
               </div>
               <div className="w-16 h-px bg-gradient-to-l from-transparent to-[#6BA539]"></div>
             </div>
-            <h2 className="font-['Lora',serif] font-normal text-[2rem] sm:text-[2.8rem] lg:text-[3.5rem] text-[#1F4732] leading-tight">
+            <h2 className="font-['Lora',serif] font-bold text-[2rem] sm:text-[2.8rem] lg:text-[3.5rem] text-[#1F4732] leading-tight">
               <AnimatedText text="A Commitment to" /> <br className="hidden sm:block" />
               <span className="relative inline-block">
                 <AnimatedText text="Quality & Sustainability" className="text-[#6BA539]" delay={200} />
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#6BA539] to-[#DD8F2A] rounded-full opacity-60"></span>
+                <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#1F4732] to-[#6BA539] rounded-full opacity-60"></span>
               </span>
             </h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_0.6fr] gap-0 lg:gap-0 bg-white rounded-2xl shadow-2xl overflow-hidden border border-[rgba(31,71,50,0.08)] hover:shadow-[0_25px_70px_rgba(31,71,50,0.12)] transition-all duration-700">
             <div className="p-8 sm:p-10 lg:p-14 order-2 lg:order-1 relative">
               <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[#6BA539]/5 to-transparent rounded-full -translate-x-16 -translate-y-16"></div>
-              <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-[#DD8F2A]/5 to-transparent rounded-full translate-x-20 translate-y-20"></div>
+              <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-[#1F4732]/5 to-transparent rounded-full translate-x-20 translate-y-20"></div>
               <div className="absolute top-6 right-8 text-8xl font-serif text-[#6BA539]/8 leading-none">"</div>
               <div className="relative z-10">
                 <div className="mb-6">
-                  <span className="inline-flex items-center gap-2 font-['Space_Mono',monospace] text-[0.55rem] sm:text-[0.65rem] uppercase tracking-[0.15em] text-[#6BA539] bg-gradient-to-r from-[#e8f5e8] to-[#f0f8f0] px-4 py-2 rounded-full border border-[#6BA539]/20">
+                  <span className="inline-flex items-center gap-2 font-['Barlow',sans-serif] text-[0.55rem] sm:text-[0.65rem] uppercase tracking-[0.15em] text-[#6BA539] bg-gradient-to-r from-[#e8f5e8] to-[#f0f8f0] px-4 py-2 rounded-full border border-[#6BA539]/20">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#6BA539] animate-pulse"></span>
                     Dear Valued Partners and Customers
                   </span>
                 </div>
-                <div className="space-y-4 font-['Barlow',sans-serif] text-[16px] leading-[1.5] text-[#666666] text-[#3a382e]">
+                <div className="space-y-2 font-['Barlow',sans-serif] text-[16px] leading-[1.5] text-[#666666] text-[#3a382e]">
                   <p className="text-[0.95rem] sm:text-[1.05rem] lg:text-[1.1rem] leading-relaxed">
                     In today's rapidly changing world, food security, responsible sourcing, and reliable international trade are more important than ever. By working closely with local producers and suppliers, <span className="font-semibold text-[#1F4732] relative">POLYGON RESOURCE</span> aims to deliver fresh, quality agricultural products from Bangladesh to markets around the world.
                   </p>
@@ -2262,7 +2297,7 @@ function CEOMessage() {
                 <div className="mt-8 pt-6 border-t-2 border-[rgba(31,71,50,0.06)] relative">
                   <div className="flex items-center gap-5">
                     <div className="relative">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#1F4732] to-[#6BA539] flex items-center justify-center text-white font-['Fraunces',serif] text-2xl font-bold shadow-lg shadow-[#1F4732]/20">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#1F4732] to-[#6BA539] flex items-center justify-center text-white font-['Lora',serif] text-2xl font-bold shadow-lg shadow-[#1F4732]/20">
                         RS
                       </div>
                       <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#DD8F2A] rounded-full border-2 border-white"></div>
@@ -2270,7 +2305,7 @@ function CEOMessage() {
                     <div>
                       <p className="font-['Lora',serif] font-normal text-[1.1rem] sm:text-[1.3rem] text-[#1F4732] font-semibold">Sincerely,</p>
                       <p className="font-['Lora',serif] font-normal text-[1rem] sm:text-[1.1rem] text-[#1F4732] font-bold mt-0.5">Rashed Shamim</p>
-                      <p className="font-['Space_Mono',monospace] text-[0.55rem] sm:text-[0.6rem] text-[#6BA539] uppercase tracking-[0.1em] mt-0.5 flex items-center gap-2">
+                      <p className="font-['Barlow',sans-serif] text-[0.55rem] sm:text-[0.6rem] text-[#6BA539] uppercase tracking-[0.1em] mt-0.5 flex items-center gap-2">
                         <span className="w-6 h-px bg-[#6BA539]"></span>
                         Proprietor & CEO
                       </p>
@@ -2294,7 +2329,7 @@ function CEOMessage() {
                   <div className="w-1 h-16 bg-gradient-to-b from-[#000000] to-[#325018] rounded-full"></div>
                   <div>
                     <p className="font-['Lora',serif] font-normal text-xl sm:text-2xl text-white font-semibold tracking-wide">Rashed Shamim</p>
-                    <p className="font-['Space_Mono',monospace] text-xs sm:text-sm text-white/80 uppercase tracking-[0.1em] flex items-center gap-2 mt-1">
+                    <p className="font-['Barlow',sans-serif] text-xs sm:text-sm text-white/80 uppercase tracking-[0.1em] flex items-center gap-2 mt-1">
                       <span className="w-6 h-px bg-[#a35e03]"></span>
                       Proprietor & CEO
                     </p>
@@ -2326,6 +2361,7 @@ function Products() {
   const scrollContainerRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   const products = [
     // Fruits (4 products)
@@ -2431,6 +2467,7 @@ function Products() {
   };
 
   const scroll = (direction) => {
+    if (isMobile) return;
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
       const cardWidth = container.querySelector('.product-card')?.offsetWidth || 280;
@@ -2476,20 +2513,31 @@ function Products() {
     }
   }, [activeCategory]);
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section className="relative py-[60px] sm:py-[80px] lg:py-[100px] w-full bg-gradient-to-b from-[#f8faf8] to-[#eef5ec] overflow-hidden" id="products">
-      <EdgeHoneycombCluster side="right" position="bottom" color="#DD8F2A" fillColor="#6BA539" opacity={0.44} />
+      <EdgeHoneycombCluster side="right" position="bottom" color="#1F4732" fillColor="#6BA539" opacity={0.44} />
       <OrganicSectionDecoration />
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 sm:mb-10 gap-4">
             <div>
-              <div className="font-['Space_Mono',monospace] uppercase text-[0.65rem] sm:text-[0.72rem] tracking-[0.18em] text-[#6BA539] flex items-center gap-2.5 before:content-[''] before:w-[18px] sm:before:w-[22px] before:h-[1px] before:bg-[#6BA539] before:inline-block">
+              <div className="font-['Barlow',sans-serif] uppercase text-[0.65rem] sm:text-[0.72rem] tracking-[0.18em] text-[#6BA539] flex items-center gap-2.5 before:content-[''] before:w-[18px] sm:before:w-[22px] before:h-[1px] before:bg-[#6BA539] before:inline-block">
                 Our Products
               </div>
-              <h2 className="font-['Lora',serif] font-normal text-[1.8rem] sm:text-[2rem] lg:text-[2.3rem] mt-[10px] sm:mt-[14px] text-[#1F4732]"><AnimatedText text="Premium export produce." /></h2>
+              <h2 className="font-['Lora',serif] font-bold text-[1.8rem] sm:text-[2rem] lg:text-[2.3rem] mt-[10px] sm:mt-[14px] text-[#1F4732]"><AnimatedText text="Premium export produce." /></h2>
             </div>
-            <div className="text-sm font-['Space_Mono',monospace] text-[#6BA539]">
+            <div className="text-sm font-['Barlow',sans-serif] text-[#6BA539]">
               {filteredProducts.length} products
             </div>
           </div>
@@ -2501,7 +2549,7 @@ function Products() {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={
-                  'font-["Space_Mono",monospace] text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.05em] px-4 sm:px-5 py-1.5 sm:py-2 rounded-full border transition-all duration-300 ' +
+                  'font-["Barlow",sans-serif] text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.05em] px-4 sm:px-5 py-1.5 sm:py-2 rounded-full border transition-all duration-300 ' +
                   (activeCategory === cat
                     ? 'bg-[#1F4732] text-white border-[#1F4732] shadow-md shadow-[#1F4732]/20'
                     : 'border-[rgba(31,71,50,0.2)] hover:bg-[#1F4732] hover:text-white hover:border-[#1F4732]')
@@ -2518,7 +2566,7 @@ function Products() {
             {showLeftArrow && (
               <button
                 onClick={() => scroll('left')}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-[#1F4732] hover:bg-[#6BA539] text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center transition-all duration-300 shadow-lg shadow-[#1F4732]/30 hover:shadow-xl hover:scale-110"
+                className="products-arrow-nudge-left absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-[#1F4732] hover:bg-[#6BA539] text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center transition-all duration-300 shadow-lg shadow-[#1F4732]/30 hover:shadow-xl hover:scale-110"
                 aria-label="Scroll left"
               >
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2531,7 +2579,7 @@ function Products() {
             {showRightArrow && (
               <button
                 onClick={() => scroll('right')}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-[#1F4732] hover:bg-[#6BA539] text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center transition-all duration-300 shadow-lg shadow-[#1F4732]/30 hover:shadow-xl hover:scale-110"
+                className="products-arrow-nudge-right absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-[#1F4732] hover:bg-[#6BA539] text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center transition-all duration-300 shadow-lg shadow-[#1F4732]/30 hover:shadow-xl hover:scale-110"
                 aria-label="Scroll right"
               >
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2586,6 +2634,22 @@ function Products() {
                   box-shadow: 0 12px 40px rgba(31, 71, 50, 0.15);
                   border-color: #1F4732;
                 }
+                @keyframes products-arrow-nudge-left {
+                  0%, 100% { transform: translateX(0); opacity: 1; }
+                  50% { transform: translateX(-6px); opacity: 0.55; }
+                }
+                @keyframes products-arrow-nudge-right {
+                  0%, 100% { transform: translateX(0); opacity: 1; }
+                  50% { transform: translateX(6px); opacity: 0.55; }
+                }
+                @media (max-width: 639px) {
+                  .products-arrow-nudge-left svg {
+                    animation: products-arrow-nudge-left 1.2s ease-in-out infinite;
+                  }
+                  .products-arrow-nudge-right svg {
+                    animation: products-arrow-nudge-right 1.2s ease-in-out infinite;
+                  }
+                }
               `}</style>
               
               {filteredProducts.map((p, index) => (
@@ -2607,7 +2671,7 @@ function Products() {
                       loading="lazy"
                     />
                     <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
-                      <span className="font-['Space_Mono',monospace] text-[0.5rem] sm:text-[0.55rem] uppercase tracking-[0.08em] bg-[#1F4732]/80 backdrop-blur-sm text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full">
+                      <span className="font-['Barlow',sans-serif] text-[0.5rem] sm:text-[0.55rem] uppercase tracking-[0.08em] bg-[#1F4732]/80 backdrop-blur-sm text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full">
                         {p.category}
                       </span>
                     </div>
@@ -2625,7 +2689,7 @@ function Products() {
                       {p.tags.slice(0, 2).map((tag, j) => (
                         <span 
                           key={j} 
-                          className="font-['Space_Mono',monospace] text-[0.5rem] sm:text-[0.55rem] text-[#6BA539] bg-[#e8f5e8] px-1.5 py-0.5 rounded-full"
+                          className="font-['Barlow',sans-serif] text-[0.5rem] sm:text-[0.55rem] text-[#6BA539] bg-[#e8f5e8] px-1.5 py-0.5 rounded-full"
                         >
                           {tag}
                         </span>
@@ -2633,7 +2697,7 @@ function Products() {
                     </div>
                     <a 
                       href="#" 
-                      className="inline-flex items-center gap-1 font-['Space_Mono',monospace] text-[0.65rem] sm:text-[0.7rem] text-[#6BA539] hover:text-[#1F4732] transition-colors duration-300 group/link"
+                      className="inline-flex items-center gap-1 font-['Barlow',sans-serif] text-[0.65rem] sm:text-[0.7rem] text-[#6BA539] hover:text-[#1F4732] transition-colors duration-300 group/link"
                     >
                       Know More
                       <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">→</span>
@@ -2657,16 +2721,16 @@ function Routes() {
 
   return (
     <section className="relative py-[30px] sm:py-5 pb-[60px] sm:pb-[80px] lg:pb-[110px] text-center w-full bg-white overflow-hidden" id="routes">
-      <EdgeHoneycombCluster side="left" position="top" color="#DD8F2A" fillColor="#6BA539" opacity={0.40} />
+      <EdgeHoneycombCluster side="left" position="top" color="#1F4732" fillColor="#6BA539" opacity={0.40} />
       <OrganicSectionDecoration flip />
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="font-['Space_Mono',monospace] uppercase text-[0.65rem] sm:text-[0.72rem] tracking-[0.18em] text-[#6BA539] flex items-center justify-center gap-2.5 before:content-[''] before:w-[18px] sm:before:w-[22px] before:h-[1px] before:bg-[#6BA539] before:inline-block">
+        <div className="font-['Barlow',sans-serif] uppercase text-[0.65rem] sm:text-[0.72rem] tracking-[0.18em] text-[#6BA539] flex items-center justify-center gap-2.5 before:content-[''] before:w-[18px] sm:before:w-[22px] before:h-[1px] before:bg-[#6BA539] before:inline-block">
           Where We Ship
         </div>
-        <h2 className="font-['Lora',serif] font-normal text-[1.6rem] sm:text-[1.8rem] lg:text-2xl mt-[10px] sm:mt-[14px] mb-6 sm:mb-8 lg:mb-10 text-[#1F4732]"><AnimatedText text="Eight countries. One quality standard." /></h2>
+        <h2 className="font-['Lora',serif] font-bold text-[1.6rem] sm:text-[1.8rem] lg:text-2xl mt-[10px] sm:mt-[14px] mb-6 sm:mb-8 lg:mb-10 text-[#1F4732]"><AnimatedText text="Eight countries. One quality standard." /></h2>
         <div className="flex justify-center flex-wrap gap-3 sm:gap-4 max-w-[820px] mx-auto">
           {countries.map((c, i) => (
-            <div key={i} className="w-[80px] h-[80px] sm:w-[95px] sm:h-[95px] lg:w-[110px] lg:h-[110px] rounded-full border-2 border-[#1F4732] flex flex-col items-center justify-center text-center font-['Space_Mono',monospace] text-[#1F4732] hover:bg-[#1F4732] hover:text-white transition-all duration-300" style={{ transform: `rotate(${rotations[i]})` }}>
+            <div key={i} className="w-[80px] h-[80px] sm:w-[95px] sm:h-[95px] lg:w-[110px] lg:h-[110px] rounded-full border-2 border-[#1F4732] flex flex-col items-center justify-center text-center font-['Barlow',sans-serif] text-[#1F4732] hover:bg-[#1F4732] hover:text-white transition-all duration-300" style={{ transform: `rotate(${rotations[i]})` }}>
               <b className="text-[0.65rem] sm:text-[0.7rem] lg:text-[0.78rem]">{c}</b>
             </div>
           ))}
@@ -2683,7 +2747,7 @@ function CTA({ onGetInTouch }) {
       <EdgeHoneycombCluster side="right" position="bottom" color="#F2A900" fillColor="#F2A900" opacity={0.35} />
       <OrganicSectionDecoration dark />
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
-        <h2 className="font-['Lora',serif] font-normal text-[1.6rem] sm:text-[1.8rem] lg:text-2xl text-white mb-4 sm:mb-5"><AnimatedText text="Ready to source from Polygon Resource?" /></h2>
+        <h2 className="font-['Lora',serif] font-bold text-[1.6rem] sm:text-[1.8rem] lg:text-2xl text-white mb-4 sm:mb-5"><AnimatedText text="Ready to source from Polygon Resource?" /></h2>
         <button 
           onClick={onGetInTouch}
           className="font-['Barlow',sans-serif] text-[16px] leading-[1.5] font-semibold text-[0.85rem] sm:text-[0.92rem] px-[20px] sm:px-[26px] py-[12px] sm:py-[14px] rounded-[2px] inline-flex items-center gap-2 bg-white text-[#1F4732] hover:bg-[#DD8F2A] transition-colors cursor-pointer shadow-lg hover:shadow-xl"
@@ -2705,12 +2769,21 @@ function ContactSection() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [focusedField, setFocusedField] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleFocus = (fieldName) => {
+    setFocusedField(fieldName);
+  };
+
+  const handleBlur = () => {
+    setFocusedField(null);
   };
 
   const handleSubmit = (e) => {
@@ -2764,7 +2837,7 @@ function ContactSection() {
         overflow-hidden
       "
     >
-      <EdgeHoneycombCluster side="left" position="bottom" color="#DD8F2A" fillColor="#6BA539" opacity={0.42} />
+      <EdgeHoneycombCluster side="left" position="bottom" color="#1F4732" fillColor="#6BA539" opacity={0.42} />
       <OrganicSectionDecoration />
 
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
@@ -2774,7 +2847,7 @@ function ContactSection() {
           <div className="text-center mb-10 sm:mb-14 animate-fadeInUp">
             <div
               className="
-                font-['Space_Mono',monospace]
+                font-['Barlow',sans-serif]
                 uppercase
                 text-[0.65rem]
                 sm:text-[0.72rem]
@@ -2806,7 +2879,7 @@ function ContactSection() {
             <h2
               className="
                 font-['Lora',serif]
-                font-normal
+                font-bold
                 text-[2rem]
                 sm:text-[2.5rem]
                 lg:text-[3rem]
@@ -2824,8 +2897,8 @@ function ContactSection() {
                 w-20
                 h-1
                 bg-gradient-to-r
-                from-[#6BA539]
-                to-[#DD8F2A]
+                from-[#1F4732]
+                to-[#6BA539]
                 mx-auto
                 mt-4
                 rounded-full
@@ -2944,8 +3017,8 @@ function ContactSection() {
                     h-[3px]
                     bg-gradient-to-r
                     from-[#1F4732]
-                    via-[#6BA539]
-                    to-[#DD8F2A]
+                    via-[#3D7A4A]
+                    to-[#6BA539]
                   "
                 />
 
@@ -3147,7 +3220,7 @@ function ContactSection() {
                         <div className="min-w-0 pt-[1px]">
                           <h4
                             className="
-                              font-['Space_Mono',monospace]
+                              font-['Barlow',sans-serif]
                               text-xs
                               sm:text-sm
                               text-[#6BA539]
@@ -3217,8 +3290,8 @@ function ContactSection() {
                     h-[3px]
                     bg-gradient-to-r
                     from-[#1F4732]
-                    via-[#6BA539]
-                    to-[#DD8F2A]
+                    via-[#3D7A4A]
+                    to-[#6BA539]
                   "
                 />
 
@@ -3300,38 +3373,22 @@ function ContactSection() {
                 >
 
                   {/* Full Name */}
-                  <div className="group">
-                    <label
-                      className="
-                        block
-                        font-['Space_Mono',monospace]
-                        text-xs
-                        sm:text-sm
-                        text-[#6BA539]
-                        uppercase
-                        tracking-wider
-                        mb-1.5
-                        group-focus-within:text-[#1F4732]
-                        transition-colors
-                        duration-300
-                      "
-                    >
-                      Your Full Name
-                      <span className="text-red-500"> *</span>
-                    </label>
-
+                  <div className="relative">
                     <div className="relative">
                       <input
                         type="text"
                         name="name"
+                        id="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="e.g. John Doe"
+                        onFocus={() => handleFocus('name')}
+                        onBlur={handleBlur}
+                        placeholder=" "
                         className="
                           w-full
                           px-4
-                          py-2.5
-                          sm:py-3
+                          pt-5
+                          pb-2
                           border
                           border-[rgba(31,71,50,0.18)]
                           rounded-lg
@@ -3345,13 +3402,39 @@ function ContactSection() {
                           font-['Barlow',sans-serif]
                           text-[16px]
                           leading-[1.5]
-                          text-[#666666]
                           text-[#1C1A14]
-                          placeholder:text-[#8a8368]
                           hover:border-[#6BA539]/50
+                          peer
                         "
                         required
                       />
+                      <label
+                        htmlFor="name"
+                        className="
+                          absolute
+                          left-4
+                          top-1/2
+                          -translate-y-1/2
+                          font-['Barlow',sans-serif]
+                          text-[16px]
+                          text-[#8a8368]
+                          transition-all
+                          duration-300
+                          pointer-events-none
+                          origin-left
+                          peer-placeholder-shown:top-1/2
+                          peer-placeholder-shown:-translate-y-1/2
+                          peer-placeholder-shown:text-base
+                          peer-focus:top-1
+                          peer-focus:-translate-y-0
+                          peer-focus:text-xs
+                          peer-focus:text-[#1F4732]
+                          peer-focus:font-semibold
+                          ${(focusedField === 'name' || formData.name) ? 'top-1 -translate-y-0 text-xs text-[#1F4732] font-semibold' : ''}
+                        "
+                      >
+                        Your Full Name
+                      </label>
 
                       <div
                         className="
@@ -3362,49 +3445,33 @@ function ContactSection() {
                           h-0.5
                           bg-gradient-to-r
                           from-[#1F4732]
-                          via-[#6BA539]
-                          to-[#DD8F2A]
+                          via-[#3D7A4A]
+                          to-[#6BA539]
                           transition-all
                           duration-300
-                          group-focus-within:w-full
+                          peer-focus:w-full
                         "
                       />
                     </div>
                   </div>
 
                   {/* Email */}
-                  <div className="group">
-                    <label
-                      className="
-                        block
-                        font-['Space_Mono',monospace]
-                        text-xs
-                        sm:text-sm
-                        text-[#6BA539]
-                        uppercase
-                        tracking-wider
-                        mb-1.5
-                        group-focus-within:text-[#1F4732]
-                        transition-colors
-                        duration-300
-                      "
-                    >
-                      Business Email Address
-                      <span className="text-red-500"> *</span>
-                    </label>
-
+                  <div className="relative">
                     <div className="relative">
                       <input
                         type="email"
                         name="email"
+                        id="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="e.g. john@business.com"
+                        onFocus={() => handleFocus('email')}
+                        onBlur={handleBlur}
+                        placeholder=" "
                         className="
                           w-full
                           px-4
-                          py-2.5
-                          sm:py-3
+                          pt-5
+                          pb-2
                           border
                           border-[rgba(31,71,50,0.18)]
                           rounded-lg
@@ -3418,13 +3485,39 @@ function ContactSection() {
                           font-['Barlow',sans-serif]
                           text-[16px]
                           leading-[1.5]
-                          text-[#666666]
                           text-[#1C1A14]
-                          placeholder:text-[#8a8368]
                           hover:border-[#6BA539]/50
+                          peer
                         "
                         required
                       />
+                      <label
+                        htmlFor="email"
+                        className="
+                          absolute
+                          left-4
+                          top-1/2
+                          -translate-y-1/2
+                          font-['Barlow',sans-serif]
+                          text-[16px]
+                          text-[#8a8368]
+                          transition-all
+                          duration-300
+                          pointer-events-none
+                          origin-left
+                          peer-placeholder-shown:top-1/2
+                          peer-placeholder-shown:-translate-y-1/2
+                          peer-placeholder-shown:text-base
+                          peer-focus:top-1
+                          peer-focus:-translate-y-0
+                          peer-focus:text-xs
+                          peer-focus:text-[#1F4732]
+                          peer-focus:font-semibold
+                          ${(focusedField === 'email' || formData.email) ? 'top-1 -translate-y-0 text-xs text-[#1F4732] font-semibold' : ''}
+                        "
+                      >
+                        Business Email Address
+                      </label>
 
                       <div
                         className="
@@ -3435,49 +3528,33 @@ function ContactSection() {
                           h-0.5
                           bg-gradient-to-r
                           from-[#1F4732]
-                          via-[#6BA539]
-                          to-[#DD8F2A]
+                          via-[#3D7A4A]
+                          to-[#6BA539]
                           transition-all
                           duration-300
-                          group-focus-within:w-full
+                          peer-focus:w-full
                         "
                       />
                     </div>
                   </div>
 
                   {/* Message */}
-                  <div className="group">
-                    <label
-                      className="
-                        block
-                        font-['Space_Mono',monospace]
-                        text-xs
-                        sm:text-sm
-                        text-[#6BA539]
-                        uppercase
-                        tracking-wider
-                        mb-1.5
-                        group-focus-within:text-[#1F4732]
-                        transition-colors
-                        duration-300
-                      "
-                    >
-                      Detailed Message
-                      <span className="text-red-500"> *</span>
-                    </label>
-
+                  <div className="relative">
                     <div className="relative">
                       <textarea
                         rows="5"
                         name="message"
+                        id="message"
                         value={formData.message}
                         onChange={handleChange}
-                        placeholder="Describe your import requirement, target market or specs..."
+                        onFocus={() => handleFocus('message')}
+                        onBlur={handleBlur}
+                        placeholder=" "
                         className="
                           w-full
                           px-4
-                          py-2.5
-                          sm:py-3
+                          pt-5
+                          pb-2
                           border
                           border-[rgba(31,71,50,0.18)]
                           rounded-lg
@@ -3491,14 +3568,38 @@ function ContactSection() {
                           font-['Barlow',sans-serif]
                           text-[16px]
                           leading-[1.5]
-                          text-[#666666]
                           text-[#1C1A14]
-                          placeholder:text-[#8a8368]
                           hover:border-[#6BA539]/50
                           resize-none
+                          peer
+                          min-h-[120px]
                         "
                         required
                       />
+                      <label
+                        htmlFor="message"
+                        className="
+                          absolute
+                          left-4
+                          top-4
+                          font-['Barlow',sans-serif]
+                          text-[16px]
+                          text-[#8a8368]
+                          transition-all
+                          duration-300
+                          pointer-events-none
+                          origin-left
+                          peer-placeholder-shown:top-4
+                          peer-placeholder-shown:text-base
+                          peer-focus:top-1
+                          peer-focus:text-xs
+                          peer-focus:text-[#1F4732]
+                          peer-focus:font-semibold
+                          ${(focusedField === 'message' || formData.message) ? 'top-1 text-xs text-[#1F4732] font-semibold' : ''}
+                        "
+                      >
+                        Detailed Message
+                      </label>
 
                       <div
                         className="
@@ -3509,11 +3610,11 @@ function ContactSection() {
                           h-0.5
                           bg-gradient-to-r
                           from-[#1F4732]
-                          via-[#6BA539]
-                          to-[#DD8F2A]
+                          via-[#3D7A4A]
+                          to-[#6BA539]
                           transition-all
                           duration-300
-                          group-focus-within:w-full
+                          peer-focus:w-full
                         "
                       />
                     </div>
@@ -3706,20 +3807,37 @@ function ContactSection() {
   );
 }
 
+         
 
 
 //Footer Section
 
 function Footer() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <footer className="relative bg-[#1F4732] text-white pt-[60px] pb-[30px] sm:pt-[80px] sm:pb-[40px] lg:pt-[100px] lg:pb-[50px] w-full overflow-hidden">
       <EdgeHoneycombCluster side="right" position="top" color="#F2A900" fillColor="#F2A900" opacity={0.32} />
       <OrganicSectionDecoration dark flip />
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 z-0">
-        {/* Background Image */}
+        {/* Background Image - switches based on screen size */}
         <div 
-          className="absolute inset-0 bg-[url('/footer.png')] bg-cover bg-bottom bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-bottom bg-no-repeat"
+          style={{
+            backgroundImage: `url('${isMobile ? '/mobile_footer.png' : '/footer.png'}')`,
+          }}
         />
         {/* Dark overlay to make text visible - INCREASED OPACITY */}
         <div className="absolute inset-0 bg-[#1F4732]/45"></div>
@@ -3755,7 +3873,7 @@ function Footer() {
 
             {/* Column 2 - Quick Links */}
             <div>
-              <h4 className="font-['Space_Mono',monospace] font-se text-[0.7rem] sm:text-[0.75rem] uppercase tracking-[0.15em] text-[#6BA539] mb-4">
+              <h4 className="font-['Barlow',sans-serif] font-se text-[0.7rem] sm:text-[0.75rem] uppercase tracking-[0.15em] text-[#6BA539] mb-4">
                 Quick Links
               </h4>
               <ul className="space-y-2.5 font-semibold">
@@ -3779,7 +3897,7 @@ function Footer() {
 
             {/* Column 3 - Products */}
             <div>
-              <h4 className="font-['Space_Mono',monospace] text-[0.7rem] sm:text-[0.75rem] uppercase tracking-[0.15em] text-[#6BA539] mb-4">
+              <h4 className="font-['Barlow',sans-serif] text-[0.7rem] sm:text-[0.75rem] uppercase tracking-[0.15em] text-[#6BA539] mb-4">
                 Products
               </h4>
               <ul className="space-y-2.5 font-semibold">
@@ -3799,7 +3917,7 @@ function Footer() {
 
             {/* Column 4 - Official Info */}
             <div>
-              <h4 className="font-['Space_Mono',monospace] text-[0.7rem] sm:text-[0.75rem] uppercase tracking-[0.15em] text-[#6BA539] mb-4">
+              <h4 className="font-['Barlow',sans-serif] text-[0.7rem] sm:text-[0.75rem] uppercase tracking-[0.15em] text-[#6BA539] mb-4">
                 Official Info
               </h4>
               <div className="space-y-3">
