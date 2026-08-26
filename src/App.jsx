@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronUp } from 'lucide-react';
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Eye, Target, ShieldCheck, Clock, Users, BadgeCheck, Quote } from "lucide-react";
 
 // ---------------------------------------------------------------------------
 // Scroll animation system
@@ -314,8 +314,8 @@ function HoneycombPattern({ color = '#1F4732', opacity = 0.06, size = 40, classN
 function EdgeHoneycombCluster({
   side = 'left',
   position = 'top',
-  color = '#DD8F2A',
-  fillColor = '#F2A900',
+  color = '#DFB85C',
+  fillColor = '#F0DCA4',
   opacity = 0.55,
   className = '',
 }) {
@@ -772,14 +772,9 @@ function App() {
           <Products />
         </Reveal>
 
-        {/* 4. Our Purpose Section - Vision, Mission & Core Values */}
+        {/* 4. Our Purpose + Message from CEO (combined section) */}
         <Reveal direction="up" distance={50}>
           <OurPurpose />
-        </Reveal>
-
-        {/* 5. CEO Message Section */}
-        <Reveal direction="up" distance={50}>
-          <CEOMessage />
         </Reveal>
 
         {/* 6. CTA Section */}
@@ -961,7 +956,7 @@ function NewHero({ onGetInTouch, startWriting = false }) {
       className="relative w-full min-h-screen flex items-center overflow-visible pb-0 bg-[linear-gradient(135deg,#07140c_0%,#0e1813_35%,#1F4732_70%,#6BA539_100%)] pt-16"
     >
       {/* Honeycomb Pattern - Light and subtle */}
-      <HoneycombPattern color="#DD8F2A" opacity={0.08} size={50} />
+      <HoneycombPattern color="#DFB85C" opacity={0.08} size={50} />
 
       {/* Reference-inspired organic agricultural decoration */}
       <div className="pointer-events-none absolute inset-0 z-[2] overflow-hidden" aria-hidden="true">
@@ -1238,7 +1233,7 @@ function About() {
       "
     >
       {/* Honeycomb Pattern */}
-      <EdgeHoneycombCluster side="right" position="top" color="#1F4732" fillColor="#6BA539" opacity={0.48} />
+      <EdgeHoneycombCluster side="right" position="top" color="#DFB85C" fillColor="#F0DCA4" opacity={0.48} />
       
       {/* Existing organic decoration */}
       <OrganicSectionDecoration />
@@ -1756,6 +1751,8 @@ function OurPurpose() {
     },
   ];
 
+  const coreValueIcons = [ShieldCheck, Clock, Users, BadgeCheck];
+
   return (
     <section
       id="purpose"
@@ -1769,7 +1766,7 @@ function OurPurpose() {
         bg-[linear-gradient(135deg,#f8fcf4_0%,#edf6e7_28%,#dfedd6_58%,#cfe3c4_100%)]
       "
     >
-      <EdgeHoneycombCluster side="right" position="top" color="#1F4732" fillColor="#6BA539" opacity={0.48} />
+      <EdgeHoneycombCluster side="right" position="top" color="#DFB85C" fillColor="#F0DCA4" opacity={0.48} />
       <OrganicSectionDecoration flip />
 
       <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-10">
@@ -1785,24 +1782,17 @@ function OurPurpose() {
             </h2>
           </div>
 
-          {/* Vision & Mission - Compact */}
-          <div
-            className="
-              grid
-              grid-cols-1
-              lg:grid-cols-2
-              gap-4
-              lg:gap-6
-              mb-8
-              lg:mb-10
-            "
-          >
-            {/* Vision */}
-            <Reveal direction="up" distance={30} duration={500} delay={0}>
+          {/* Main layout: Message from CEO (left 1/3) + Purpose content (right 2/3) */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+
+            {/* Message from CEO - left third on desktop */}
+            <Reveal direction="up" distance={30} duration={500} delay={200} as="div">
               <div
+                id="ceo-message"
                 className="
                   group
                   relative
+                  h-full
                   overflow-hidden
                   rounded-2xl
                   bg-gradient-to-br
@@ -1810,7 +1800,7 @@ function OurPurpose() {
                   to-[#28573a]
                   text-white
                   p-6
-                  sm:p-8
+                  sm:p-7
                   shadow-[0_12px_35px_rgba(31,71,50,0.2)]
                   hover:-translate-y-1
                   hover:shadow-[0_18px_45px_rgba(31,71,50,0.28)]
@@ -1818,130 +1808,164 @@ function OurPurpose() {
                   duration-500
                 "
               >
+                <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-white/[0.06] to-transparent rounded-full translate-x-14 -translate-y-14"></div>
+                <Quote className="absolute top-5 right-5 w-10 h-10 text-white/[0.08] select-none" strokeWidth={1.5} />
+
                 <div className="relative z-10">
-                  <div
-                    className="
-                      font-['Barlow',sans-serif]
-                      uppercase
-                      text-[0.55rem]
-                      tracking-[0.18em]
-                      text-[#a8d68f]
-                      mb-3
-                      flex
-                      items-center
-                      gap-2
-                    "
-                  >
-                    <span className="w-6 h-px bg-[#a8d68f]" />
-                    Our Vision
+                  {/* Small circular photo at top-left corner */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <img
+                      src="/dp.jpeg"
+                      alt="Rashed Shamim - Proprietor & CEO"
+                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-white/40 ring-2 ring-[#6BA539]/60 shadow-lg shadow-black/25 shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <span className="font-['Barlow',sans-serif] uppercase text-[0.55rem] tracking-[0.18em] text-[#a8d68f] flex items-center gap-2">
+                        <span className="w-5 h-px bg-[#DD8F2A] shrink-0" />
+                        Message from Our CEO
+                      </span>
+                      <p className="font-['Lora',serif] text-[1rem] sm:text-[1.05rem] font-semibold text-white mt-1">Rashed Shamim</p>
+                      <p className="font-['Barlow',sans-serif] text-[0.55rem] uppercase tracking-[0.12em] text-white/60 mt-0.5">Proprietor &amp; CEO</p>
+                    </div>
                   </div>
 
-                  <h3
-                    className="
-                      font-['Lora',serif]
-                      font-normal
-                      text-[1.3rem]
-                      sm:text-[1.5rem]
-                      lg:text-[1.8rem]
-                      mb-3
-                      text-white
-                    "
-                  >
-                    A trusted trading partner from Bangladesh.
-                  </h3>
+                  <div className="h-px bg-gradient-to-r from-[#DD8F2A]/60 via-white/15 to-transparent mb-4"></div>
 
-                  <p
-                    className="
-                      font-['Barlow',sans-serif]
-                      text-[16px]
-                      leading-[1.5]
-                      text-white/80
-                      text-[0.85rem]
-                      sm:text-[0.9rem]
-                    "
-                  >
-                    To become a trusted trading partner from Bangladesh, recognized for exploring sustainable opportunities across export, import and indenting activities.
+                  <p className="font-['Lora',serif] italic text-[#DD8F2A] text-[0.95rem] sm:text-[1rem] mb-4">
+                    A commitment to quality &amp; sustainability.
                   </p>
-                </div>
-              </div>
-            </Reveal>
 
-            {/* Mission */}
-            <Reveal direction="up" distance={30} duration={500} delay={80}>
-              <div
-                className="
-                  group
-                  relative
-                  overflow-hidden
-                  rounded-2xl
-                  bg-gradient-to-br
-                  from-[#6BA539]
-                  via-[#5b9837]
-                  to-[#3f7728]
-                  text-white
-                  p-6
-                  sm:p-8
-                  shadow-[0_12px_35px_rgba(107,165,57,0.18)]
-                  hover:-translate-y-1
-                  hover:shadow-[0_18px_45px_rgba(107,165,57,0.26)]
-                  transition-all
-                  duration-500
-                "
-              >
-                <div className="relative z-10">
-                  <div
-                    className="
-                      font-['Barlow',sans-serif]
-                      uppercase
-                      text-[0.55rem]
-                      tracking-[0.18em]
-                      text-[#f3f8ee]
-                      mb-3
-                      flex
-                      items-center
-                      gap-2
-                    "
-                  >
-                    <span className="w-6 h-px bg-[#DD8F2A]" />
-                    Our Mission
+                  <div className="space-y-4 font-['Book_Antiqua','Palatino_Linotype',Palatino,serif] leading-relaxed  text-white/85 text-[0.95rem] sm:text-[1.05rem]">
+                    <p>
+                      In today's rapidly changing world, food security, responsible sourcing and reliable international trade are more important than ever. By working closely with local producers and suppliers, <span className="font-semibold text-white">POLYGON RESOURCE</span> aims to deliver fresh, quality agricultural products from Bangladesh to markets around the world.
+                    </p>
+                    <p>
+                      We believe every successful business relationship begins with trust, transparency and a shared willingness to explore new possibilities. Building on our export experience since 2008, we remain committed to strengthening relationships with international buyers, suppliers and strategic partners.
+                    </p>
+                    <p>
+                      Our work goes beyond exporting products — we build lasting connections between producers and global markets, creating opportunities that support communities and contribute to sustainable economic growth.
+                    </p>
+                    <p>
+                      Thank you for considering POLYGON RESOURCE as your agricultural export partner. Together, we can cultivate a more connected, prosperous and sustainable future.
+                    </p>
                   </div>
 
-                  <h3
-                    className="
-                      font-['Lora',serif]
-                      font-normal
-                      text-[1.3rem]
-                      sm:text-[1.5rem]
-                      lg:text-[1.8rem]
-                      mb-3
-                      text-white
-                    "
-                  >
-                    Connecting global markets with quality products.
-                  </h3>
-
-                  <div
-                    className="
-                      space-y-2
-                      font-['Barlow',sans-serif]
-                      text-[16px]
-                      leading-[1.5]
-                      text-white/90
-                      text-[0.85rem]
-                      sm:text-[0.9rem]
-                    "
-                  >
-                    <p>
-                      To connect global markets with quality agricultural products from Bangladesh while promoting responsible sourcing and sustainable trade practices.
-                    </p>
-                    <p>
-                      Through transparent communication and lasting partnerships with producers and international buyers.
-                    </p>
+                  <div className="mt-6 pt-5 border-t border-white/15 flex items-center gap-4">
+                    {/* <div className="relative shrink-0">
+                      <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#DD8F2A] to-[#a35e03] flex items-center justify-center text-white font-['Lora',serif] text-base font-bold shadow-lg shadow-black/20">RS</div>
+                      <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[#6BA539] rounded-full border-2 border-[#173d29]"></div>
+                    </div>
+                    <div>
+                      <p className="font-['Lora',serif] italic text-[0.9rem] text-[#a8d68f]">Sincerely,</p>
+                      <p className="font-['Lora',serif] font-bold text-[1rem] text-white leading-tight mt-0.5">Rashed Shamim</p>
+                      <p className="font-['Barlow',sans-serif] text-[0.55rem] uppercase tracking-[0.12em] text-[#DD8F2A] mt-0.5">Proprietor &amp; CEO</p>
+                    </div> */}
                   </div>
                 </div>
               </div>
             </Reveal>
-          </div>
+
+            {/* Purpose content - right two thirds on desktop */}
+            <div className="lg:col-span-2 min-w-0">
+
+              {/* Vision & Mission */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 mb-8 sm:mb-10">
+
+                {/* Vision */}
+                <Reveal direction="up" distance={30} duration={500} delay={0}>
+                  <div
+                    className="
+                      group
+                      relative
+                      h-full
+                      overflow-hidden
+                      rounded-2xl
+                      bg-white/80
+                      backdrop-blur-md
+                      border
+                      border-[#1F4732]/10
+                      p-6
+                      sm:p-7
+                      shadow-[0_8px_24px_rgba(31,71,50,0.07)]
+                      hover:-translate-y-1.5
+                      hover:border-[#6BA539]/40
+                      hover:shadow-[0_18px_40px_rgba(31,71,50,0.13)]
+                      transition-all
+                      duration-500
+                    "
+                  >
+                    {/* Animated top line */}
+                    <div className="absolute top-0 left-0 w-0 group-hover:w-full h-[3px] bg-gradient-to-r from-[#1F4732] via-[#3D7A4A] to-[#6BA539] transition-all duration-500" />
+
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#173d29] to-[#28573a] flex items-center justify-center shadow-md shadow-[#1F4732]/20 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-[#1F4732]/30 transition-all duration-300">
+                        <Eye size={20} strokeWidth={1.8} className="text-white" />
+                      </div>
+                      <span className="font-['Barlow',sans-serif] uppercase text-[0.55rem] sm:text-[0.6rem] tracking-[0.18em] text-[#6BA539] font-semibold">
+                        Our Vision
+                      </span>
+                    </div>
+
+                    <h3 className="font-['Lora',serif] font-semibold text-[1.25rem] sm:text-[1.35rem] lg:text-[1.45rem] mb-2.5 text-[#1F4732] leading-snug">
+                      A trusted trading partner from Bangladesh.
+                    </h3>
+
+                    <p className="font-['Barlow',sans-serif] leading-relaxed text-[#666666] text-[0.85rem] sm:text-[0.9rem]">
+                      To become a trusted trading partner from Bangladesh, recognized for exploring sustainable opportunities across export, import and indenting activities.
+                    </p>
+                  </div>
+                </Reveal>
+
+                {/* Mission */}
+                <Reveal direction="up" distance={30} duration={500} delay={80}>
+                  <div
+                    className="
+                      group
+                      relative
+                      h-full
+                      overflow-hidden
+                      rounded-2xl
+                      bg-white/80
+                      backdrop-blur-md
+                      border
+                      border-[#1F4732]/10
+                      p-6
+                      sm:p-7
+                      shadow-[0_8px_24px_rgba(31,71,50,0.07)]
+                      hover:-translate-y-1.5
+                      hover:border-[#6BA539]/40
+                      hover:shadow-[0_18px_40px_rgba(31,71,50,0.13)]
+                      transition-all
+                      duration-500
+                    "
+                  >
+                    {/* Animated top line */}
+                    <div className="absolute top-0 left-0 w-0 group-hover:w-full h-[3px] bg-gradient-to-r from-[#DD8F2A] via-[#6BA539] to-[#3D7A4A] transition-all duration-500" />
+
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#6BA539] to-[#3f7728] flex items-center justify-center shadow-md shadow-[#6BA539]/25 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-[#6BA539]/35 transition-all duration-300">
+                        <Target size={20} strokeWidth={1.8} className="text-white" />
+                      </div>
+                      <span className="font-['Barlow',sans-serif] uppercase text-[0.55rem] sm:text-[0.6rem] tracking-[0.18em] text-[#6BA539] font-semibold">
+                        Our Mission
+                      </span>
+                    </div>
+
+                    <h3 className="font-['Lora',serif] font-semibold text-[1.25rem] sm:text-[1.35rem] lg:text-[1.45rem] mb-2.5 text-[#1F4732] leading-snug">
+                      Connecting global markets with quality products.
+                    </h3>
+
+                    <div className="space-y-2 font-['Barlow',sans-serif] leading-relaxed text-[#666666] text-[0.85rem] sm:text-[0.9rem]">
+                      <p>
+                        To connect global markets with quality agricultural products from Bangladesh while promoting responsible sourcing and sustainable trade practices.
+                      </p>
+                      <p>
+                        Through transparent communication and lasting partnerships with producers and international buyers.
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              </div>
 
           {/* Core Values */}
           <div>
@@ -1996,236 +2020,69 @@ function OurPurpose() {
                 grid
                 grid-cols-1
                 sm:grid-cols-2
-                lg:grid-cols-4
                 gap-4
+                sm:gap-5
               "
             >
-              {coreValues.map((value, index) => (
-                <Reveal 
-                  key={value.num} 
-                  direction="up" 
-                  distance={30} 
-                  duration={500} 
-                  delay={index * 80}
-                  as="div"
-                >
-                  <div
-                    className="
-                      group
-                      relative
-                      overflow-hidden
-                      rounded-2xl
-                      bg-white/75
-                      backdrop-blur-md
-                      border
-                      border-[#1F4732]/10
-                      p-5
-                      sm:p-6
-                      shadow-[0_8px_24px_rgba(31,71,50,0.07)]
-                      hover:-translate-y-2
-                      hover:border-[#6BA539]/40
-                      hover:shadow-[0_16px_36px_rgba(31,71,50,0.14)]
-                      transition-all
-                      duration-500
-                    "
+              {coreValues.map((value, index) => {
+                const ValueIcon = coreValueIcons[index];
+                return (
+                  <Reveal
+                    key={value.num}
+                    direction="up"
+                    distance={30}
+                    duration={500}
+                    delay={index * 80}
+                    as="div"
                   >
-                    {/* Animated top line */}
                     <div
                       className="
-                        absolute
-                        top-0
-                        left-0
-                        w-0
-                        group-hover:w-full
-                        h-[3px]
-                        bg-gradient-to-r
-                        from-[#1F4732]
-                        via-[#3D7A4A]
-                        to-[#6BA539]
+                        group
+                        relative
+                        h-full
+                        overflow-hidden
+                        rounded-2xl
+                        bg-white/80
+                        backdrop-blur-md
+                        border
+                        border-[#1F4732]/10
+                        p-5
+                        sm:p-6
+                        shadow-[0_8px_24px_rgba(31,71,50,0.07)]
+                        hover:-translate-y-2
+                        hover:border-[#6BA539]/40
+                        hover:shadow-[0_16px_36px_rgba(31,71,50,0.14)]
                         transition-all
                         duration-500
                       "
-                    />
-
-                    <div className="flex items-center justify-between mb-3">
-                      <span
-                        className="
-                          font-['Barlow',sans-serif]
-                          text-[0.65rem]
-                          text-[#6BA539]
-                        "
-                      >
+                    >
+                      {/* Ghost numeral watermark */}
+                      <span className="absolute top-1 right-4 font-['Lora',serif] font-bold text-[3.2rem] leading-none text-[#1F4732]/[0.06] select-none">
                         {value.num}
                       </span>
 
-                      <div
-                        className="
-                          w-8
-                          h-8
-                          rounded-full
-                          bg-[#edf6e8]
-                          flex
-                          items-center
-                          justify-center
-                          group-hover:bg-[#1F4732]
-                          transition-colors
-                          duration-300
-                        "
-                      >
-                        <span
-                          className="
-                            w-2
-                            h-2
-                            rounded-full
-                            bg-[#6BA539]
-                            group-hover:bg-white
-                            transition-colors
-                            duration-300
-                          "
-                        />
+                      {/* Animated top line */}
+                      <div className="absolute top-0 left-0 w-0 group-hover:w-full h-[3px] bg-gradient-to-r from-[#1F4732] via-[#3D7A4A] to-[#6BA539] transition-all duration-500" />
+
+                      <div className="relative z-10">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#edf7e8] to-[#dbeed1] border border-[#6BA539]/25 flex items-center justify-center mb-4 group-hover:bg-[#1F4732] group-hover:border-[#1F4732] group-hover:scale-105 transition-all duration-300">
+                          <ValueIcon size={19} strokeWidth={1.8} className="text-[#5f9f3d] group-hover:text-white transition-colors duration-300" />
+                        </div>
+
+                        <h4 className="font-['Lora',serif] font-semibold text-[1.05rem] sm:text-[1.15rem] text-[#1F4732] mb-2">
+                          {value.title}
+                        </h4>
+
+                        <p className="font-['Barlow',sans-serif] leading-relaxed text-[#666666] text-[0.8rem] sm:text-[0.85rem]">
+                          {value.desc}
+                        </p>
                       </div>
                     </div>
-
-                    <h4
-                      className="
-                        font-['Lora',serif]
-                        font-normal
-                        text-[1.1rem]
-                        sm:text-[1.2rem]
-                        text-[#1F4732]
-                        font-semibold
-                        mb-2
-                      "
-                    >
-                      {value.title}
-                    </h4>
-
-                    <p
-                      className="
-                        font-['Barlow',sans-serif]
-                        text-[16px]
-                        leading-[1.5]
-                        text-[#666666]
-                        text-[0.8rem]
-                        sm:text-[0.85rem]
-                      "
-                    >
-                      {value.desc}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ----- CEO MESSAGE -----
-function CEOMessage() {
-  return (
-    <section className="relative min-h-screen py-[60px] sm:py-[80px] lg:py-[100px] w-full bg-gradient-to-b from-[#fafcf8] to-[#f0f5ed] flex items-center overflow-hidden" id="ceo-message">
-      <EdgeHoneycombCluster side="left" position="top" color="#1F4732" fillColor="#6BA539" opacity={0.45} />
-      <OrganicSectionDecoration flip />
-      <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <div className="w-16 h-px bg-gradient-to-r from-transparent to-[#6BA539]"></div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#6BA539]"></span>
-                <span className="font-['Barlow',sans-serif] uppercase text-[0.6rem] sm:text-[0.7rem] tracking-[0.25em] text-[#6BA539] font-semibold">Message from Our CEO</span>
-                <span className="w-2 h-2 rounded-full bg-[#6BA539]"></span>
-              </div>
-              <div className="w-16 h-px bg-gradient-to-l from-transparent to-[#6BA539]"></div>
-            </div>
-            <h2 className="font-['Lora',serif] font-bold text-[2rem] sm:text-[2.8rem] lg:text-[3.5rem] text-[#1F4732] leading-tight">
-              <AnimatedText text="A Commitment to" /> <br className="hidden sm:block" />
-              <span className="relative inline-block">
-                <AnimatedText text="Quality & Sustainability" className="text-[#6BA539]" delay={200} />
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#1F4732] to-[#6BA539] rounded-full opacity-60"></span>
-              </span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_0.6fr] gap-0 lg:gap-0 bg-white rounded-2xl shadow-2xl overflow-hidden border border-[rgba(31,71,50,0.08)] hover:shadow-[0_25px_70px_rgba(31,71,50,0.12)] transition-all duration-700">
-            <div className="p-8 sm:p-10 lg:p-14 order-2 lg:order-1 relative">
-              <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[#6BA539]/5 to-transparent rounded-full -translate-x-16 -translate-y-16"></div>
-              <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-[#1F4732]/5 to-transparent rounded-full translate-x-20 translate-y-20"></div>
-              <div className="absolute top-6 right-8 text-8xl font-serif text-[#6BA539]/8 leading-none">"</div>
-              <div className="relative z-10">
-                <div className="mb-6">
-                  <span className="inline-flex items-center gap-2 font-['Barlow',sans-serif] text-[0.55rem] sm:text-[0.65rem] uppercase tracking-[0.15em] text-[#6BA539] bg-gradient-to-r from-[#e8f5e8] to-[#f0f8f0] px-4 py-2 rounded-full border border-[#6BA539]/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#6BA539] animate-pulse"></span>
-                    Dear Valued Partners and Customers
-                  </span>
-                </div>
-                <div className="space-y-2 font-['Barlow',sans-serif] text-[16px] leading-[1.5] text-[#666666] text-[#3a382e]">
-                  <p className="text-[0.95rem] sm:text-[1.05rem] lg:text-[1.1rem] leading-relaxed">
-                    In today's rapidly changing world, food security, responsible sourcing, and reliable international trade are more important than ever. By working closely with local producers and suppliers, <span className="font-semibold text-[#1F4732] relative">POLYGON RESOURCE</span> aims to deliver fresh, quality agricultural products from Bangladesh to markets around the world.
-                  </p>
-                  <p className="text-[0.95rem] sm:text-[1.05rem] lg:text-[1.1rem] leading-relaxed">
-                    We believe that every successful business relationship begins with trust, transparency, and a shared willingness to explore new possibilities. Building on our export experience since 2008, we remain committed to strengthening relationships with international buyers, suppliers, and strategic partners.
-                  </p>
-                  <p className="text-[0.95rem] sm:text-[1.05rem] lg:text-[1.1rem] leading-relaxed">
-                    Our work goes beyond exporting products. We seek to build lasting connections between producers and global markets, creating opportunities that support communities and contribute to sustainable economic growth.
-                  </p>
-                  <p className="text-[0.95rem] sm:text-[1.05rem] lg:text-[1.1rem] leading-relaxed">
-                    Thank you for considering POLYGON RESOURCE as your agricultural export partner. Together, we can cultivate a more connected, prosperous, and sustainable future.
-                  </p>
-                </div>
-                <div className="mt-8 pt-6 border-t-2 border-[rgba(31,71,50,0.06)] relative">
-                  <div className="flex items-center gap-5">
-                    <div className="relative">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#1F4732] to-[#6BA539] flex items-center justify-center text-white font-['Lora',serif] text-2xl font-bold shadow-lg shadow-[#1F4732]/20">
-                        RS
-                      </div>
-                      <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#DD8F2A] rounded-full border-2 border-white"></div>
-                    </div>
-                    <div>
-                      <p className="font-['Lora',serif] font-normal text-[1.1rem] sm:text-[1.3rem] text-[#1F4732] font-semibold">Sincerely,</p>
-                      <p className="font-['Lora',serif] font-normal text-[1rem] sm:text-[1.1rem] text-[#1F4732] font-bold mt-0.5">Rashed Shamim</p>
-                      <p className="font-['Barlow',sans-serif] text-[0.55rem] sm:text-[0.6rem] text-[#6BA539] uppercase tracking-[0.1em] mt-0.5 flex items-center gap-2">
-                        <span className="w-6 h-px bg-[#6BA539]"></span>
-                        Proprietor & CEO
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="order-1 lg:order-2 relative overflow-hidden min-h-[300px] sm:min-h-[400px] lg:min-h-[450px] group">
-              <img 
-                src="/dp.jpeg"
-                alt="CEO - Rashed Shamim"
-                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/10"></div>
-              <div className="absolute top-6 right-6 w-20 h-20 border-t-2 border-r-2 border-white/30 rounded-tr-xl"></div>
-              <div className="absolute bottom-6 left-6 w-20 h-20 border-b-2 border-l-2 border-white/30 rounded-bl-xl"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-                <div className="flex items-center gap-4">
-                  <div className="w-1 h-16 bg-gradient-to-b from-[#000000] to-[#325018] rounded-full"></div>
-                  <div>
-                    <p className="font-['Lora',serif] font-normal text-xl sm:text-2xl text-white font-semibold tracking-wide">Rashed Shamim</p>
-                    <p className="font-['Barlow',sans-serif] text-xs sm:text-sm text-white/80 uppercase tracking-[0.1em] flex items-center gap-2 mt-1">
-                      <span className="w-6 h-px bg-[#a35e03]"></span>
-                      Proprietor & CEO
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-center mt-12">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#6BA539]"></div>
-              <div className="w-2 h-2 rounded-full bg-[#6BA539]"></div>
-              <div className="w-16 h-px bg-[#6BA539]"></div>
-              <div className="w-2 h-2 rounded-full bg-[#6BA539]"></div>
-              <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#6BA539]"></div>
             </div>
           </div>
         </div>
@@ -2244,6 +2101,7 @@ function Products() {
   const [showRightArrow, setShowRightArrow] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [visibleRange, setVisibleRange] = useState({ start: 0, end: 0 });
 
   // Check if mobile
   useEffect(() => {
@@ -2395,6 +2253,15 @@ function Products() {
       const maxScroll = container.scrollWidth - container.clientWidth;
       setShowLeftArrow(container.scrollLeft > 10);
       setShowRightArrow(container.scrollLeft < maxScroll - 10);
+
+      // Calculate which products are visible based on scroll position
+      const cardWidth = container.querySelector('.product-card')?.offsetWidth || 280;
+      const gap = parseInt(getComputedStyle(container).gap) || 24;
+      const cardTotalWidth = cardWidth + gap;
+      const scrollLeft = container.scrollLeft;
+      const visibleStart = Math.floor(scrollLeft / cardTotalWidth);
+      const visibleEnd = Math.ceil((scrollLeft + container.clientWidth) / cardTotalWidth);
+      setVisibleRange({ start: visibleStart, end: visibleEnd });
     }
   };
 
@@ -2420,7 +2287,7 @@ function Products() {
 
   return (
     <section className="relative py-[60px] sm:py-[80px] lg:py-[100px] w-full bg-gradient-to-b from-[#f8faf8] to-[#eef5ec] overflow-hidden" id="products">
-      <EdgeHoneycombCluster side="right" position="bottom" color="#1F4732" fillColor="#6BA539" opacity={0.44} />
+      <EdgeHoneycombCluster side="left" position="bottom" color="#DFB85C" fillColor="#F0DCA4" opacity={0.44} />
       <OrganicSectionDecoration />
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -2460,10 +2327,9 @@ function Products() {
             {showLeftArrow && (
               <button
                 onClick={() => scroll('left')}
-                disabled={isAnimating || isMobile}
                 className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-[#1F4732] hover:bg-[#6BA539] text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center transition-all duration-300 shadow-lg shadow-[#1F4732]/30 hover:shadow-xl hover:scale-110 ${
-                  isAnimating ? 'opacity-50 cursor-not-allowed' : ''
-                } ${isMobile ? 'cursor-default animate-pulse' : ''}`}
+                  isAnimating ? 'opacity-50' : ''
+                } ${isMobile ? 'animate-pulse' : ''}`}
                 aria-label="Scroll left"
               >
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2476,10 +2342,9 @@ function Products() {
             {showRightArrow && (
               <button
                 onClick={() => scroll('right')}
-                disabled={isAnimating || isMobile}
                 className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-[#1F4732] hover:bg-[#6BA539] text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center transition-all duration-300 shadow-lg shadow-[#1F4732]/30 hover:shadow-xl hover:scale-110 ${
-                  isAnimating ? 'opacity-50 cursor-not-allowed' : ''
-                } ${isMobile ? 'cursor-default animate-pulse' : ''}`}
+                  isAnimating ? 'opacity-50' : ''
+                } ${isMobile ? 'animate-pulse' : ''}`}
                 aria-label="Scroll right"
               >
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2602,18 +2467,7 @@ function Products() {
           {/* Scroll Indicators - Dots showing how many products */}
           <div className="flex justify-center gap-2 mt-6 sm:mt-8">
             {filteredProducts.map((_, index) => {
-              // Calculate which products are visible based on scroll position
-              const container = scrollContainerRef.current;
-              let isVisible = false;
-              if (container) {
-                const cardWidth = container.querySelector('.product-card')?.offsetWidth || 280;
-                const gap = parseInt(getComputedStyle(container).gap) || 24;
-                const cardTotalWidth = cardWidth + gap;
-                const scrollLeft = container.scrollLeft;
-                const visibleStart = Math.floor(scrollLeft / cardTotalWidth);
-                const visibleEnd = Math.ceil((scrollLeft + container.clientWidth) / cardTotalWidth);
-                isVisible = index >= visibleStart && index < visibleEnd;
-              }
+              const isVisible = index >= visibleRange.start && index < visibleRange.end;
               return (
                 <div
                   key={index}
@@ -2643,7 +2497,7 @@ function Products() {
 function CTA({ onGetInTouch }) {
   return (
     <section className="relative bg-[#1F4732] text-white py-[50px] sm:py-[60px] lg:py-[70px] text-center w-full overflow-hidden">
-      <EdgeHoneycombCluster side="right" position="bottom" color="#F2A900" fillColor="#F2A900" opacity={0.35} />
+      <EdgeHoneycombCluster side="left" position="bottom" color="#DFB85C" fillColor="#F0DCA4" opacity={0.35} />
       <OrganicSectionDecoration dark />
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
         <h2 className="font-['Lora',serif] font-bold text-[1.6rem] sm:text-[1.8rem] lg:text-2xl text-white mb-4 sm:mb-5"><AnimatedText text="Ready to source from Polygon Resource?" /></h2>
@@ -2663,26 +2517,18 @@ function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [focusedField, setFocusedField] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const handleFocus = (fieldName) => {
-    setFocusedField(fieldName);
-  };
-
-  const handleBlur = () => {
-    setFocusedField(null);
   };
 
   const handleSubmit = (e) => {
@@ -2698,6 +2544,7 @@ function ContactSection() {
     setFormData({
       name: "",
       email: "",
+      phone: "",
       message: "",
     });
   };
@@ -2716,7 +2563,7 @@ function ContactSection() {
     {
       icon: MapPin,
       label: "Our Head Office",
-      value: "68, Dilkusha C/A, Dhaka-1000, Bangladesh",
+      value: "69, Dilkusha C/A, Dhaka-1000, Bangladesh",
     },
   ];
 
@@ -2736,7 +2583,7 @@ function ContactSection() {
         overflow-hidden
       "
     >
-      <EdgeHoneycombCluster side="left" position="bottom" color="#1F4732" fillColor="#6BA539" opacity={0.42} />
+      <EdgeHoneycombCluster side="right" position="bottom" color="#DFB85C" fillColor="#F0DCA4" opacity={0.42} />
       <OrganicSectionDecoration />
 
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
@@ -3280,8 +3127,6 @@ function ContactSection() {
                         id="name"
                         value={formData.name}
                         onChange={handleChange}
-                        onFocus={() => handleFocus('name')}
-                        onBlur={handleBlur}
                         placeholder=" "
                         className="
                           w-full
@@ -3329,10 +3174,15 @@ function ContactSection() {
                           peer-focus:text-xs
                           peer-focus:text-[#1F4732]
                           peer-focus:font-semibold
-                          ${(focusedField === 'name' || formData.name) ? 'top-1 -translate-y-0 text-xs text-[#1F4732] font-semibold' : ''}
+                          peer-not-placeholder-shown:top-1
+                          peer-not-placeholder-shown:-translate-y-0
+                          peer-not-placeholder-shown:text-xs
+                          peer-not-placeholder-shown:text-[#1F4732]
+                          peer-not-placeholder-shown:font-semibold
                         "
                       >
-                        Your Full Name
+                        Name
+                        <span className="text-[#DD8F2A]"> *</span>
                       </label>
 
                       <div
@@ -3363,8 +3213,6 @@ function ContactSection() {
                         id="email"
                         value={formData.email}
                         onChange={handleChange}
-                        onFocus={() => handleFocus('email')}
-                        onBlur={handleBlur}
                         placeholder=" "
                         className="
                           w-full
@@ -3412,10 +3260,103 @@ function ContactSection() {
                           peer-focus:text-xs
                           peer-focus:text-[#1F4732]
                           peer-focus:font-semibold
-                          ${(focusedField === 'email' || formData.email) ? 'top-1 -translate-y-0 text-xs text-[#1F4732] font-semibold' : ''}
+                          peer-not-placeholder-shown:top-1
+                          peer-not-placeholder-shown:-translate-y-0
+                          peer-not-placeholder-shown:text-xs
+                          peer-not-placeholder-shown:text-[#1F4732]
+                          peer-not-placeholder-shown:font-semibold
                         "
                       >
                         Business Email Address
+                        <span className="text-[#DD8F2A]"> *</span>
+                      </label>
+
+                      <div
+                        className="
+                          absolute
+                          bottom-0
+                          left-0
+                          w-0
+                          h-0.5
+                          bg-gradient-to-r
+                          from-[#1F4732]
+                          via-[#3D7A4A]
+                          to-[#6BA539]
+                          transition-all
+                          duration-300
+                          peer-focus:w-full
+                        "
+                      />
+                    </div>
+                  </div>
+
+                  {/* Phone Number */}
+                  <div className="relative">
+                    <div className="relative">
+                      <input
+                        type="tel"
+                        name="phone"
+                        id="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder=" "
+                        pattern="\+?[0-9\s\-()]{7,20}"
+                        title="Please enter a valid phone number (e.g. +880 1713 017391)"
+                        className="
+                          w-full
+                          px-4
+                          pt-5
+                          pb-2
+                          border
+                          border-[rgba(31,71,50,0.18)]
+                          rounded-lg
+                          focus:outline-none
+                          focus:border-[#1F4732]
+                          focus:ring-2
+                          focus:ring-[#1F4732]/15
+                          transition-all
+                          duration-300
+                          bg-[#FFFEFA]/90
+                          font-['Barlow',sans-serif]
+                          text-[16px]
+                          leading-[1.5]
+                          text-[#1C1A14]
+                          hover:border-[#6BA539]/50
+                          peer
+                        "
+                        required
+                      />
+                      <label
+                        htmlFor="phone"
+                        className="
+                          absolute
+                          left-4
+                          top-1/2
+                          -translate-y-1/2
+                          font-['Barlow',sans-serif]
+                          text-[16px]
+                          text-[#8a8368]
+                          transition-all
+                          duration-300
+                          pointer-events-none
+                          origin-left
+                          peer-placeholder-shown:top-1/2
+                          peer-placeholder-shown:-translate-y-1/2
+                          peer-placeholder-shown:text-base
+                          peer-focus:top-1
+                          peer-focus:-translate-y-0
+                          peer-focus:text-xs
+                          peer-focus:text-[#1F4732]
+                          peer-focus:font-semibold
+                          peer-not-placeholder-shown:top-1
+                          peer-not-placeholder-shown:-translate-y-0
+                          peer-not-placeholder-shown:text-xs
+                          peer-not-placeholder-shown:text-[#1F4732]
+                          peer-not-placeholder-shown:font-semibold
+                        "
+                      >
+                        Phone Number
+                        <span className="text-[#DD8F2A]"> *</span>
                       </label>
 
                       <div
@@ -3446,8 +3387,6 @@ function ContactSection() {
                         id="message"
                         value={formData.message}
                         onChange={handleChange}
-                        onFocus={() => handleFocus('message')}
-                        onBlur={handleBlur}
                         placeholder=" "
                         className="
                           w-full
@@ -3494,10 +3433,14 @@ function ContactSection() {
                           peer-focus:text-xs
                           peer-focus:text-[#1F4732]
                           peer-focus:font-semibold
-                          ${(focusedField === 'message' || formData.message) ? 'top-1 text-xs text-[#1F4732] font-semibold' : ''}
+                          peer-not-placeholder-shown:top-1
+                          peer-not-placeholder-shown:text-xs
+                          peer-not-placeholder-shown:text-[#1F4732]
+                          peer-not-placeholder-shown:font-semibold
                         "
                       >
                         Detailed Message
+                        <span className="text-[#DD8F2A]"> *</span>
                       </label>
 
                       <div
@@ -3723,7 +3666,7 @@ function Footer() {
 
   return (
     <footer className="relative bg-[#1F4732] text-white pt-[60px] pb-[30px] sm:pt-[80px] sm:pb-[40px] lg:pt-[100px] lg:pb-[50px] w-full overflow-hidden">
-      <EdgeHoneycombCluster side="right" position="top" color="#F2A900" fillColor="#F2A900" opacity={0.32} />
+      <EdgeHoneycombCluster side="left" position="top" color="#DFB85C" fillColor="#F0DCA4" opacity={0.32} />
       <OrganicSectionDecoration dark flip />
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 z-0">
@@ -3736,6 +3679,23 @@ function Footer() {
         />
         {/* Dark overlay to make text visible - INCREASED OPACITY */}
         <div className="absolute inset-0 bg-[#1F4732]/45"></div>
+      </div>
+
+      {/* Wave transition blending the Contact section into the Footer.
+          Filled with the Contact section's exact bottom gradient color
+          (#eaf3e4) so the two backgrounds melt together with no seam. */}
+      <div className="absolute inset-x-0 top-0 z-[2] pointer-events-none" aria-hidden="true">
+        <svg
+          className="block w-full h-[48px] sm:h-[70px] lg:h-[92px]"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,0 H1440 V30 Q1350,60 1200,42 T960,40 T720,42 T480,40 T240,42 T0,44 Z"
+            fill="#eaf3e4"
+          />
+        </svg>
       </div>
       
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
@@ -3822,7 +3782,7 @@ function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                   <p className="font-['Barlow',sans-serif] text-[16px] leading-[1.5] text-[#666666] text-[0.8rem] sm:text-[0.85rem] text-[#e5dfc9] leading-relaxed font-semibold">
-                    68, Dilkusha C/A,<br />Dhaka-1000, Bangladesh
+                    69, Dilkusha C/A,<br />Dhaka-1000, Bangladesh
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
