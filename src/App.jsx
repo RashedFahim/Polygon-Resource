@@ -818,12 +818,17 @@ function App() {
           <CTA onGetInTouch={scrollToContact} />
         </Reveal>
 
-        {/* 7. Contact Section */}
+        {/* 7. Companies We’ve Worked With */}
+        <Reveal direction="up" distance={35}>
+          <CompaniesWorkedWith />
+        </Reveal>
+
+        {/* 8. Contact Section */}
         <Reveal direction="up" distance={50}>
           <ContactSection />
         </Reveal>
 
-        {/* 8. Footer */}
+        {/* 9. Footer */}
         <Reveal direction="up" distance={30}>
           <Footer />
         </Reveal>
@@ -2628,6 +2633,118 @@ function CTA({ onGetInTouch }) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// COMPANY LOGOS
+// Add, remove, or replace entries here without touching the marquee component.
+// Put your logo files in /public/company-logos/ (or update the paths below).
+// ---------------------------------------------------------------------------
+const COMPANY_LOGOS = [
+  { name: "Green Master", logo: "greenmaster.png" },
+  { name: "Techno Fresh", logo: "technofresh.png" },
+  { name: "Eng Sheng", logo: "engsheng.png" },
+  { name: "Everich", logo: "everich.png" },
+  { name: "Company Five", logo: "/company-logos/company-5.png" },
+  { name: "Company Six", logo: "/company-logos/company-6.png" },
+];
+
+// ----- COMPANIES WE’VE WORKED WITH -----
+function CompaniesWorkedWith() {
+  return (
+    <section
+      className="relative w-full overflow-hidden bg-[#F7F4EA] py-10 sm:py-12 lg:py-14 border-y border-[#1F4732]/10"
+      aria-labelledby="companies-worked-with-title"
+    >
+      <EdgeHoneycombCluster
+        side="right"
+        position="top"
+        color="#B06F14"
+        fillColor="#E2A62B"
+        opacity={0.42}
+      />
+
+      <div className="relative z-10 w-full">
+        <div className="px-3 sm:px-4 md:px-6 lg:px-8 mb-7 sm:mb-9">
+          <div className="max-w-7xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-3 mb-2.5">
+              <span className="w-7 sm:w-10 h-px bg-[#DD8F2A]/60" />
+              <span className="font-['Barlow',sans-serif] text-[0.63rem] sm:text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#A9711F]">
+                Trusted Connections
+              </span>
+              <span className="w-7 sm:w-10 h-px bg-[#DD8F2A]/60" />
+            </div>
+
+            <h2
+              id="companies-worked-with-title"
+              className="font-['Lora',serif] font-bold text-[#1F4732] text-[1.35rem] sm:text-[1.6rem] lg:text-[1.8rem]"
+            >
+              <AnimatedText text="Companies We’ve Worked With" />
+            </h2>
+          </div>
+        </div>
+
+        <div className="company-marquee relative w-full overflow-hidden">
+          {/* Soft edge fades keep logos entering/leaving the viewport cleanly. */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-12 sm:w-20 lg:w-28 bg-gradient-to-r from-[#F7F4EA] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-12 sm:w-20 lg:w-28 bg-gradient-to-l from-[#F7F4EA] to-transparent" />
+
+          <div className="company-marquee-track flex w-max items-center will-change-transform">
+            {[0, 1, 2, 3].map((copy) => (
+              <div
+                key={copy}
+                className="flex shrink-0 items-center"
+                aria-hidden={copy > 0 ? "true" : undefined}
+              >
+                {COMPANY_LOGOS.map((company) => (
+                  <div
+                    key={`${copy}-${company.name}`}
+                    className="group/logo mr-8 flex h-[92px] w-[92px] shrink-0 items-center justify-center rounded-full bg-white/75 p-4 sm:mr-12 sm:h-[104px] sm:w-[104px] sm:p-5 md:mr-14 md:h-[116px] md:w-[116px] md:p-5 lg:mr-16 lg:h-[124px] lg:w-[124px] lg:p-5 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_12px_34px_rgba(31,71,50,0.10)]"
+                    title={company.name}
+                  >
+                    <img
+                      src={company.logo}
+                      alt={copy === 0 ? `${company.name} logo` : ""}
+                      className="h-full w-full object-contain transition-transform duration-300 group-hover/logo:scale-[1.05]"
+                      loading="lazy"
+                      draggable="false"
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes companyMarqueeScroll {
+          from {
+            transform: translate3d(0, 0, 0);
+          }
+          to {
+            transform: translate3d(-25%, 0, 0);
+          }
+        }
+
+        .company-marquee-track {
+          animation: companyMarqueeScroll 32s linear infinite;
+        }
+
+        @media (max-width: 640px) {
+          .company-marquee-track {
+            animation-duration: 24s;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .company-marquee-track {
+            animation-duration: 70s;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
 // ----- CONTACT SECTION -----
 function ContactSection() {
   const [formData, setFormData] = useState({
@@ -2638,6 +2755,8 @@ function ContactSection() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [isHovered, setIsHovered] = useState(false);
   const [phoneCode, setPhoneCode] = useState("+880");
   const [isCodeOpen, setIsCodeOpen] = useState(false);
@@ -2690,22 +2809,58 @@ function ContactSection() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Add your form submission logic here
-    setIsSubmitted(true);
+    // Prevent duplicate submissions while the current request is in flight.
+    if (isSubmitting) return;
 
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 3000);
+    setSubmitError("");
+    setIsSubmitted(false);
+    setIsSubmitting(true);
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
+    const selectedCountry = countryCodes.find((country) => country.code === phoneCode);
+    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "http://localhost:5000").replace(/\/$/, "");
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          phoneCode,
+          country: selectedCountry?.name || "Unknown",
+          message: formData.message.trim(),
+        }),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.message || "We couldn't send your inquiry. Please try again.");
+      }
+
+      setIsSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+      setPhoneCode("+880");
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 5000);
+    } catch (error) {
+      setSubmitError(error.message || "We couldn't send your inquiry. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactItems = [
@@ -3731,9 +3886,30 @@ function ContactSection() {
                     </div>
                   </div>
 
+                  {/* Submission feedback */}
+                  {submitError && (
+                    <div
+                      role="alert"
+                      className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 font-['Barlow',sans-serif] text-sm text-red-700"
+                    >
+                      {submitError}
+                    </div>
+                  )}
+
+                  {isSubmitted && (
+                    <div
+                      role="status"
+                      className="rounded-lg border border-[#6BA539]/30 bg-[#edf7e8] px-4 py-3 font-['Barlow',sans-serif] text-sm text-[#1F4732]"
+                    >
+                      Thank you. Your trade inquiry has been sent successfully.
+                    </div>
+                  )}
+
                   {/* Submit Button */}
                   <button
                     type="submit"
+                    disabled={isSubmitting}
+                    aria-busy={isSubmitting}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                     className="
@@ -3758,14 +3934,41 @@ function ContactSection() {
                       hover:via-[#6BA539]
                       hover:to-[#7fb64d]
                       hover:shadow-[0_10px_25px_rgba(107,165,57,0.28)]
+                      disabled:cursor-not-allowed
+                      disabled:opacity-70
+                      disabled:hover:shadow-none
                       group
                     "
                   >
                     <span className="relative z-10 flex items-center justify-center gap-2">
-                      {isSubmitted ? (
+                      {isSubmitting ? (
                         <>
                           <svg
-                            className="w-5 h-5 animate-bounce"
+                            className="h-5 w-5 animate-spin"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="9"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                            />
+                            <path
+                              className="opacity-90"
+                              fill="currentColor"
+                              d="M21 12a9 9 0 0 0-9-9v3a6 6 0 0 1 6 6h3Z"
+                            />
+                          </svg>
+                          SENDING INQUIRY...
+                        </>
+                      ) : isSubmitted ? (
+                        <>
+                          <svg
+                            className="w-5 h-5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -3777,8 +3980,7 @@ function ContactSection() {
                               d="M5 13l4 4L19 7"
                             />
                           </svg>
-
-                          Message Sent!
+                          MESSAGE SENT!
                         </>
                       ) : (
                         <>
