@@ -716,14 +716,27 @@ function ScrollToTop() {
   );
 }
 
-// WhatsApp floating button, stacked right above the scroll-to-top button
+// WhatsApp floating button. Sits in the scroll-to-top button's exact spot
+// until that button appears, then smoothly slides up to keep an 8px gap.
 function WhatsAppButton() {
+  // Mirrors ScrollToTop's visibility trigger (scrollY > 400).
+  const [scrollTopVisible, setScrollTopVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollTopVisible(window.scrollY > 400);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <a
       href="https://wa.me/8801776968428"
       target="_blank"
       rel="noopener noreferrer"
-      className="group fixed bottom-[80px] sm:bottom-[88px] right-6 z-[100] bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center shadow-lg shadow-[#25D366]/30 hover:shadow-xl hover:shadow-[#25D366]/40 transition-all duration-300 ease-out hover:scale-110 active:scale-95"
+      className={`group fixed right-6 z-[100] bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center shadow-lg shadow-[#25D366]/30 hover:shadow-xl hover:shadow-[#25D366]/40 transition-all duration-500 ease-out hover:scale-110 active:scale-95 ${
+        scrollTopVisible ? 'bottom-[80px] sm:bottom-[88px]' : 'bottom-6'
+      }`}
       aria-label="Chat with us on WhatsApp"
     >
       <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
