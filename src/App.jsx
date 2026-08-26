@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronUp } from 'lucide-react';
-import { Phone, Mail, MapPin, Eye, Target, ShieldCheck, Clock, Users, BadgeCheck, Quote } from "lucide-react";
+import { Phone, Mail, MapPin, Eye, Target, ShieldCheck, Clock, Users, BadgeCheck, Quote, ChevronDown } from "lucide-react";
 
 // ---------------------------------------------------------------------------
 // Scroll animation system
@@ -314,8 +314,8 @@ function HoneycombPattern({ color = '#1F4732', opacity = 0.06, size = 40, classN
 function EdgeHoneycombCluster({
   side = 'left',
   position = 'top',
-  color = '#DFB85C',
-  fillColor = '#F0DCA4',
+  color = '#A9711F',
+  fillColor = '#E8B33D',
   opacity = 0.55,
   className = '',
 }) {
@@ -805,12 +805,68 @@ function Header({ onGetInTouch }) {
   const [scrolled, setScrolled] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuClosing, setMenuClosing] = useState(false);
+  const menuCloseTimer = useRef(null);
+  // Refs mirror state so scroll handlers / repeated clicks read synchronously
+  // and can never double-trigger the closing animation.
+  const menuOpenRef = useRef(false);
+  const menuClosingRef = useRef(false);
+
+  useEffect(() => {
+    menuOpenRef.current = menuOpen;
+  }, [menuOpen]);
+
+  useEffect(() => {
+    menuClosingRef.current = menuClosing;
+  }, [menuClosing]);
+
+  useEffect(() => () => clearTimeout(menuCloseTimer.current), []);
+
+  // Must match the mobile-menu-closing CSS animation duration (index.css) —
+  // the panel is only unmounted once the collapse has fully played out.
+  const MENU_CLOSE_DURATION_MS = 320;
+
+  // Single close path shared by manual close, link taps, and scroll-triggered
+  // close — always plays the same slide-up + fade-out animation.
+  const closeMenu = () => {
+    if (!menuOpenRef.current || menuClosingRef.current) return;
+
+    menuClosingRef.current = true;
+    setMenuClosing(true);
+
+    clearTimeout(menuCloseTimer.current);
+    menuCloseTimer.current = setTimeout(() => {
+      menuCloseTimer.current = null;
+      menuClosingRef.current = false;
+      menuOpenRef.current = false;
+      setMenuClosing(false);
+      setMenuOpen(false);
+    }, MENU_CLOSE_DURATION_MS);
+  };
+
+  const toggleMenu = () => {
+    clearTimeout(menuCloseTimer.current);
+    menuCloseTimer.current = null;
+
+    if (menuOpenRef.current && !menuClosingRef.current) {
+      closeMenu();
+      return;
+    }
+
+    // Open (or cancel an in-flight close and reopen) without flicker.
+    menuClosingRef.current = false;
+    menuOpenRef.current = true;
+    setMenuClosing(false);
+    setMenuOpen(true);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 80);
+      // Auto-close with the same animation as soon as the user scrolls.
+      if (menuOpenRef.current) closeMenu();
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -897,22 +953,28 @@ function Header({ onGetInTouch }) {
           className={`md:hidden ml-2 transition-colors ${
             scrolled ? 'text-[#1F4732] hover:text-[#6BA539]' : 'text-cream hover:text-[#DAA520]'
           }`}
-          onClick={() => setMenuOpen((v) => !v)} 
+          onClick={toggleMenu}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
 
       {menuOpen && (
-        <div className={`lg:hidden px-4 pb-4 flex flex-col gap-3 max-h-[70vh] overflow-y-auto backdrop-blur-xl border-t ${
-          scrolled ? 'bg-white/98 border-[#1F4732]/10' : 'bg-[#0A2A1A]/95 border-[#DAA520]/10'
-        }`}>
+        <div
+          className={`mobile-menu-panel lg:hidden px-4 pb-4 flex flex-col gap-3 max-h-[70vh] overflow-y-auto backdrop-blur-xl border-t ${
+            menuClosing ? 'mobile-menu-closing' : ''
+          } ${
+            scrolled ? 'bg-white/98 border-[#1F4732]/10' : 'bg-[#0A2A1A]/95 border-[#DAA520]/10'
+          }`}
+          aria-hidden={menuClosing}
+        >
           {navItems.map((item) => (
             <a
               key={item.label}
               href={`#${item.id}`}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => closeMenu()}
               className={`text-sm text-left font-medium tracking-wide py-2 px-3 rounded hover:bg-cream/10 transition-all duration-300 hover:pl-5 ${
                 scrolled ? 'text-[#4a6b5a] hover:text-[#1F4732]' : 'text-cream/90 hover:text-white'
               }`}
@@ -923,7 +985,7 @@ function Header({ onGetInTouch }) {
           ))}
           <div className="pt-2 border-t border-cream/10">
             <button 
-              onClick={() => { onGetInTouch(); setMenuOpen(false); }}
+              onClick={() => { onGetInTouch(); closeMenu(); }}
               className={`w-full text-sm font-medium py-2 px-3 rounded transition-all duration-300 ${
                 scrolled ? 'bg-[#1F4732] text-white hover:bg-[#6BA539]' : 'bg-[#DAA520] text-[#12301F] hover:bg-[#C9A030] hover:scale-[1.02]'
               }`}
@@ -941,6 +1003,7 @@ function Header({ onGetInTouch }) {
 // ----- NEW HERO -----
 function NewHero({ onGetInTouch, startWriting = false }) {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [isTextComplete, setIsTextComplete] = useState(false);
   const [showContent, setShowContent] = useState(false);
 
   // Show content after typing starts or immediately if already started
@@ -956,7 +1019,7 @@ function NewHero({ onGetInTouch, startWriting = false }) {
       className="relative w-full min-h-screen flex items-center overflow-visible pb-0 bg-[linear-gradient(135deg,#07140c_0%,#0e1813_35%,#1F4732_70%,#6BA539_100%)] pt-16"
     >
       {/* Honeycomb Pattern - Light and subtle */}
-      <HoneycombPattern color="#DFB85C" opacity={0.08} size={50} />
+      <HoneycombPattern color="#A9711F" opacity={0.08} size={50} />
 
       {/* Reference-inspired organic agricultural decoration */}
       <div className="pointer-events-none absolute inset-0 z-[2] overflow-hidden" aria-hidden="true">
@@ -1049,7 +1112,7 @@ function NewHero({ onGetInTouch, startWriting = false }) {
                 <div className="flex-1 h-px bg-[#DD8F2A]/20"></div>
               </div>
               
-              <h1 className="mb-2 sm:mb-4">
+              <h1 className="mb-2 sm:mb-4 lg:mb-0">
                 <div className="
                   font-['Dancing_Script',cursive]
                   font-bold
@@ -1100,23 +1163,35 @@ function NewHero({ onGetInTouch, startWriting = false }) {
                 </div>
               </h1>
               
-              {/* Subtitle text - appears with the cards */}
+              {/* Subtitle text - types after the heading */}
               <div className={`transition-all duration-700 ${isTypingComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                <p className="font-['Barlow',sans-serif] text-[15px] sm:text-[16px] md:text-[18px] leading-[1.4] sm:leading-[1.5] text-white/95 max-w-xl mb-3 sm:mb-6 drop-shadow-[0_2px_15px_rgba(0,0,0,0.5)]">
-                  From Bangladesh's fertile lands to global markets — delivering farm-fresh produce with quality you can trust, naturally.
+                <p className="font-['Barlow',sans-serif] italic text-[15px] sm:text-[16px] md:text-[18px] leading-[1.4] sm:leading-[1.5] text-white/95 max-w-xl mb-3 sm:mb-6 drop-shadow-[0_2px_15px_rgba(0,0,0,0.5)]">
+                  {isTypingComplete && (
+                    <ScriptWritingText
+                      text="From Bangladesh's fertile lands to global markets — delivering farm-fresh produce with quality you can trust, naturally."
+                      speed={24}
+                      delay={250}
+                      autoStart={true}
+                      onComplete={() => setIsTextComplete(true)}
+                    />
+                  )}
                 </p>
-                <button 
-                  onClick={onGetInTouch}
-                  className="lg:hidden group inline-flex items-center gap-2 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-gradient-to-r from-[#DD8F2A] to-[#f0a746] text-[#12301F] font-['Barlow',sans-serif] text-[14px] sm:text-[16px] leading-[1.5] font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-lg shadow-[#DD8F2A]/30 hover:shadow-[#DD8F2A]/50"
-                >
-                  Contact us
-                  <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </button>
               </div>
+
+              {/* Mobile CTA - animates in together with the stat cards */}
+              <button
+                onClick={onGetInTouch}
+                className={`lg:hidden group inline-flex items-center gap-2 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-gradient-to-r from-[#DD8F2A] to-[#f0a746] text-[#12301F] font-['Barlow',sans-serif] text-[14px] sm:text-[16px] leading-[1.5] font-semibold rounded-lg hover:scale-105 transition-all duration-700 shadow-lg shadow-[#DD8F2A]/30 hover:shadow-[#DD8F2A]/50 ${
+                  isTextComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+              >
+                Contact us
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </button>
             </div>
             
             {/* Stats Cards - appear with the subtitle */}
-            <div className={`grid grid-cols-2 gap-2 sm:gap-4 lg:translate-y-28 xl:translate-y-32 transition-all duration-700 ${isTypingComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`grid grid-cols-2 gap-2 sm:gap-4 lg:translate-y-28 xl:translate-y-32 transition-all duration-700 ${isTextComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               {[
                 { value: '15+', label: 'Years in Agri-Trade' },
                 { value: '9', label: 'Export Countries' },
@@ -1233,7 +1308,7 @@ function About() {
       "
     >
       {/* Honeycomb Pattern */}
-      <EdgeHoneycombCluster side="right" position="top" color="#DFB85C" fillColor="#F0DCA4" opacity={0.48} />
+      <EdgeHoneycombCluster side="right" position="top" color="#A9711F" fillColor="#E8B33D" opacity={0.48} />
       
       {/* Existing organic decoration */}
       <OrganicSectionDecoration />
@@ -1766,7 +1841,7 @@ function OurPurpose() {
         bg-[linear-gradient(135deg,#f8fcf4_0%,#edf6e7_28%,#dfedd6_58%,#cfe3c4_100%)]
       "
     >
-      <EdgeHoneycombCluster side="right" position="top" color="#DFB85C" fillColor="#F0DCA4" opacity={0.48} />
+      <EdgeHoneycombCluster side="right" position="top" color="#A9711F" fillColor="#E8B33D" opacity={0.48} />
       <OrganicSectionDecoration flip />
 
       <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-10">
@@ -1816,7 +1891,7 @@ function OurPurpose() {
                   <div className="flex items-center gap-3 mb-4">
                     <img
                       src="/dp.jpeg"
-                      alt="Rashed Shamim - Proprietor & CEO"
+                      alt="Rashed Shamim - Founder & CEO"
                       className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-white/40 ring-2 ring-[#6BA539]/60 shadow-lg shadow-black/25 shrink-0"
                     />
                     <div className="min-w-0">
@@ -1825,17 +1900,17 @@ function OurPurpose() {
                         Message from Our CEO
                       </span>
                       <p className="font-['Lora',serif] text-[1rem] sm:text-[1.05rem] font-semibold text-white mt-1">Rashed Shamim</p>
-                      <p className="font-['Barlow',sans-serif] text-[0.55rem] uppercase tracking-[0.12em] text-white/60 mt-0.5">Proprietor &amp; CEO</p>
+                      <p className="font-['Barlow',sans-serif] text-[0.55rem] uppercase tracking-[0.12em] text-white/60 mt-0.5">Founder &amp; CEO</p>
                     </div>
                   </div>
 
                   <div className="h-px bg-gradient-to-r from-[#DD8F2A]/60 via-white/15 to-transparent mb-4"></div>
 
-                  <p className="font-['Lora',serif] italic text-[#DD8F2A] text-[0.95rem] sm:text-[1rem] mb-4">
+                  <p className="font-['Lora',serif] italic text-center text-[#DD8F2A]  text-[0.95rem] sm:text-[1rem] mb-4">
                     A commitment to quality &amp; sustainability.
                   </p>
 
-                  <div className="space-y-4 font-['Book_Antiqua','Palatino_Linotype',Palatino,serif] leading-relaxed  text-white/85 text-[0.95rem] sm:text-[1.05rem]">
+                  <div className="space-y-4 font-['Book_Antiqua','Palatino_Linotype',Palatino,serif] leading-relaxed text-ita text-center italic text-white/85 text-[0.95rem] sm:text-[1.05rem]">
                     <p>
                       In today's rapidly changing world, food security, responsible sourcing and reliable international trade are more important than ever. By working closely with local producers and suppliers, <span className="font-semibold text-white">POLYGON RESOURCE</span> aims to deliver fresh, quality agricultural products from Bangladesh to markets around the world.
                     </p>
@@ -2287,7 +2362,7 @@ function Products() {
 
   return (
     <section className="relative py-[60px] sm:py-[80px] lg:py-[100px] w-full bg-gradient-to-b from-[#f8faf8] to-[#eef5ec] overflow-hidden" id="products">
-      <EdgeHoneycombCluster side="left" position="bottom" color="#DFB85C" fillColor="#F0DCA4" opacity={0.44} />
+      <EdgeHoneycombCluster side="left" position="bottom" color="#A9711F" fillColor="#E8B33D" opacity={0.44} />
       <OrganicSectionDecoration />
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -2497,7 +2572,7 @@ function Products() {
 function CTA({ onGetInTouch }) {
   return (
     <section className="relative bg-[#1F4732] text-white py-[50px] sm:py-[60px] lg:py-[70px] text-center w-full overflow-hidden">
-      <EdgeHoneycombCluster side="left" position="bottom" color="#DFB85C" fillColor="#F0DCA4" opacity={0.35} />
+      <EdgeHoneycombCluster side="left" position="bottom" color="#A9711F" fillColor="#E8B33D" opacity={0.35} />
       <OrganicSectionDecoration dark />
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
         <h2 className="font-['Lora',serif] font-bold text-[1.6rem] sm:text-[1.8rem] lg:text-2xl text-white mb-4 sm:mb-5"><AnimatedText text="Ready to source from Polygon Resource?" /></h2>
@@ -2523,6 +2598,49 @@ function ContactSection() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [phoneCode, setPhoneCode] = useState("+880");
+  const [isCodeOpen, setIsCodeOpen] = useState(false);
+
+  const countryCodes = [
+    { iso: "BD", name: "Bangladesh", code: "+880" },
+    { iso: "AU", name: "Australia", code: "+61" },
+    { iso: "BH", name: "Bahrain", code: "+973" },
+    { iso: "BE", name: "Belgium", code: "+32" },
+    { iso: "CA", name: "Canada", code: "+1" },
+    { iso: "CN", name: "China", code: "+86" },
+    { iso: "DK", name: "Denmark", code: "+45" },
+    { iso: "EG", name: "Egypt", code: "+20" },
+    { iso: "FR", name: "France", code: "+33" },
+    { iso: "DE", name: "Germany", code: "+49" },
+    { iso: "HK", name: "Hong Kong", code: "+852" },
+    { iso: "IN", name: "India", code: "+91" },
+    { iso: "ID", name: "Indonesia", code: "+62" },
+    { iso: "IT", name: "Italy", code: "+39" },
+    { iso: "JP", name: "Japan", code: "+81" },
+    { iso: "KW", name: "Kuwait", code: "+965" },
+    { iso: "MY", name: "Malaysia", code: "+60" },
+    { iso: "MV", name: "Maldives", code: "+960" },
+    { iso: "NP", name: "Nepal", code: "+977" },
+    { iso: "NL", name: "Netherlands", code: "+31" },
+    { iso: "NZ", name: "New Zealand", code: "+64" },
+    { iso: "NO", name: "Norway", code: "+47" },
+    { iso: "OM", name: "Oman", code: "+968" },
+    { iso: "PK", name: "Pakistan", code: "+92" },
+    { iso: "PH", name: "Philippines", code: "+63" },
+    { iso: "QA", name: "Qatar", code: "+974" },
+    { iso: "SA", name: "Saudi Arabia", code: "+966" },
+    { iso: "SG", name: "Singapore", code: "+65" },
+    { iso: "KR", name: "South Korea", code: "+82" },
+    { iso: "ES", name: "Spain", code: "+34" },
+    { iso: "SE", name: "Sweden", code: "+46" },
+    { iso: "CH", name: "Switzerland", code: "+41" },
+    { iso: "TW", name: "Taiwan", code: "+886" },
+    { iso: "TH", name: "Thailand", code: "+66" },
+    { iso: "TR", name: "Turkey", code: "+90" },
+    { iso: "AE", name: "United Arab Emirates", code: "+971" },
+    { iso: "GB", name: "United Kingdom", code: "+44" },
+    { iso: "US", name: "United States", code: "+1" },
+  ];
 
   const handleChange = (e) => {
     setFormData({
@@ -2553,12 +2671,12 @@ function ContactSection() {
     {
       icon: Phone,
       label: "Call Support",
-      value: "+8801713017391",
+      value: "+880 1713017391",
     },
     {
       icon: Mail,
       label: "Email Support",
-      value: "polygonresource@gmail.com",
+      value: "polygon.resource@gmail.com",
     },
     {
       icon: MapPin,
@@ -2583,7 +2701,7 @@ function ContactSection() {
         overflow-hidden
       "
     >
-      <EdgeHoneycombCluster side="right" position="bottom" color="#DFB85C" fillColor="#F0DCA4" opacity={0.42} />
+      <EdgeHoneycombCluster side="right" position="bottom" color="#A9711F" fillColor="#E8B33D" opacity={0.42} />
       <OrganicSectionDecoration />
 
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
@@ -3290,92 +3408,202 @@ function ContactSection() {
                     </div>
                   </div>
 
-                  {/* Phone Number */}
-                  <div className="relative">
-                    <div className="relative">
-                      <input
-                        type="tel"
-                        name="phone"
-                        id="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder=" "
-                        pattern="\+?[0-9\s\-()]{7,20}"
-                        title="Please enter a valid phone number (e.g. +880 1713 017391)"
-                        className="
-                          w-full
-                          px-4
-                          pt-5
-                          pb-2
-                          border
-                          border-[rgba(31,71,50,0.18)]
-                          rounded-lg
-                          focus:outline-none
-                          focus:border-[#1F4732]
-                          focus:ring-2
-                          focus:ring-[#1F4732]/15
-                          transition-all
-                          duration-300
-                          bg-[#FFFEFA]/90
-                          font-['Barlow',sans-serif]
-                          text-[16px]
-                          leading-[1.5]
-                          text-[#1C1A14]
-                          hover:border-[#6BA539]/50
-                          peer
-                        "
-                        required
-                      />
-                      <label
-                        htmlFor="phone"
-                        className="
-                          absolute
-                          left-4
-                          top-1/2
-                          -translate-y-1/2
-                          font-['Barlow',sans-serif]
-                          text-[16px]
-                          text-[#8a8368]
-                          transition-all
-                          duration-300
-                          pointer-events-none
-                          origin-left
-                          peer-placeholder-shown:top-1/2
-                          peer-placeholder-shown:-translate-y-1/2
-                          peer-placeholder-shown:text-base
-                          peer-focus:top-1
-                          peer-focus:-translate-y-0
-                          peer-focus:text-xs
-                          peer-focus:text-[#1F4732]
-                          peer-focus:font-semibold
-                          peer-not-placeholder-shown:top-1
-                          peer-not-placeholder-shown:-translate-y-0
-                          peer-not-placeholder-shown:text-xs
-                          peer-not-placeholder-shown:text-[#1F4732]
-                          peer-not-placeholder-shown:font-semibold
-                        "
-                      >
-                        Phone Number
-                        <span className="text-[#DD8F2A]"> *</span>
-                      </label>
+                  {/* Phone Number with Country Code */}
+                  <div className="group relative">
+                    <div
+                      className="
+                        flex
+                        items-stretch
+                        border
+                        border-[rgba(31,71,50,0.18)]
+                        rounded-lg
+                        bg-[#FFFEFA]/90
+                        transition-all
+                        duration-300
+                        focus-within:border-[#1F4732]
+                        focus-within:ring-2
+                        focus-within:ring-[#1F4732]/15
+                        hover:border-[#6BA539]/50
+                      "
+                    >
+                      <div className="relative shrink-0 w-[88px] sm:w-[104px]">
+                        <button
+                          type="button"
+                          onClick={() => setIsCodeOpen((o) => !o)}
+                          aria-haspopup="listbox"
+                          aria-expanded={isCodeOpen}
+                          aria-label="Country calling code"
+                          className="
+                            w-full
+                            h-full
+                            flex
+                            items-center
+                            justify-center
+                            gap-1.5
+                            px-1
+                            bg-transparent
+                            cursor-pointer
+                            whitespace-nowrap
+                            font-['Barlow',sans-serif]
+                            text-[16px]
+                            leading-[1.5]
+                            text-[#1C1A14]
+                            focus:outline-none
+                          "
+                        >
+                          <img
+                            src={`https://flagcdn.com/w40/${(countryCodes.find((c) => c.code === phoneCode)?.iso || 'bd').toLowerCase()}.png`}
+                            alt=""
+                            aria-hidden="true"
+                            width={21}
+                            height={16}
+                            loading="lazy"
+                            draggable={false}
+                            className="w-[21px] h-auto rounded-[2px] shadow-sm"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                          />
+                          <span>{phoneCode}</span>
+                          <ChevronDown size={14} className={`shrink-0 text-[#8a8368] transition-transform duration-300 ${isCodeOpen ? 'rotate-180' : ''}`} />
+                        </button>
 
-                      <div
-                        className="
-                          absolute
-                          bottom-0
-                          left-0
-                          w-0
-                          h-0.5
-                          bg-gradient-to-r
-                          from-[#1F4732]
-                          via-[#3D7A4A]
-                          to-[#6BA539]
-                          transition-all
-                          duration-300
-                          peer-focus:w-full
-                        "
-                      />
+                        {isCodeOpen && (
+                          <>
+                            <div className="fixed inset-0 z-10" onClick={() => setIsCodeOpen(false)} />
+                            <div
+                              role="listbox"
+                              className="
+                                absolute
+                                left-0
+                                top-[calc(100%+6px)]
+                                z-20
+                                w-56
+                                max-w-[72vw]
+                                max-h-56
+                                overflow-y-auto
+                                bg-white
+                                border
+                                border-[#1F4732]/15
+                                rounded-lg
+                                shadow-xl
+                                shadow-[#1F4732]/15
+                                py-1
+                              "
+                            >
+                              {countryCodes.map((c) => (
+                                <button
+                                  key={c.iso}
+                                  type="button"
+                                  role="option"
+                                  aria-selected={phoneCode === c.code}
+                                  onClick={() => {
+                                    setPhoneCode(c.code);
+                                    setIsCodeOpen(false);
+                                  }}
+                                  className={`
+                                    w-full
+                                    flex
+                                    items-center
+                                    gap-2
+                                    px-3
+                                    py-2
+                                    text-left
+                                    cursor-pointer
+                                    font-['Barlow',sans-serif]
+                                    text-[13px]
+                                    sm:text-sm
+                                    transition-colors
+                                    duration-150
+                                    ${phoneCode === c.code ? 'bg-[#edf6e8] text-[#1F4732] font-semibold' : 'text-[#333333] hover:bg-[#f4f9ef]'}
+                                  `}
+                                >
+                                  <img
+                                    src={`https://flagcdn.com/w40/${c.iso.toLowerCase()}.png`}
+                                    alt=""
+                                    aria-hidden="true"
+                                    width={21}
+                                    height={16}
+                                    loading="lazy"
+                                    draggable={false}
+                                    className="w-[21px] h-auto rounded-[2px] shadow-sm shrink-0"
+                                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                                  />
+                                  <span className="flex-1 truncate">{c.name}</span>
+                                  <span className="shrink-0 text-[#5f9f3d] font-medium">{c.code}</span>
+                                </button>
+                              ))}
+                            </div>
+                          </>
+                        )}
+                      </div>
+
+                      <span className="w-px self-stretch my-2.5 bg-[rgba(31,71,50,0.12)]" />
+
+                      <div className="relative flex-1 min-w-0">
+                        <input
+                          type="tel"
+                          name="phone"
+                          id="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder=" "
+                          pattern="[0-9\s\-()]{6,15}"
+                          title="Please enter your phone number (digits only)"
+                          className="
+                            w-full
+                            px-4
+                            pt-5
+                            pb-2
+                            border-0
+                            rounded-none
+                            focus:outline-none
+                            focus:ring-0
+                            transition-all
+                            duration-300
+                            bg-transparent
+                            font-['Barlow',sans-serif]
+                            text-[16px]
+                            leading-[1.5]
+                            text-[#1C1A14]
+                            peer
+                          "
+                          required
+                        />
+                        <label
+                          htmlFor="phone"
+                          className="
+                            absolute
+                            left-4
+                            top-1/2
+                            -translate-y-1/2
+                            font-['Barlow',sans-serif]
+                            text-[16px]
+                            text-[#8a8368]
+                            transition-all
+                            duration-300
+                            pointer-events-none
+                            origin-left
+                            peer-placeholder-shown:top-1/2
+                            peer-placeholder-shown:-translate-y-1/2
+                            peer-placeholder-shown:text-base
+                            peer-focus:top-1
+                            peer-focus:-translate-y-0
+                            peer-focus:text-xs
+                            peer-focus:text-[#1F4732]
+                            peer-focus:font-semibold
+                            peer-not-placeholder-shown:top-1
+                            peer-not-placeholder-shown:-translate-y-0
+                            peer-not-placeholder-shown:text-xs
+                            peer-not-placeholder-shown:text-[#1F4732]
+                            peer-not-placeholder-shown:font-semibold
+                          "
+                        >
+                          Phone Number
+                          <span className="text-[#DD8F2A]"> *</span>
+                        </label>
+                      </div>
                     </div>
+
+                    <div className="absolute bottom-0 left-0 w-0 group-focus-within:w-full h-0.5 bg-gradient-to-r from-[#1F4732] via-[#3D7A4A] to-[#6BA539] transition-all duration-300 pointer-events-none" />
                   </div>
 
                   {/* Message */}
@@ -3666,7 +3894,7 @@ function Footer() {
 
   return (
     <footer className="relative bg-[#1F4732] text-white pt-[60px] pb-[30px] sm:pt-[80px] sm:pb-[40px] lg:pt-[100px] lg:pb-[50px] w-full overflow-hidden">
-      <EdgeHoneycombCluster side="left" position="top" color="#DFB85C" fillColor="#F0DCA4" opacity={0.32} />
+      <EdgeHoneycombCluster side="left" position="top" color="#A9711F" fillColor="#E8B33D" opacity={0.32} />
       <OrganicSectionDecoration dark flip />
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 z-0">
@@ -3790,7 +4018,7 @@ function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   <a href="mailto:polygonresource@gmail.com" className="font-['Barlow',sans-serif] text-[16px] leading-[1.5] text-[#666666] text-[0.8rem] font-semibold sm:text-[0.85rem] text-[#e5dfc9] hover:text-white transition-colors duration-300">
-                    polygonresource@gmail.com
+                    polygon.resource@gmail.com
                   </a>
                 </div>
                 <div className="flex items-start gap-3">
@@ -3798,7 +4026,7 @@ function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   <a href="tel:+8801713017391" className="font-['Barlow',sans-serif] text-[16px] leading-[1.5] text-[#666666] text-[0.8rem] font-semibold sm:text-[0.85rem] text-[#e5dfc9] hover:text-white transition-colors duration-300">
-                    +880 1713-017391
+                    +880 1713017391
                   </a>
                 </div>
               </div>
