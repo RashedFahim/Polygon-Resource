@@ -754,37 +754,45 @@ function App() {
       <div className="App font-['Barlow',sans-serif] text-[#666666] bg-cream w-full text-[16px] leading-[1.5]">
         <Header onGetInTouch={scrollToContact} />
 
-        {/* Hero animates in on first load rather than on scroll */}
+        {/* 1. Hero Section */}
         <NewHero onGetInTouch={scrollToContact} startWriting={startWriting} />
 
+        {/* Divider */}
         <Reveal direction="none" scale={0.98} duration={900}>
           <Divider />
         </Reveal>
 
+        {/* 2. About Us Section */}
         <Reveal direction="up" distance={50}>
           <About />
         </Reveal>
 
-        <Reveal direction="up" distance={50}>
-          <CEOMessage />
-        </Reveal>
-
+        {/* 3. Products Section */}
         <Reveal direction="up" distance={50}>
           <Products />
         </Reveal>
 
+        {/* 4. Our Purpose Section - Vision, Mission & Core Values */}
         <Reveal direction="up" distance={50}>
-          <Routes />
+          <OurPurpose />
         </Reveal>
 
+        {/* 5. CEO Message Section */}
+        <Reveal direction="up" distance={50}>
+          <CEOMessage />
+        </Reveal>
+
+        {/* 6. CTA Section */}
         <Reveal direction="up" distance={40} scale={0.97}>
           <CTA onGetInTouch={scrollToContact} />
         </Reveal>
 
+        {/* 7. Contact Section */}
         <Reveal direction="up" distance={50}>
           <ContactSection />
         </Reveal>
 
+        {/* 8. Footer */}
         <Reveal direction="up" distance={30}>
           <Footer />
         </Reveal>
@@ -815,7 +823,7 @@ function Header({ onGetInTouch }) {
     { label: 'Home', id: 'home' },
     { label: 'About us', id: 'about' },
     { label: 'Products', id: 'products' },
-    { label: 'Blogs', id: 'blogs' }
+    { label: 'Blog', id: 'ceo-message' },
   ];
 
   return (
@@ -1116,7 +1124,7 @@ function NewHero({ onGetInTouch, startWriting = false }) {
             <div className={`grid grid-cols-2 gap-2 sm:gap-4 lg:translate-y-28 xl:translate-y-32 transition-all duration-700 ${isTypingComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               {[
                 { value: '15+', label: 'Years in Agri-Trade' },
-                { value: '8', label: 'Export Countries' },
+                { value: '9', label: 'Export Countries' },
                 { value: '#1', label: 'Own Grading Plant in BD' },
                 { value: '100+', label: 'Farmers Partnered' }
               ].map((stat, i) => (
@@ -1213,55 +1221,8 @@ function OrganicSectionDecoration({ dark = false, flip = false }) {
 
 // ----- ABOUT -----
 function About() {
-  const coreValues = [
-    {
-      num: "01",
-      title: "Integrity",
-      desc: "Integrity in every business relationship, from sourcing to shipment and long-term partnerships.",
-    },
-    {
-      num: "02",
-      title: "Reliability",
-      desc: "Dependable coordination, timely communication and consistent follow-through across every trade process.",
-    },
-    {
-      num: "03",
-      title: "Customer Focus",
-      desc: "Responsive, buyer-focused coordination shaped around market requirements, specifications and expectations.",
-    },
-    {
-      num: "04",
-      title: "Quality & Compliance",
-      desc: "Respect for product quality, responsible sourcing and the compliance standards required by global markets.",
-    },
-  ];
-
-  const exportMarkets = [
-    "Russia",
-    "Singapore",
-    "Malaysia",
-    "China",
-    "Senegal",
-    "Saudi Arabia",
-    "Italy",
-    "Ukraine",
-  ];
-
-  const exportedProducts = [
-    "Fresh Pineapple",
-    "Shrimp Shells",
-    "Potatoes",
-    "Cabbage",
-    "Cauliflower",
-    "Pumpkin",
-  ];
-
-  const growthProducts = [
-    "Mangoes",
-    "Black Sesame Seeds",
-    "Brown Sesame Seeds",
-    "Young Jackfruit",
-  ];
+  const countries = ['Russia', 'Singapore', 'Malaysia', 'China', 'Senegal', 'Saudi Arabia', 'Italy', 'Ukraine','Nepal'];
+  const rotations = ['-6deg', '4deg', '-3deg', '5deg', '-5deg', '3deg', '-4deg', '6deg'];
 
   return (
     <section
@@ -1270,9 +1231,9 @@ function About() {
         relative
         w-full
         overflow-hidden
-        py-[70px]
-        sm:py-[90px]
-        lg:py-[110px]
+        py-[60px]
+        sm:py-[80px]
+        lg:py-[100px]
         bg-[linear-gradient(135deg,#f8fcf4_0%,#edf6e7_28%,#dfedd6_58%,#cfe3c4_100%)]
       "
     >
@@ -1323,7 +1284,7 @@ function About() {
             top-0
             left-0
             w-full
-            h-32
+            h-24
             bg-gradient-to-b
             from-white/30
             to-transparent
@@ -1337,7 +1298,7 @@ function About() {
             bottom-0
             left-0
             w-full
-            h-48
+            h-24
             bg-gradient-to-t
             from-[#1F4732]/[0.07]
             to-transparent
@@ -1466,7 +1427,7 @@ function About() {
         <div className="max-w-7xl mx-auto">
 
           {/* Header */}
-          <div className="max-w-4xl mb-10 sm:mb-14 lg:mb-16">
+          <div className="max-w-4xl mb-8 sm:mb-10 lg:mb-12">
             <div
               className="
                 font-['Barlow',sans-serif]
@@ -1478,7 +1439,7 @@ function About() {
                 flex
                 items-center
                 gap-3
-                mb-4
+                mb-3
               "
             >
               <span className="w-8 h-px bg-[#6BA539]" />
@@ -1511,7 +1472,7 @@ function About() {
                 text-[16px]
                 leading-[1.5]
                 text-[#666666]
-                mt-5
+                mt-4
                 text-[0.92rem]
                 sm:text-[1rem]
                 lg:text-[1.06rem]
@@ -1528,12 +1489,10 @@ function About() {
             </p>
           </div>
 
-          {/* ==================================================
-              COMPANY STORY + SLOGAN
-          ================================================== */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 mb-10 lg:mb-14">
+          {/* Company Story + Slogan */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 mb-6 lg:mb-8">
 
-            {/* Company Story - with Reveal animation */}
+            {/* Company Story */}
             <Reveal direction="up" distance={40} duration={600} as="div" className="lg:col-span-7">
               <div
                 className="
@@ -1552,7 +1511,6 @@ function About() {
                   duration-500
                 "
               >
-                {/* Gradient top line */}
                 <div
                   className="
                     absolute
@@ -1567,45 +1525,7 @@ function About() {
                   "
                 />
 
-                <div
-                  className="
-                    absolute
-                    -top-16
-                    -right-16
-                    w-40
-                    h-40
-                    rounded-full
-                    bg-[#6BA539]/[0.08]
-                    group-hover:scale-125
-                    transition-transform
-                    duration-700
-                  "
-                />
-
-                {/* Leaf decoration */}
-                <svg
-                  className="
-                    absolute
-                    -bottom-4
-                    -right-2
-                    w-36
-                    opacity-[0.035]
-                    group-hover:scale-110
-                    transition-transform
-                    duration-700
-                  "
-                  viewBox="0 0 150 150"
-                  fill="none"
-                >
-                  <path
-                    d="M15 137C20 76 58 28 134 12C124 83 82 128 15 137Z"
-                    fill="#1F4732"
-                  />
-                </svg>
-
                 <div className="relative p-6 sm:p-8 lg:p-10">
-
-                  {/* Since 2008 Badge */}
                   <div
                     className="
                       inline-flex
@@ -1621,7 +1541,6 @@ function About() {
                     "
                   >
                     <span className="w-2 h-2 rounded-full bg-[#6BA539] animate-pulse" />
-
                     <span
                       className="
                         font-['Barlow',sans-serif]
@@ -1663,31 +1582,20 @@ function About() {
                     "
                   >
                     <p>
-                      Over the years, POLYGON RESOURCE has built its foundation
-                      on integrity, product quality, responsive communication
-                      and dependable trade coordination.
+                      POLYGON RESOURCE has built its foundation on integrity, product quality, responsive communication and dependable trade coordination.
                     </p>
-
                     <p>
-                      The company has successfully exported various commodities
-                      to international markets, including fresh pineapple,
-                      shrimp shells, potatoes, cabbage, cauliflower and pumpkin.
+                      The company has successfully exported fresh pineapple, shrimp shells, potatoes, cabbage, cauliflower, pumpkin and headgear cap to international markets across the globe.
                     </p>
-
                     <p>
-                      Building on this experience, POLYGON RESOURCE is expanding
-                      its target export portfolio to include mangoes, black and
-                      brown sesame seeds and young jackfruit, while also
-                      exploring suitable opportunities in importing and
-                      indenting based on market demand and reliable
-                      international partnerships.
+                      Now expanding to include mangoes, sesame seeds and young jackfruit, while exploring import and indenting opportunities.
                     </p>
                   </div>
                 </div>
               </div>
             </Reveal>
 
-            {/* Slogan Card - with Reveal animation */}
+            {/* Slogan Card */}
             <Reveal direction="up" distance={40} duration={600} delay={100} as="div" className="lg:col-span-5">
               <div
                 className="
@@ -1705,136 +1613,68 @@ function About() {
                   hover:shadow-[0_20px_55px_rgba(31,71,50,0.28)]
                   transition-all
                   duration-500
+                  h-full
                 "
               >
-                <div
-                  className="
-                    absolute
-                    -top-20
-                    -right-20
-                    w-52
-                    h-52
-                    rounded-full
-                    border
-                    border-white/10
-                  "
-                />
-
-                <div
-                  className="
-                    absolute
-                    -bottom-24
-                    -left-16
-                    w-56
-                    h-56
-                    rounded-full
-                    bg-[#6BA539]/10
-                  "
-                />
-
-                <svg
-                  className="
-                    absolute
-                    bottom-0
-                    right-0
-                    w-40
-                    sm:w-48
-                    opacity-[0.08]
-                  "
-                  viewBox="0 0 180 180"
-                  fill="none"
-                >
-                  <path
-                    d="M19 163C24 93 68 35 158 16C146 98 96 153 19 163Z"
-                    fill="white"
-                  />
-
-                  <path
-                    d="M35 148C70 114 106 76 144 35"
-                    stroke="white"
-                    strokeWidth="6"
-                    strokeLinecap="round"
-                  />
-                </svg>
-
-                <div
-                  className="
-                    relative
-                    z-10
-                    p-6
-                    sm:p-8
-                    lg:p-10
-                    h-full
-                    flex
-                    flex-col
-                    justify-between
-                  "
-                >
-                  <div>
-                    <div
-                      className="
-                        font-['Barlow',sans-serif]
-                        uppercase
-                        text-[0.58rem]
-                        sm:text-[0.65rem]
-                        tracking-[0.2em]
-                        text-[#a8d68f]
-                        mb-5
-                      "
-                    >
-                      Our Guiding Idea
-                    </div>
-
-                    <div
-                      className="
-                        text-[#DD8F2A]
-                        font-['Barlow',sans-serif]
-                        text-[0.7rem]
-                        tracking-[0.16em]
-                        uppercase
-                        mb-3
-                      "
-                    >
-                      “Xplore Possibilities”
-                    </div>
-
-                    <h3
-                      className="
-                        font-['Lora',serif]
-                        font-normal
-                        text-[1.55rem]
-                        sm:text-[2rem]
-                        lg:text-[2.3rem]
-                        leading-tight
-                        mb-5
-                        text-white
-                      "
-                    >
-                      Understanding buyers. Adapting to markets. Growing
-                      responsibly.
-                    </h3>
-
-                    <p
-                      className="
-                        font-['Barlow',sans-serif]
-                        text-[16px]
-                        leading-[1.5]
-                        text-[#666666]
-                        text-white/80
-                        text-[0.86rem]
-                        sm:text-[0.94rem]
-                      "
-                    >
-                      Guided by its slogan, POLYGON RESOURCE remains committed
-                      to understanding buyer requirements, maintaining
-                      consistent quality and adapting to the evolving needs of
-                      the global trade industry.
-                    </p>
+                <div className="relative z-10 p-6 sm:p-8 lg:p-10 h-full flex flex-col justify-center">
+                  <div
+                    className="
+                      font-['Barlow',sans-serif]
+                      uppercase
+                      text-[0.58rem]
+                      sm:text-[0.65rem]
+                      tracking-[0.2em]
+                      text-[#a8d68f]
+                      mb-3
+                    "
+                  >
+                    Our Guiding Idea
                   </div>
 
                   <div
                     className="
-                      mt-8
+                      text-[#DD8F2A]
+                      font-['Barlow',sans-serif]
+                      text-[0.7rem]
+                      tracking-[0.16em]
+                      uppercase
+                      mb-3
+                    "
+                  >
+                    “Xplore Possibilities”
+                  </div>
+
+                  <h3
+                    className="
+                      font-['Lora',serif]
+                      font-normal
+                      text-[1.55rem]
+                      sm:text-[2rem]
+                      lg:text-[2.3rem]
+                      leading-tight
+                      mb-4
+                      text-white
+                    "
+                  >
+                    Understanding buyers. Adapting to markets. Growing responsibly.
+                  </h3>
+
+                  <p
+                    className="
+                      font-['Barlow',sans-serif]
+                      text-[16px]
+                      leading-[1.5]
+                      text-white/80
+                      text-[0.86rem]
+                      sm:text-[0.94rem]
+                    "
+                  >
+                    POLYGON RESOURCE remains committed to understanding buyer requirements, maintaining consistent quality and adapting to evolving global trade needs.
+                  </p>
+
+                  <div
+                    className="
+                      mt-6
                       pt-5
                       border-t
                       border-white/10
@@ -1844,7 +1684,6 @@ function About() {
                     "
                   >
                     <span className="w-8 h-px bg-[#DD8F2A]" />
-
                     <span
                       className="
                         font-['Barlow',sans-serif]
@@ -1862,271 +1701,104 @@ function About() {
             </Reveal>
           </div>
 
-          {/* ==================================================
-              MARKETS & PRODUCTS
-          ================================================== */}
-          <div
-            className="
-              grid
-              grid-cols-1
-              lg:grid-cols-3
-              gap-5
-              lg:gap-6
-              mb-10
-              lg:mb-14
-            "
-          >
-            {/* Export Markets - with Reveal animation */}
-            <Reveal direction="up" distance={35} duration={500} delay={0}>
-              <div
-                className="
-                  rounded-2xl
-                  bg-white/70
-                  backdrop-blur-md
-                  border
-                  border-[#6BA539]/20
-                  p-6
-                  sm:p-7
-                  shadow-[0_8px_28px_rgba(31,71,50,0.07)]
-                  hover:-translate-y-1
-                  hover:shadow-[0_15px_35px_rgba(31,71,50,0.12)]
-                  transition-all
-                  duration-500
-                "
-              >
-                <div
-                  className="
-                    font-['Barlow',sans-serif]
-                    uppercase
-                    text-[0.58rem]
-                    sm:text-[0.64rem]
-                    tracking-[0.16em]
-                    text-[#6BA539]
-                    mb-3
-                  "
-                >
+          {/* Export Markets - Animated Country Circles - Full Width */}
+          <Reveal direction="up" distance={30} duration={500} delay={150}>
+            <div className="w-full bg-white/75 backdrop-blur-md rounded-2xl border border-[#6BA539]/20 p-5 sm:p-6 lg:p-8 shadow-[0_8px_25px_rgba(31,71,50,0.08)] hover:shadow-[0_12px_35px_rgba(31,71,50,0.14)] transition-all duration-500">
+              <div className="text-center mb-4 sm:mb-5">
+                <div className="font-['Barlow',sans-serif] uppercase text-[0.55rem] sm:text-[0.6rem] tracking-[0.18em] text-[#6BA539] flex items-center justify-center gap-2 before:content-[''] before:w-[14px] sm:before:w-[18px] before:h-[1px] before:bg-[#6BA539] before:inline-block after:content-[''] after:w-[14px] sm:after:w-[18px] after:h-[1px] after:bg-[#6BA539] after:inline-block">
                   Export Footprint
                 </div>
-
-                <h3
-                  className="
-                    font-['Lora',serif]
-                    font-normal
-                    text-[1.3rem]
-                    sm:text-[1.5rem]
-                    text-[#1F4732]
-                    mb-5
-                  "
-                >
-                  International markets served
-                </h3>
-
-                <div className="flex flex-wrap gap-2">
-                  {exportMarkets.map((market) => (
-                    <span
-                      key={market}
-                      className="
-                        font-['Barlow',sans-serif]
-                        text-[0.58rem]
-                        sm:text-[0.64rem]
-                        px-3
-                        py-1.5
-                        rounded-full
-                        bg-white/80
-                        border
-                        border-[#1F4732]/10
-                        text-[#4a6b5a]
-                        hover:bg-[#1F4732]
-                        hover:text-white
-                        hover:border-[#1F4732]
-                        transition-all
-                        duration-300
-                      "
-                    >
-                      {market}
-                    </span>
-                  ))}
-                </div>
+                <h4 className="font-['Lora',serif] font-normal text-[1rem] sm:text-[1.1rem] lg:text-[1.2rem] text-[#1F4732] mt-1">
+                  <AnimatedText text="Nine countries. One quality standard." />
+                </h4>
               </div>
-            </Reveal>
-
-            {/* Export Experience - with Reveal animation */}
-            <Reveal direction="up" distance={35} duration={500} delay={100}>
-              <div
-                className="
-                  rounded-2xl
-                  bg-white/75
-                  backdrop-blur-md
-                  border
-                  border-[#6BA539]/20
-                  p-6
-                  sm:p-7
-                  shadow-[0_8px_28px_rgba(31,71,50,0.07)]
-                  hover:-translate-y-1
-                  hover:shadow-[0_15px_35px_rgba(31,71,50,0.12)]
-                  transition-all
-                  duration-500
-                "
-              >
-                <div
-                  className="
-                    font-['Barlow',sans-serif]
-                    uppercase
-                    text-[0.58rem]
-                    sm:text-[0.64rem]
-                    tracking-[0.16em]
-                    text-[#6BA539]
-                    mb-3
-                  "
-                >
-                  Export Experience
-                </div>
-
-                <h3
-                  className="
-                    font-['Lora',serif]
-                    font-normal
-                    text-[1.3rem]
-                    sm:text-[1.5rem]
-                    text-[#1F4732]
-                    mb-5
-                  "
-                >
-                  Commodities delivered
-                </h3>
-
-                <div className="space-y-2.5">
-                  {exportedProducts.map((product) => (
-                    <div
-                      key={product}
-                      className="
-                        flex
-                        items-center
-                        gap-3
-                        font-['Barlow',sans-serif]
-                        text-[16px]
-                        leading-[1.5]
-                        text-[#666666]
-                        text-sm
-                      "
-                    >
-                      <span
-                        className="
-                          w-2
-                          h-2
-                          rounded-full
-                          bg-[#6BA539]
-                          flex-shrink-0
-                        "
-                      />
-
-                      {product}
-                    </div>
-                  ))}
-                </div>
+              <div className="flex justify-center flex-wrap gap-2 sm:gap-3 md:gap-4 max-w-4xl mx-auto">
+                {countries.map((c, i) => (
+                  <div 
+                    key={i} 
+                    className="w-[55px] h-[55px] sm:w-[65px] sm:h-[65px] md:w-[75px] md:h-[75px] lg:w-[85px] lg:h-[85px] rounded-full border-2 border-[#1F4732] flex flex-col items-center justify-center text-center font-['Barlow',sans-serif] text-[#1F4732] hover:bg-[#1F4732] hover:text-white transition-all duration-300 text-[0.5rem] sm:text-[0.55rem] md:text-[0.6rem] lg:text-[0.65rem] font-bold cursor-default" 
+                    style={{ transform: `rotate(${rotations[i]})` }}
+                  >
+                    {c}
+                  </div>
+                ))}
               </div>
-            </Reveal>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-            {/* Growth Portfolio - with Reveal animation */}
-            <Reveal direction="up" distance={35} duration={500} delay={200}>
-              <div
-                className="
-                  rounded-2xl
-                  bg-gradient-to-br
-                  from-[#f8fbf4]/90
-                  to-[#e4f0dc]/90
-                  backdrop-blur-md
-                  border
-                  border-[#6BA539]/25
-                  p-6
-                  sm:p-7
-                  shadow-[0_8px_28px_rgba(31,71,50,0.07)]
-                  hover:-translate-y-1
-                  hover:shadow-[0_15px_35px_rgba(31,71,50,0.12)]
-                  transition-all
-                  duration-500
-                "
-              >
-                <div
-                  className="
-                    font-['Barlow',sans-serif]
-                    uppercase
-                    text-[0.58rem]
-                    sm:text-[0.64rem]
-                    tracking-[0.16em]
-                    text-[#6BA539]
-                    mb-3
-                  "
-                >
-                  Growth Portfolio
-                </div>
+// ----- OUR PURPOSE (VISION, MISSION & CORE VALUES) -----
+function OurPurpose() {
+  const coreValues = [
+    {
+      num: "01",
+      title: "Integrity",
+      desc: "Integrity in every business relationship, from sourcing to shipment and long-term partnerships.",
+    },
+    {
+      num: "02",
+      title: "Reliability",
+      desc: "Dependable coordination, timely communication and consistent follow-through across every trade process.",
+    },
+    {
+      num: "03",
+      title: "Customer Focus",
+      desc: "Responsive, buyer-focused coordination shaped around market requirements, specifications and expectations.",
+    },
+    {
+      num: "04",
+      title: "Quality & Compliance",
+      desc: "Respect for product quality, responsible sourcing and the compliance standards required by global markets.",
+    },
+  ];
 
-                <h3
-                  className="
-                    font-['Lora',serif]
-                    font-normal
-                    text-[1.3rem]
-                    sm:text-[1.5rem]
-                    text-[#1F4732]
-                    mb-5
-                  "
-                >
-                  Target export products                </h3>
+  return (
+    <section
+      id="purpose"
+      className="
+        relative
+        w-full
+        overflow-hidden
+        py-[60px]
+        sm:py-[80px]
+        lg:py-[100px]
+        bg-[linear-gradient(135deg,#f8fcf4_0%,#edf6e7_28%,#dfedd6_58%,#cfe3c4_100%)]
+      "
+    >
+      <EdgeHoneycombCluster side="right" position="top" color="#1F4732" fillColor="#6BA539" opacity={0.48} />
+      <OrganicSectionDecoration flip />
 
-                <div className="space-y-2.5">
-                  {growthProducts.map((product) => (
-                    <div
-                      key={product}
-                      className="
-                        flex
-                        items-center
-                        gap-3
-                        font-['Barlow',sans-serif]
-                        text-[16px]
-                        leading-[1.5]
-                        text-[#666666]
-                        text-sm
-                      "
-                    >
-                      <span
-                        className="
-                          w-6
-                          h-6
-                          rounded-full
-                          bg-[#6BA539]/10
-                          flex
-                          items-center
-                          justify-center
-                          flex-shrink-0
-                        "
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#6BA539]" />
-                      </span>
-
-                      {product}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
+      <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-10">
+        <div className="max-w-7xl mx-auto">
+          
+          {/* Section Header */}
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="font-['Barlow',sans-serif] uppercase text-[0.55rem] sm:text-[0.6rem] tracking-[0.18em] text-[#6BA539] flex items-center justify-center gap-2 before:content-[''] before:w-[14px] sm:before:w-[18px] before:h-[1px] before:bg-[#6BA539] before:inline-block after:content-[''] after:w-[14px] sm:after:w-[18px] after:h-[1px] after:bg-[#6BA539] after:inline-block">
+              Our Purpose
+            </div>
+            <h2 className="font-['Lora',serif] font-bold text-[2rem] sm:text-[2.5rem] lg:text-[3rem] mt-3 sm:mt-4 text-[#1F4732]">
+              <AnimatedText text="Shaping the future of agricultural trade." />
+            </h2>
           </div>
 
-          {/* ==================================================
-              VISION & MISSION
-          ================================================== */}
+          {/* Vision & Mission - Compact */}
           <div
             className="
               grid
               grid-cols-1
               lg:grid-cols-2
-              gap-5
+              gap-4
               lg:gap-6
-              mb-10
-              lg:mb-14
+              mb-8
+              lg:mb-10
             "
           >
-            {/* Vision - with Reveal animation */}
-            <Reveal direction="up" distance={40} duration={550} delay={0}>
+            {/* Vision */}
+            <Reveal direction="up" distance={30} duration={500} delay={0}>
               <div
                 className="
                   group
@@ -2137,43 +1809,30 @@ function About() {
                   from-[#173d29]
                   to-[#28573a]
                   text-white
-                  p-7
+                  p-6
                   sm:p-8
-                  lg:p-10
-                  shadow-[0_14px_40px_rgba(31,71,50,0.2)]
+                  shadow-[0_12px_35px_rgba(31,71,50,0.2)]
                   hover:-translate-y-1
-                  hover:shadow-[0_20px_50px_rgba(31,71,50,0.28)]
+                  hover:shadow-[0_18px_45px_rgba(31,71,50,0.28)]
                   transition-all
                   duration-500
                 "
               >
-                <div
-                  className="
-                    absolute
-                    -top-20
-                    -right-20
-                    w-48
-                    h-48
-                    rounded-full
-                    bg-[#6BA539]/15
-                  "
-                />
-
                 <div className="relative z-10">
                   <div
                     className="
                       font-['Barlow',sans-serif]
                       uppercase
-                      text-[0.6rem]
+                      text-[0.55rem]
                       tracking-[0.18em]
                       text-[#a8d68f]
-                      mb-4
+                      mb-3
                       flex
                       items-center
-                      gap-3
+                      gap-2
                     "
                   >
-                    <span className="w-7 h-px bg-[#a8d68f]" />
+                    <span className="w-6 h-px bg-[#a8d68f]" />
                     Our Vision
                   </div>
 
@@ -2181,9 +1840,10 @@ function About() {
                     className="
                       font-['Lora',serif]
                       font-normal
-                      text-[1.45rem]
-                      sm:text-[1.8rem]
-                      mb-4
+                      text-[1.3rem]
+                      sm:text-[1.5rem]
+                      lg:text-[1.8rem]
+                      mb-3
                       text-white
                     "
                   >
@@ -2195,22 +1855,19 @@ function About() {
                       font-['Barlow',sans-serif]
                       text-[16px]
                       leading-[1.5]
-                      text-[#666666]
                       text-white/80
-                      text-[0.88rem]
-                      sm:text-[0.96rem]
+                      text-[0.85rem]
+                      sm:text-[0.9rem]
                     "
                   >
-                    To become a trusted trading partner from Bangladesh,
-                    recognized for exploring sustainable opportunities across
-                    export, import and indenting activities.
+                    To become a trusted trading partner from Bangladesh, recognized for exploring sustainable opportunities across export, import and indenting activities.
                   </p>
                 </div>
               </div>
             </Reveal>
 
-            {/* Mission - with Reveal animation */}
-            <Reveal direction="up" distance={40} duration={550} delay={100}>
+            {/* Mission */}
+            <Reveal direction="up" distance={30} duration={500} delay={80}>
               <div
                 className="
                   group
@@ -2222,43 +1879,30 @@ function About() {
                   via-[#5b9837]
                   to-[#3f7728]
                   text-white
-                  p-7
+                  p-6
                   sm:p-8
-                  lg:p-10
-                  shadow-[0_14px_40px_rgba(107,165,57,0.18)]
+                  shadow-[0_12px_35px_rgba(107,165,57,0.18)]
                   hover:-translate-y-1
-                  hover:shadow-[0_20px_50px_rgba(107,165,57,0.26)]
+                  hover:shadow-[0_18px_45px_rgba(107,165,57,0.26)]
                   transition-all
                   duration-500
                 "
               >
-                <div
-                  className="
-                    absolute
-                    -bottom-24
-                    -right-16
-                    w-56
-                    h-56
-                    rounded-full
-                    bg-white/[0.07]
-                  "
-                />
-
                 <div className="relative z-10">
                   <div
                     className="
                       font-['Barlow',sans-serif]
                       uppercase
-                      text-[0.6rem]
+                      text-[0.55rem]
                       tracking-[0.18em]
                       text-[#f3f8ee]
-                      mb-4
+                      mb-3
                       flex
                       items-center
-                      gap-3
+                      gap-2
                     "
                   >
-                    <span className="w-7 h-px bg-[#DD8F2A]" />
+                    <span className="w-6 h-px bg-[#DD8F2A]" />
                     Our Mission
                   </div>
 
@@ -2266,38 +1910,32 @@ function About() {
                     className="
                       font-['Lora',serif]
                       font-normal
-                      text-[1.45rem]
-                      sm:text-[1.8rem]
-                      mb-4
-                      text-white                    "
+                      text-[1.3rem]
+                      sm:text-[1.5rem]
+                      lg:text-[1.8rem]
+                      mb-3
+                      text-white
+                    "
                   >
                     Connecting global markets with quality products.
                   </h3>
 
                   <div
                     className="
-                      space-y-3
+                      space-y-2
                       font-['Barlow',sans-serif]
                       text-[16px]
                       leading-[1.5]
-                      text-[#666666]
                       text-white/90
-                      text-[0.88rem]
-                      sm:text-[0.96rem]
+                      text-[0.85rem]
+                      sm:text-[0.9rem]
                     "
                   >
                     <p>
-                      Our mission is to connect global markets with quality
-                      agricultural products from Bangladesh while promoting
-                      responsible sourcing and sustainable trade practices.
+                      To connect global markets with quality agricultural products from Bangladesh while promoting responsible sourcing and sustainable trade practices.
                     </p>
-
                     <p>
-                      Through transparent communication, dependable coordination
-                      and lasting partnerships with producers, suppliers and
-                      international buyers, we aim to support food security,
-                      strengthen local communities and contribute to a healthier
-                      and more sustainable future.
+                      Through transparent communication and lasting partnerships with producers and international buyers.
                     </p>
                   </div>
                 </div>
@@ -2305,9 +1943,7 @@ function About() {
             </Reveal>
           </div>
 
-          {/* ==================================================
-              CORE VALUES
-          ================================================== */}
+          {/* Core Values */}
           <div>
             <div
               className="
@@ -2325,8 +1961,8 @@ function About() {
                   className="
                     font-['Barlow',sans-serif]
                     uppercase
-                    text-[0.6rem]
-                    sm:text-[0.66rem]
+                    text-[0.55rem]
+                    sm:text-[0.6rem]
                     tracking-[0.18em]
                     text-[#6BA539]
                     mb-2
@@ -2339,8 +1975,8 @@ function About() {
                   className="
                     font-['Lora',serif]
                     font-normal
-                    text-[1.6rem]
-                    sm:text-[2rem]
+                    text-[1.3rem]
+                    sm:text-[1.5rem]
                     text-[#1F4732]
                   "
                 >
@@ -2360,7 +1996,7 @@ function About() {
                 grid
                 grid-cols-1
                 sm:grid-cols-2
-                xl:grid-cols-4
+                lg:grid-cols-4
                 gap-4
               "
             >
@@ -2368,7 +2004,7 @@ function About() {
                 <Reveal 
                   key={value.num} 
                   direction="up" 
-                  distance={35} 
+                  distance={30} 
                   duration={500} 
                   delay={index * 80}
                   as="div"
@@ -2411,7 +2047,7 @@ function About() {
                       "
                     />
 
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-between mb-3">
                       <span
                         className="
                           font-['Barlow',sans-serif]
@@ -2454,8 +2090,8 @@ function About() {
                       className="
                         font-['Lora',serif]
                         font-normal
-                        text-[1.05rem]
-                        sm:text-[1.15rem]
+                        text-[1.1rem]
+                        sm:text-[1.2rem]
                         text-[#1F4732]
                         font-semibold
                         mb-2
@@ -2470,8 +2106,8 @@ function About() {
                         text-[16px]
                         leading-[1.5]
                         text-[#666666]
-                        text-[0.78rem]
-                        sm:text-[0.84rem]
+                        text-[0.8rem]
+                        sm:text-[0.85rem]
                       "
                     >
                       {value.desc}
@@ -2997,33 +2633,6 @@ function Products() {
               ← Swipe to browse →
             </div>
           )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-// ----- ROUTES -----
-function Routes() {
-  const countries = ['Russia', 'Singapore', 'Malaysia', 'China', 'Senegal', 'Saudi Arabia', 'Italy', 'Ukraine'];
-  const rotations = ['-6deg', '4deg', '-3deg', '5deg', '-5deg', '3deg', '-4deg', '6deg'];
-
-  return (
-    <section className="relative py-[30px] sm:py-5 pb-[60px] sm:pb-[80px] lg:pb-[110px] text-center w-full bg-white overflow-hidden" id="routes">
-      <EdgeHoneycombCluster side="left" position="top" color="#1F4732" fillColor="#6BA539" opacity={0.40} />
-      <OrganicSectionDecoration flip />
-      <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="font-['Barlow',sans-serif] uppercase text-[0.65rem] sm:text-[0.72rem] tracking-[0.18em] text-[#6BA539] flex items-center justify-center gap-2.5 before:content-[''] before:w-[18px] sm:before:w-[22px] before:h-[1px] before:bg-[#6BA539] before:inline-block">
-          Where We Ship
-        </div>
-        <h2 className="font-['Lora',serif] font-bold text-[1.6rem] sm:text-[1.8rem] lg:text-2xl mt-[10px] sm:mt-[14px] mb-6 sm:mb-8 lg:mb-10 text-[#1F4732]"><AnimatedText text="Eight countries. One quality standard." /></h2>
-        <div className="flex justify-center flex-wrap gap-3 sm:gap-4 max-w-[820px] mx-auto">
-          {countries.map((c, i) => (
-            <div key={i} className="w-[80px] h-[80px] sm:w-[95px] sm:h-[95px] lg:w-[110px] lg:h-[110px] rounded-full border-2 border-[#1F4732] flex flex-col items-center justify-center text-center font-['Barlow',sans-serif] text-[#1F4732] hover:bg-[#1F4732] hover:text-white transition-all duration-300" style={{ transform: `rotate(${rotations[i]})` }}>
-              <b className="text-[0.65rem] sm:text-[0.7rem] lg:text-[0.78rem]">{c}</b>
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -4163,9 +3772,9 @@ function Footer() {
                 Quick Links
               </h4>
               <ul className="space-y-2.5 font-semibold">
-                {['Home', 'About Us', 'Products', 'Blogs'].map((item, index) => {
-                  const id = item.toLowerCase().replace(' ', '');
-                  const href = id === 'home' ? '#home' : `#${id}`;
+                {['Home', 'About Us', 'Products', 'Blog'].map((item, index) => {
+                  const id = item.toLowerCase();
+                  const href = id === 'home' ? '#home' : id === 'ceo' ? '#ceo-message' : `#${id}`;
                   return (
                     <li key={index}>
                       <a 
