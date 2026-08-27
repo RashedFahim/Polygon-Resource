@@ -1,10 +1,10 @@
 # Polygon Resource Website
 
-React and Vite frontend with a small Node/Express API for Contact Us email delivery.
+React and Vite frontend with a server-side Gmail SMTP contact endpoint.
 
 ## Development
 
-Install dependencies, then run the API and frontend in separate terminals:
+Install dependencies, create the project-root `.env.local` from `.env.example`, and fill in the server-only values. Then run the API and frontend in separate terminals:
 
 ```bash
 npm install
@@ -12,41 +12,43 @@ npm run server
 npm run dev
 ```
 
-The Vite dev server proxies `/api` requests to `http://localhost:5000`.
-
-After starting the API, `http://localhost:5000/api/health` should return `"emailConfigured":true`. The API logs `SMTP connection verified.` when Gmail authentication is working.
+The form always posts to `/api/contact`. During local development, the Vite-only proxy in `vite.config.js` forwards that path to the local API on port 5000. The proxy is not part of the production bundle.
 
 ## Email Configuration
 
-Create `server/.env` from `server/.env.example`. The API uses Nodemailer with Gmail SMTP:
-
-- Use a Google app password for `SMTP_PASS`; never use or store a Gmail account password in the frontend.
-- Set `SMTP_USER` to the Gmail account authorized to send the message.
-- `CONTACT_RECIPIENT_EMAIL` defaults to `polygon.resource@gmail.com`.
-- Set `CORS_ORIGIN` to the deployed frontend origin, or a comma-separated list of origins.
-
-For a separately deployed frontend and API, set `VITE_API_BASE_URL` in the frontend environment to the API's public URL. Keep all SMTP variables on the backend only.
-
-If SMTP verification fails, use a Google app password with 2-Step Verification enabled. Do not use the normal Gmail password. Also check Gmail's Spam folder and the backend logs for the SMTP error.
-
-## Vercel
-
-`api/contact.js` is a Vercel serverless function, so the form works on the Vercel deployment without a separate Node server. In the Vercel project settings, add these environment variables for the required environments:
+Use a Google app password with 2-Step Verification enabled. Do not use the normal Gmail password. A local `.env.local` can contain:
 
 ```text
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=465
 SMTP_SECURE=true
-SMTP_USER=polygon.resource@gmail.com
-SMTP_PASS=<Google app password>
-CONTACT_RECIPIENT_EMAIL=polygon.resource@gmail.com
-CORS_ORIGIN=https://your-project.vercel.app
+SMTP_USER=<the Gmail account authorized to send>
+SMTP_PASS=<the Google app password>
+SMTP_FROM=<the same Gmail address or an authorized alias>
+CONTACT_RECIPIENT_EMAIL=<the Gmail inbox that receives inquiries>
+CORS_ORIGIN=http://localhost:5173
 ```
 
-Do not deploy `server/.env` or put SMTP values in `VITE_*` variables. For the same Vercel project, leave `VITE_API_BASE_URL` unset so the frontend calls its own `/api/contact` function. Redeploy after changing environment variables. You can check `https://your-project.vercel.app/api/health`; it should return `"emailConfigured":true`.
+All SMTP values are read only by the server. No email credential belongs in a `VITE_*` variable or React code.
 
-If the frontend and API are hosted on different domains later, set `VITE_API_BASE_URL` to the API origin and set `CORS_ORIGIN` on the API to the frontend origin. The existing Node server remains available with `npm start` for a non-Vercel host.
+## Vercel
 
-## Production
+`api/contact.js` is a standalone Vercel Node function. Vercel detects it at `/api/contact`; no separate API deployment or hard-coded deployment URL is needed. The same function is also used by the local Express server.
 
-Build the frontend with `npm run build`, deploy the `dist` directory to the frontend host, and run `npm start` on a Node-compatible backend host. Configure the backend environment variables before accepting submissions.
+Add these variables in Vercel Project Settings > Environment Variables for Production and any Preview environment that needs email:
+
+```text
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=<the Gmail account authorized to send>
+SMTP_PASS=<the Google app password>
+SMTP_FROM=<the same Gmail address or an authorized alias>
+CONTACT_RECIPIENT_EMAIL=<the Gmail inbox that receives inquiries>
+```
+
+`CORS_ORIGIN` is not needed when the frontend and function are deployed in the same Vercel project. Do not add `VITE_API_BASE_URL`; the frontend uses the relative `/api/contact` path. Redeploy after changing Vercel variables. `/api/health` reports whether the SMTP credentials are configured without returning secret values.
+
+## Custom Domain
+
+Connect the domain in Vercel and complete the DNS records Vercel provides. No code or email URL changes are needed: `/api/contact` automatically runs on the custom domain. The Gmail account must have 2-Step Verification and a valid app password, and `SMTP_FROM` should be that Gmail account or an authorized Gmail alias. If email is later sent from a custom-domain mailbox, configure that mailbox's provider plus its SPF, DKIM, and DMARC records; the website domain itself does not require email verification for the Gmail SMTP setup.

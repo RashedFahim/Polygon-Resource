@@ -75,7 +75,7 @@ Bangladesh grows more than 100 varieties of potatoes; most popular varieties are
         },
         {
           name: 'Sunshine',
-          image: '/potatoes/Sunshine.png',
+          image: '/potatoes/Sunshine.jpeg',
           description: 'Sunshine is a very early to early table potato with cooking type B. Its long-oval, well-shaped tubers attract with their very shallow eyes, smooth skin and unique brightness. Sunshine grows rapidly and achieves early high yields. Remarkable is its very early skin finish.',
           specifications: [
             { label: 'Appearance', value: 'Yellow Skin' },

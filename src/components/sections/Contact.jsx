@@ -41,10 +41,8 @@ export default function Contact() {
     setIsSubmitting(true);
 
     const selectedCountry = countryCodes.find((country) => country.code === phoneCode);
-    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
-
     try {
-      const response = await fetch(`${apiBaseUrl}/api/contact`, {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
