@@ -1,0 +1,268 @@
+export const PRODUCT_CATEGORIES = ['Fruits', 'Vegetables', 'Oilseeds'];
+export const CATEGORIES = ['All', ...PRODUCT_CATEGORIES];
+
+export const PRODUCT_DATA = [
+  // Fruits (4 products)
+  {
+    name: 'Pineapple',
+    category: 'Fruits',
+    desc: 'Sourced from Madhupur, the "Pineapple Capital" of Bangladesh, prized for its red-soil sweetness.',
+    tags: ['Jun–Aug harvest', 'Madhupur & Tangail'],
+    bg: 'linear-gradient(140deg,#DD8F2A,#a85f13)',
+    image: 'https://images.unsplash.com/photo-1589820296156-2454bb8a6ad1?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
+  {
+    name: 'Guava',
+    category: 'Fruits',
+    desc: 'Thai guava varieties make up the bulk of national production, grown across Rajshahi\'s hill and riverine districts.',
+    tags: ['430K+ tonnes/yr BD', 'Rajshahi'],
+    bg: 'linear-gradient(140deg,#9CC96B,#5f8a3a)',
+    image: 'https://images.unsplash.com/photo-1689996647327-5d263fbbc79d?w=500&auto=format&fit=crop&q=60',
+  },
+  {
+    name: 'Mango',
+    category: 'Fruits',
+    desc: 'Nearly 100 cultivars nationwide — Fazlee, Langda, Himsagar and more, sourced from Rajshahi\'s peak growing districts.',
+    tags: ['Dec–Feb blossom', 'Rajshahi'],
+    bg: 'linear-gradient(140deg,#6BA539,#2f6b2c)',
+    image: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=400&h=300&fit=crop',
+  },
+  {
+    name: 'Watermelon',
+    category: 'Fruits',
+    desc: 'Coastal-grown for peak sweetness — from Patuakhali, Khulna, Bhola, Noakhali and Barguna\'s sandy soils.',
+    tags: ['Feb–Apr season', 'Coastal belt'],
+    bg: 'linear-gradient(140deg,#E24E4E,#8f2323)',
+    image: 'https://images.unsplash.com/photo-1675346980561-66d6231f8bf7?w=500&auto=format&fit=crop&q=60',
+  },
+  // Vegetables (4 products)
+  {
+    name: 'Potato',
+    category: 'Vegetables',
+    desc: 'Our flagship line — graded, sorted and cleaned at our own Rangpur facility with modern packing infrastructure.',
+    tags: ['Own processing plant', 'Rangpur'],
+    bg: 'linear-gradient(140deg,#8A5A32,#54371d)',
+    image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&h=300&fit=crop',
+    details: {
+      overview: `Potato (SolanumtuberosumL.) is one of the most important food crops grown in more than 100 countries in the world. Over one billion people consume potato worldwide and it is the staple diet of half a billion people in developing countries. Potato is one of the main food crops in Bangladesh after rice and wheat. Within Asia, Bangladesh is the fourth largest potato producing country, and seventh biggest in the world for growing potatoes. All agro-ecological zones of Bangladesh are suitable for potato cultivation.
+
+Bangladesh grows more than 100 varieties of potatoes; most popular varieties are.`,
+      varieties: [
+        {
+          name: 'Adato',
+          description: 'Adato is an early maincrop retail variety with quite large tubers and quite a high dry matter content.',
+          image: '/public/potatoes/Adato.png',
+          specifications: [
+            { label: 'Appearance', value: 'Yellow Skin' },
+            { label: 'Shape', value: 'Oval long' },
+            { label: 'Skin colour', value: 'Yellow' },
+            { label: 'Flesh colour', value: 'cream' },
+            { label: 'Underwater weight', value: '374' },
+            { label: 'Dry matter content', value: '20.4%' },
+            { label: 'Cooking type', value: 'BC (Floury)' },
+          ],
+          note: 'Suitable for cooking and home baked products',
+        },
+        {
+          name: 'Valencia',
+          image: '/public/potatoes/Valencia.png',
+          description: 'The variety has an oil absorption capacity below about 3%, making it a very suitable variety for making delicious French fries. The processing loss is less than 2%. Scab is a common disease in white skin color potatoes in our country, due to which the farmers lose about 20-30% of the yield. Growers can easily avoid this damage as the Valencia variety is tolerant to scab disease.',
+          specifications: [
+            { label: 'Appearance', value: 'Yellow Skin' },
+            { label: 'Shape', value: 'Oval long' },
+            { label: 'Skin colour', value: 'Yellow' },
+          ],
+        },
+        {
+          name: 'Sunshine',
+          image: '/public/potatoes/Sunshine.png',
+          description: 'Sunshine is a very early to early table potato with cooking type B. Its long-oval, well-shaped tubers attract with their very shallow eyes, smooth skin and unique brightness. Sunshine grows rapidly and achieves early high yields. Remarkable is its very early skin finish.',
+          specifications: [
+            { label: 'Appearance', value: 'Yellow Skin' },
+            { label: 'Shape', value: 'Long Oval Shape' },
+            { label: 'Color of flesh', value: 'Light Yellow' },
+            { label: 'Suitable for', value: 'Fresh Consumption' },
+            { label: 'Cooking type', value: 'B (little floury and crumble)' },
+            { label: 'Discoloration after cooking', value: 'No discoloration' },
+            { label: 'Style', value: 'Fresh/Frozen' },
+          ],
+        },
+        {
+          name: 'Levante',
+          image: '/public/potatoes/Levante.png',
+          description: 'An early maincrop high-yielding ware variety with nice yellow skin and late blight resistance in foliage and tuber.',
+          specifications: [
+            { label: 'Appearance', value: 'Yellow Skin' },
+            { label: 'Shape', value: 'Oval Shape' },
+            { label: 'Color of flesh', value: 'Light yellow' },
+            { label: 'Suitable for', value: 'Fresh Consumption' },
+            { label: 'Cooking type', value: 'B (Rather floury)' },
+            { label: 'Underwater weight', value: '365' },
+            { label: 'Discoloration after cooking', value: 'No discoloration' },
+            { label: 'Dry matter content', value: '19.9%' },
+            { label: 'Style', value: 'Fresh/Frozen' },
+          ],
+        },
+        {
+          name: 'Diamant',
+          image: '/public/potatoes/Diamant.png',
+          description: 'Diamant is a type of potato known for its smooth, yellow skin and creamy flesh. Diamant potatoes are popular for their excellent taste and versatility in cooking, often used for boiling, baking, or making French fries. Skin Color: Light yellow to pale yellow. Flesh Color: Creamy white.',
+          specifications: [
+            { label: 'Appearance', value: 'Yellow Skin' },
+            { label: 'Shape', value: 'Oval Shape' },
+            { label: 'Color of flesh', value: 'Light yellow flesh, Shallow Eye' },
+            { label: 'Suitable for', value: 'Fresh Consumption, French Fries' },
+            { label: 'Cooking type', value: 'BC (waxy to floury)' },
+            { label: 'Discoloration after cooking', value: 'No discoloration' },
+            { label: 'Dry matter content', value: '21.7%' },
+            { label: 'Style', value: 'Fresh/Frozen' },
+          ],
+        },
+        {
+          name: 'Granola',
+          image: '/public/potatoes/Granola.png',
+          description: `Granola is a potato variety that is known for its high yield, storage capabilities, and versatility. It is a medium late table potato with yellow flesh and skin and is a member of the Solanaceae family.
+Granola potatoes are rich in carbohydrates, vitamins, and minerals, including potassium, fiber, and vitamin C.`,
+          specifications: [
+            { label: 'Appearance', value: 'Yellow Skin' },
+            { label: 'Shape', value: 'Round Shape' },
+            { label: 'Color of flesh', value: 'Light yellow flesh' },
+            { label: 'Suitable for', value: 'Fresh Consumption' },
+            { label: 'Cooking type', value: 'BC (waxy to floury)' },
+            { label: 'Discoloration after cooking', value: 'No discoloration' },
+            { label: 'Dry matter content', value: '29.1%' },
+            { label: 'Style', value: 'Fresh/Frozen' },
+          ],
+        },
+        {
+          name: 'Cardinal',
+          image: '/public/potatoes/Cardinal.png',
+          description: 'The tubers are oval-elongated, pink-red color. Excellent taste, light amber flesh color. During heat treatment, the pulp does not darken, the potatoes do not boil over, therefore it is used universally in the household, added to winter salads, made fries and chips.',
+          specifications: [
+            { label: 'Appearance', value: 'Red Skin' },
+            { label: 'Shape', value: 'Oval Shape' },
+            { label: 'Color of flesh', value: 'Shallow Eye' },
+            { label: 'Suitable for', value: 'Fresh Consumption, French Fries' },
+            { label: 'Cooking type', value: 'BC (waxy to floury)' },
+            { label: 'Discoloration after cooking', value: 'No discoloration' },
+            { label: 'Dry matter content', value: '23.6%' },
+            { label: 'Style', value: 'Fresh/Frozen' },
+          ],
+        },
+        {
+          name: 'Lal-pakri',
+          image: '',
+          description: 'Lal-pakri is a traditional potato variety in Bangladesh that is known for its red tubers, good taste, and long shelf life. It is an early season type that is drought tolerant and late blight resistant. They have red colored skin and are nutritious.',
+          specifications: [
+            { label: 'Appearance', value: 'round with slightly rough skin' },
+            { label: 'Shape', value: 'Round Shape' },
+            { label: 'Color of flesh', value: 'Light yellow flesh' },
+            { label: 'Suitable for', value: 'Fresh Consumption' },
+            { label: 'Discoloration after cooking', value: 'No discoloration' },
+            { label: 'Style', value: 'Fresh/Frozen' },
+          ],
+        },
+        {
+          name: 'Asterix',
+          image: '/public/potatoes/Asterix.png',
+          description: 'Asterix is a high yielding late main crop variety of long oval uniform red tubers with yellow flesh, with high dry matters and pale fry colors well suited to production of French fries and processed products',
+          specifications: [
+            { label: 'Appearance', value: 'Red Skin' },
+            { label: 'Shape', value: 'Oval Shape' },
+            { label: 'Color of flesh', value: 'Light yellow flesh, Shallow Eye' },
+            { label: 'Suitable for', value: 'Fresh Consumption, French Fries' },
+            { label: 'Cooking type', value: 'B (Slightly mealy)' },
+            { label: 'Discoloration after cooking', value: 'No discoloration' },
+            { label: 'Dry matter content', value: '23.3%' },
+            { label: 'Style', value: 'Fresh/Frozen' },
+          ],
+        },
+        {
+          name: 'Courage',
+          image: '',
+        },
+        {
+          name: 'Lady Rosetta',
+          image: '/public/potatoes/Rosetta.png',
+          description: 'Lady Rosetta is a moderately early, productive crisping variety. This variety reaches high dry matter levels and low sugars early in the season. Lady Rosetta produces very uniform round tubers. It is very popular in Europe, Northern Africa and Middle east for the crisping.',
+          specifications: [
+            { label: 'Appearance', value: 'Red Skin' },
+            { label: 'Shape', value: 'Round Shape' },
+            { label: 'Color of flesh', value: 'Pale yellow' },
+            { label: 'Suitable for', value: 'Crisps' },
+            { label: 'Cooking type', value: 'C (floury)' },
+            { label: 'Discoloration after cooking', value: 'No discoloration' },
+            { label: 'Dry matter content', value: '25.5%' },
+            { label: 'Style', value: 'Fresh/Frozen' },
+          ],
+        },
+        {
+          name: 'Alouette',
+          image: '/public/potatoes/Alouette.png',
+          description: `An early maincrop, versatile, red skin ware
+variety with late blight resistance in foliage and
+tuber, suitable for conventional and organic
+production.`,
+          specifications: [
+            { label: 'Appearance', value: 'Red Skin' },
+            { label: 'Shape', value: 'Oval Shape' },
+            { label: 'Color of flesh', value: 'Yellow flesh' },
+            { label: 'Suitable for', value: 'Fresh Consumption' },
+            { label: 'Cooking type', value: 'AB (Rather Firm)' },
+            { label: 'Discoloration after cooking', value: 'No discoloration' },
+            { label: 'Dry matter content', value: '21,1%' },
+            { label: 'Underwater Weight', value: '389' },
+            { label: 'Flesh colour', value: 'yellow' },
+          ],
+          note: 'Suitable for cooking and home baked products',
+        },
+      ],
+    },
+  },
+  {
+    name: 'Cabbage',
+    category: 'Vegetables',
+    desc: 'Fresh, crisp cabbage grown in the highlands of Bangladesh, perfect for export.',
+    tags: ['Fresh', 'Crisp'],
+    bg: 'linear-gradient(140deg,#6BA539,#4a7c32)',
+    image: 'https://images.unsplash.com/photo-1652860213441-6622f9fec77f?w=500&auto=format&fit=crop&q=60',
+  },
+  {
+    name: 'Cauliflower',
+    category: 'Vegetables',
+    desc: 'Premium cauliflower, carefully cultivated and harvested for export markets.',
+    tags: ['Premium Quality', 'Fresh'],
+    bg: 'linear-gradient(140deg,#F5F5DC,#e0e0c8)',
+    image: 'https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?w=400&h=300&fit=crop',
+  },
+  {
+    name: 'Pumpkin',
+    category: 'Vegetables',
+    desc: 'Nutritious pumpkin varieties grown across Bangladesh, rich in vitamins and minerals.',
+    tags: ['Organic', 'Nutritious'],
+    bg: 'linear-gradient(140deg,#E8A317,#c4881a)',
+    image: 'https://images.unsplash.com/photo-1570586437263-ab629fccc818?w=400&h=300&fit=crop',
+  },
+  // Oilseeds (2 products)
+  {
+    name: 'Sesame Seeds',
+    category: 'Oilseeds',
+    desc: 'Premium quality sesame seeds, rich in oil content and perfect for export.',
+    tags: ['High Oil Content', 'Premium'],
+    bg: 'linear-gradient(140deg,#D4A373,#b8895c)',
+    image: 'https://images.unsplash.com/photo-1731970820339-e725b78f55e4?w=500&auto=format&fit=crop&q=60',
+  },
+  {
+    name: 'Groundnut',
+    category: 'Oilseeds',
+    desc: 'High-quality groundnuts sourced from Bangladeshi farmers, suitable for oil extraction.',
+    tags: ['High Yield', 'Premium Grade'],
+    bg: 'linear-gradient(140deg,#C9A227,#8a6a17)',
+    image: 'https://images.unsplash.com/photo-1694654359031-e2db00bd0e93?w=500&auto=format&fit=crop&q=60',
+  },
+];
+
+export const PRODUCT_GROUPS = PRODUCT_CATEGORIES.map((category) => ({
+  category,
+  products: PRODUCT_DATA.filter((product) => product.category === category),
+}));
