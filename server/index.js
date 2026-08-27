@@ -11,8 +11,6 @@ dotenv.config({ path: path.join(serverDirectory, '.env') });
 dotenv.config({ path: path.join(serverDirectory, '..', '.env') });
 
 const app = express();
-const parsedPort = Number.parseInt(process.env.PORT || '5000', 10);
-const port = Number.isInteger(parsedPort) ? parsedPort : 5000;
 const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || 'polygon.resource@gmail.com';
 const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173,http://127.0.0.1:5173')
   .split(',')
@@ -31,6 +29,7 @@ const fieldLimits = {
 };
 
 app.disable('x-powered-by');
+app.set('trust proxy', true);
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
@@ -162,7 +161,7 @@ if (transporter) {
   console.error('Email service is not configured. Set SMTP_USER and SMTP_PASS in server/.env.');
 }
 
-app.post('/api/contact', async (req, res) => {
+app.post(['/api/contact', '/'], async (req, res) => {
   const { inquiry, errors } = validateInquiry(req.body);
 
   if (errors.length > 0) {
@@ -281,6 +280,4 @@ app.use((error, _req, res, next) => {
   return res.status(500).json({ message: 'Something went wrong. Please try again later.' });
 });
 
-app.listen(port, () => {
-  console.log(`Contact API listening on port ${port}`);
-});
+export default app;

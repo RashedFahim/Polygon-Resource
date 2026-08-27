@@ -29,6 +29,24 @@ For a separately deployed frontend and API, set `VITE_API_BASE_URL` in the front
 
 If SMTP verification fails, use a Google app password with 2-Step Verification enabled. Do not use the normal Gmail password. Also check Gmail's Spam folder and the backend logs for the SMTP error.
 
+## Vercel
+
+`api/contact.js` is a Vercel serverless function, so the form works on the Vercel deployment without a separate Node server. In the Vercel project settings, add these environment variables for the required environments:
+
+```text
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=polygon.resource@gmail.com
+SMTP_PASS=<Google app password>
+CONTACT_RECIPIENT_EMAIL=polygon.resource@gmail.com
+CORS_ORIGIN=https://your-project.vercel.app
+```
+
+Do not deploy `server/.env` or put SMTP values in `VITE_*` variables. For the same Vercel project, leave `VITE_API_BASE_URL` unset so the frontend calls its own `/api/contact` function. Redeploy after changing environment variables. You can check `https://your-project.vercel.app/api/health`; it should return `"emailConfigured":true`.
+
+If the frontend and API are hosted on different domains later, set `VITE_API_BASE_URL` to the API origin and set `CORS_ORIGIN` on the API to the frontend origin. The existing Node server remains available with `npm start` for a non-Vercel host.
+
 ## Production
 
 Build the frontend with `npm run build`, deploy the `dist` directory to the frontend host, and run `npm start` on a Node-compatible backend host. Configure the backend environment variables before accepting submissions.
