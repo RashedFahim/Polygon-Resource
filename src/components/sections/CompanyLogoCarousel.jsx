@@ -1,6 +1,7 @@
 import AnimatedText from '../animations/AnimatedText';
 import EdgeHoneycombCluster from '../decorations/EdgeHoneycombCluster';
 import { COMPANY_LOGOS } from '../../data/companies';
+import InfiniteMarquee from './InfiniteMarquee';
 
 export default function CompanyLogoCarousel() {
   return (
@@ -38,66 +39,28 @@ export default function CompanyLogoCarousel() {
 
         <div className="company-marquee relative w-full overflow-hidden">
           {/* Soft edge fades keep logos entering/leaving the viewport cleanly. */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-12 sm:w-20 lg:w-28 bg-gradient-to-r from-[#F7F4EA] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-12 sm:w-20 lg:w-28 bg-gradient-to-l from-[#F7F4EA] to-transparent" />
-
-          <div className="company-marquee-track flex w-max items-center will-change-transform">
-            {[0, 1, 2, 3].map((copy) => (
+          <InfiniteMarquee edgeColor="#F7F4EA">
+            {(copy) => COMPANY_LOGOS.map((company) => (
               <div
-                key={copy}
-                className="flex shrink-0 items-center"
-                aria-hidden={copy > 0 ? "true" : undefined}
+                key={`${copy}-${company.name}`}
+                className="group/logo mr-8 flex h-[128px] w-[112px] shrink-0 flex-col items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 sm:mr-12 sm:h-[140px] sm:w-[124px] sm:gap-2.5 md:mr-14 md:h-[152px] md:w-[136px] lg:mr-16 lg:h-[164px] lg:w-[148px]"
+                title={company.name}
               >
-                {COMPANY_LOGOS.map((company) => (
-                  <div
-                    key={`${copy}-${company.name}`}
-                    className="group/logo mr-8 flex h-[128px] w-[112px] shrink-0 flex-col items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 sm:mr-12 sm:h-[140px] sm:w-[124px] sm:gap-2.5 md:mr-14 md:h-[152px] md:w-[136px] lg:mr-16 lg:h-[164px] lg:w-[148px]"
-                    title={company.name}
-                  >
-                    <img
-                      src={company.logo}
-                      alt={copy === 0 ? `${company.name} logo` : ""}
-                      className="h-[82px] w-full object-contain transition-transform duration-300 group-hover/logo:scale-[1.05] sm:h-[90px] md:h-[98px] lg:h-[106px]"
-                      loading="lazy"
-                      draggable="false"
-                    />
-                    <span className="text-center font-['Barlow',sans-serif] text-[0.64rem] font-semibold leading-tight text-[#1F4732] sm:text-[0.68rem] md:text-[0.72rem] lg:text-[0.76rem]">
-                      {company.name}
-                    </span>
-                  </div>
-                ))}
+                <img
+                  src={company.logo}
+                  alt={copy === 0 ? `${company.name} logo` : ''}
+                  className="h-[82px] w-full object-contain transition-transform duration-300 group-hover/logo:scale-[1.05] sm:h-[90px] md:h-[98px] lg:h-[106px]"
+                  loading="lazy"
+                  draggable="false"
+                />
+                <span className="text-center font-['Barlow',sans-serif] text-[0.64rem] font-semibold leading-tight text-[#1F4732] sm:text-[0.68rem] md:text-[0.72rem] lg:text-[0.76rem]">
+                  {company.name}
+                </span>
               </div>
             ))}
-          </div>
+          </InfiniteMarquee>
         </div>
       </div>
-
-      <style>{`
-        @keyframes companyMarqueeScroll {
-          from {
-            transform: translate3d(0, 0, 0);
-          }
-          to {
-            transform: translate3d(-25%, 0, 0);
-          }
-        }
-
-        .company-marquee-track {
-          animation: companyMarqueeScroll 32s linear infinite;
-        }
-
-        @media (max-width: 640px) {
-          .company-marquee-track {
-            animation-duration: 24s;
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .company-marquee-track {
-            animation-duration: 70s;
-          }
-        }
-      `}</style>
     </section>
   );
 }
