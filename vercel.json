@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/contact.js": {
-      "includeFiles": ["public/logo.png"]
+      "includeFiles": "public/logo.png"
     }
   }
 }
