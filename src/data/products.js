@@ -42,7 +42,7 @@ export const PRODUCT_DATA = [
     desc: 'Our flagship line — graded, sorted and cleaned at our own Rangpur facility with modern packing infrastructure.',
     tags: ['Own processing plant', 'Rangpur'],
     bg: 'linear-gradient(140deg,#8A5A32,#54371d)',
-    image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&h=300&fit=crop',
+    image: '/potatoes/potatoe_top.jpeg',
     details: {
       overview: `Potato (SolanumtuberosumL.) is one of the most important food crops grown in more than 100 countries in the world. Over one billion people consume potato worldwide and it is the staple diet of half a billion people in developing countries. Potato is one of the main food crops in Bangladesh after rice and wheat. Within Asia, Bangladesh is the fourth largest potato producing country, and seventh biggest in the world for growing potatoes. All agro-ecological zones of Bangladesh are suitable for potato cultivation.
 
@@ -51,7 +51,7 @@ Bangladesh grows more than 100 varieties of potatoes; most popular varieties are
         {
           name: 'Adato',
           description: 'Adato is an early maincrop retail variety with quite large tubers and quite a high dry matter content.',
-          image: '/public/potatoes/Adato.png',
+          image: '/potatoes/Adato.png',
           specifications: [
             { label: 'Appearance', value: 'Yellow Skin' },
             { label: 'Shape', value: 'Oval long' },
@@ -65,7 +65,7 @@ Bangladesh grows more than 100 varieties of potatoes; most popular varieties are
         },
         {
           name: 'Valencia',
-          image: '/public/potatoes/Valencia.png',
+          image: '/potatoes/Valencia.png',
           description: 'The variety has an oil absorption capacity below about 3%, making it a very suitable variety for making delicious French fries. The processing loss is less than 2%. Scab is a common disease in white skin color potatoes in our country, due to which the farmers lose about 20-30% of the yield. Growers can easily avoid this damage as the Valencia variety is tolerant to scab disease.',
           specifications: [
             { label: 'Appearance', value: 'Yellow Skin' },
@@ -75,7 +75,7 @@ Bangladesh grows more than 100 varieties of potatoes; most popular varieties are
         },
         {
           name: 'Sunshine',
-          image: '/public/potatoes/Sunshine.png',
+          image: '/potatoes/Sunshine.png',
           description: 'Sunshine is a very early to early table potato with cooking type B. Its long-oval, well-shaped tubers attract with their very shallow eyes, smooth skin and unique brightness. Sunshine grows rapidly and achieves early high yields. Remarkable is its very early skin finish.',
           specifications: [
             { label: 'Appearance', value: 'Yellow Skin' },
@@ -89,7 +89,7 @@ Bangladesh grows more than 100 varieties of potatoes; most popular varieties are
         },
         {
           name: 'Levante',
-          image: '/public/potatoes/Levante.png',
+          image: '/potatoes/Levante.png',
           description: 'An early maincrop high-yielding ware variety with nice yellow skin and late blight resistance in foliage and tuber.',
           specifications: [
             { label: 'Appearance', value: 'Yellow Skin' },
@@ -105,7 +105,7 @@ Bangladesh grows more than 100 varieties of potatoes; most popular varieties are
         },
         {
           name: 'Diamant',
-          image: '/public/potatoes/Diamant.png',
+          image: '/potatoes/Diamant.png',
           description: 'Diamant is a type of potato known for its smooth, yellow skin and creamy flesh. Diamant potatoes are popular for their excellent taste and versatility in cooking, often used for boiling, baking, or making French fries. Skin Color: Light yellow to pale yellow. Flesh Color: Creamy white.',
           specifications: [
             { label: 'Appearance', value: 'Yellow Skin' },
@@ -120,7 +120,7 @@ Bangladesh grows more than 100 varieties of potatoes; most popular varieties are
         },
         {
           name: 'Granola',
-          image: '/public/potatoes/Granola.png',
+          image: '/potatoes/Granola.png',
           description: `Granola is a potato variety that is known for its high yield, storage capabilities, and versatility. It is a medium late table potato with yellow flesh and skin and is a member of the Solanaceae family.
 Granola potatoes are rich in carbohydrates, vitamins, and minerals, including potassium, fiber, and vitamin C.`,
           specifications: [
@@ -136,7 +136,7 @@ Granola potatoes are rich in carbohydrates, vitamins, and minerals, including po
         },
         {
           name: 'Cardinal',
-          image: '/public/potatoes/Cardinal.png',
+          image: '/potatoes/Cardinal.png',
           description: 'The tubers are oval-elongated, pink-red color. Excellent taste, light amber flesh color. During heat treatment, the pulp does not darken, the potatoes do not boil over, therefore it is used universally in the household, added to winter salads, made fries and chips.',
           specifications: [
             { label: 'Appearance', value: 'Red Skin' },
@@ -164,7 +164,7 @@ Granola potatoes are rich in carbohydrates, vitamins, and minerals, including po
         },
         {
           name: 'Asterix',
-          image: '/public/potatoes/Asterix.png',
+          image: '/potatoes/Asterix.png',
           description: 'Asterix is a high yielding late main crop variety of long oval uniform red tubers with yellow flesh, with high dry matters and pale fry colors well suited to production of French fries and processed products',
           specifications: [
             { label: 'Appearance', value: 'Red Skin' },
@@ -183,7 +183,7 @@ Granola potatoes are rich in carbohydrates, vitamins, and minerals, including po
         },
         {
           name: 'Lady Rosetta',
-          image: '/public/potatoes/Rosetta.png',
+          image: '/potatoes/Rosetta.png',
           description: 'Lady Rosetta is a moderately early, productive crisping variety. This variety reaches high dry matter levels and low sugars early in the season. Lady Rosetta produces very uniform round tubers. It is very popular in Europe, Northern Africa and Middle east for the crisping.',
           specifications: [
             { label: 'Appearance', value: 'Red Skin' },
@@ -198,7 +198,7 @@ Granola potatoes are rich in carbohydrates, vitamins, and minerals, including po
         },
         {
           name: 'Alouette',
-          image: '/public/potatoes/Alouette.png',
+          image: '/potatoes/Alouette.png',
           description: `An early maincrop, versatile, red skin ware
 variety with late blight resistance in foliage and
 tuber, suitable for conventional and organic

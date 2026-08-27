@@ -1,6 +1,6 @@
-export const EXPORT_COUNTRIES = ['Russia', 'Singapore', 'Malaysia', 'China', 'Senegal', 'Saudi Arabia', 'Italy', 'Ukraine','Nepal'];
+export const EXPORT_COUNTRIES = ['Russia', 'Singapore', 'Malaysia', 'China', 'Senegal', 'Saudi Arabia', 'Italy', 'Ukraine','Nepal','Brunei Darussalam'];
 
-export const COUNTRY_ROTATIONS = ['-6deg', '4deg', '-3deg', '5deg', '-5deg', '3deg', '-4deg', '6deg'];
+export const COUNTRY_ROTATIONS = ['0deg', '0deg', '0deg', '0deg', '0deg', '0deg', '0deg', '0deg'];
 
 export const CORE_VALUES = [
   {

@@ -41,7 +41,7 @@ export default function Contact() {
     setIsSubmitting(true);
 
     const selectedCountry = countryCodes.find((country) => country.code === phoneCode);
-    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "http://localhost:5000").replace(/\/$/, "");
+    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
 
     try {
       const response = await fetch(`${apiBaseUrl}/api/contact`, {
@@ -59,10 +59,13 @@ export default function Contact() {
         }),
       });
 
-      const result = await response.json().catch(() => ({}));
+      const contentType = response.headers.get("content-type") || "";
+      const result = contentType.includes("application/json")
+        ? await response.json().catch(() => ({}))
+        : {};
 
-      if (!response.ok) {
-        throw new Error(result.message || "We couldn't send your inquiry. Please try again.");
+      if (!response.ok || !contentType.includes("application/json")) {
+        throw new Error(result.message || "We couldn't connect to the email service. Please try again later.");
       }
 
       setIsSubmitted(true);

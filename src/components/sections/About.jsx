@@ -490,7 +490,7 @@ export default function About() {
                   Export Footprint
                 </div>
                 <h4 className="font-['Lora',serif] font-normal text-[1rem] sm:text-[1.1rem] lg:text-[1.2rem] text-[#1F4732] mt-1">
-                  <AnimatedText text="Nine countries. One quality standard." />
+                  <AnimatedText text="Ten countries. One quality standard." />
                 </h4>
               </div>
               <div className="flex justify-center flex-wrap gap-2 sm:gap-3 md:gap-4 max-w-4xl mx-auto">
