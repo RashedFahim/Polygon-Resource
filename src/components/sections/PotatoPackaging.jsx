@@ -14,7 +14,7 @@ const PACKAGING_IMAGES = [
 export default function PotatoPackaging() {
   return (
     <section
-      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-y border-[#1F4732]/10 bg-[#F7F4EA] py-12 sm:py-14 lg:py-16"
+      className="relative w-full overflow-hidden border-y border-[#1F4732]/10 bg-[#F7F4EA] py-12 sm:py-14 lg:py-16"
       aria-labelledby="potato-packaging-title"
     >
       <EdgeHoneycombCluster

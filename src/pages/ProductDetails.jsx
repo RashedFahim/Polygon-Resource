@@ -19,13 +19,13 @@ export default function ProductDetails({ product, details, onGetInTouch }) {
   ];
 
   return (
-    <section className="w-full bg-white text-[#707070]">
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
-        {sections.map((item, index) => {
-          const textFirst = index % 2 === 0;
+    <section className="w-full overflow-x-hidden bg-cream text-[#707070]">
+      {sections.map((item, index) => {
+        const textFirst = index % 2 === 0;
 
-          return (
-            <Fragment key={item.name}>
+        return (
+          <Fragment key={item.name}>
+            <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
               <Reveal direction={textFirst ? 'left' : 'right'} distance={45}>
                 <article className={`grid items-center gap-10 py-20 sm:py-24 lg:min-h-[620px] lg:grid-cols-2 lg:gap-20 lg:py-28 ${index > 0 ? 'border-t border-[#edf0ea]' : 'pt-32 sm:pt-36 lg:pt-40'}`}>
                   <div className={textFirst ? 'lg:order-1' : 'lg:order-2'}>
@@ -71,22 +71,22 @@ export default function ProductDetails({ product, details, onGetInTouch }) {
                       <img
                         src={item.image}
                         alt={item.imageAlt}
-                        className="max-h-[480px] w-full max-w-[620px] object-contain"
+                        className={`max-h-[480px] w-full max-w-[620px] object-contain ${item.image === '/potatoes/potatoe_top.jpeg' ? 'rounded-2xl' : ''}`}
                       />
                     )}
                   </div>
                 </article>
               </Reveal>
+            </div>
 
-              {product.name === 'Potato' && index === 0 && (
-                <Reveal direction="up" distance={35}>
-                  <PotatoPackaging />
-                </Reveal>
-              )}
-            </Fragment>
-          );
-        })}
-      </div>
+            {product.name === 'Potato' && index === 0 && (
+              <Reveal direction="up" distance={35}>
+                <PotatoPackaging />
+              </Reveal>
+            )}
+          </Fragment>
+        );
+      })}
     </section>
   );
 }

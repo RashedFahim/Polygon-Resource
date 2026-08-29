@@ -30,7 +30,7 @@ export default function ProductPage({ product }) {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;900&family=Lora:wght@400;500;600;700&display=swap');
       `}</style>
-      <div className="App font-['Barlow',sans-serif] text-[#666666] bg-cream w-full text-[16px] leading-[1.5]">
+      <div className="App w-full overflow-x-hidden bg-cream font-['Barlow',sans-serif] text-[16px] leading-[1.5]">
         <Navbar onGetInTouch={scrollToContact} isProductPage={Boolean(product.details)} />
 
         <main>

@@ -135,6 +135,35 @@ Granola potatoes are rich in carbohydrates, vitamins, and minerals, including po
           ],
         },
         {
+            name: 'Kumarika',
+            image: '/potatoes/Kumarika.png',
+            description: 'High-Yielding Variety (HYV) table potato developed and released by the Tuber Crops Research Centre (TCRC) of the Bangladesh Agricultural Research Institute (BARI). It has gained notable traction among Bangladeshi farmers and international buyers due to its exceptional suitability for industrial processing and export.',
+            specifications: [
+              { label: 'Appearance', value: 'Yellow Skin' },
+              { label: 'Shape', value: 'Round to Oval Shape' },
+              { label: 'Color of flesh', value: 'Light Yellowish to Cream Tones' },
+              { label: 'Suitable for', value: 'Fresh Table Consumption, International Export, Commercial Food Processing' },
+              { label: 'Style', value: 'Fresh/Frozen' },
+            ],
+          },
+
+          {
+          name: 'Asterix',
+          image: '/potatoes/Asterix.png',
+          description: 'Asterix is a high yielding late main crop variety of long oval uniform red tubers with yellow flesh, with high dry matters and pale fry colors well suited to production of French fries and processed products',
+          specifications: [
+            { label: 'Appearance', value: 'Red Skin' },
+            { label: 'Shape', value: 'Oval Shape' },
+            { label: 'Color of flesh', value: 'Light yellow flesh, Shallow Eye' },
+            { label: 'Suitable for', value: 'Fresh Consumption, French Fries' },
+            { label: 'Cooking type', value: 'B (Slightly mealy)' },
+            { label: 'Discoloration after cooking', value: 'No discoloration' },
+            { label: 'Dry matter content', value: '23.3%' },
+            { label: 'Style', value: 'Fresh/Frozen' },
+          ],
+        },
+        
+        {
           name: 'Cardinal',
           image: '/potatoes/Cardinal.png',
           description: 'The tubers are oval-elongated, pink-red color. Excellent taste, light amber flesh color. During heat treatment, the pulp does not darken, the potatoes do not boil over, therefore it is used universally in the household, added to winter salads, made fries and chips.',
@@ -151,7 +180,7 @@ Granola potatoes are rich in carbohydrates, vitamins, and minerals, including po
         },
         {
           name: 'Lal-pakri',
-          image: '',
+          image: '/potatoes/Lalpakri.png',
           description: 'Lal-pakri is a traditional potato variety in Bangladesh that is known for its red tubers, good taste, and long shelf life. It is an early season type that is drought tolerant and late blight resistant. They have red colored skin and are nutritious.',
           specifications: [
             { label: 'Appearance', value: 'round with slightly rough skin' },
@@ -162,25 +191,7 @@ Granola potatoes are rich in carbohydrates, vitamins, and minerals, including po
             { label: 'Style', value: 'Fresh/Frozen' },
           ],
         },
-        {
-          name: 'Asterix',
-          image: '/potatoes/Asterix.png',
-          description: 'Asterix is a high yielding late main crop variety of long oval uniform red tubers with yellow flesh, with high dry matters and pale fry colors well suited to production of French fries and processed products',
-          specifications: [
-            { label: 'Appearance', value: 'Red Skin' },
-            { label: 'Shape', value: 'Oval Shape' },
-            { label: 'Color of flesh', value: 'Light yellow flesh, Shallow Eye' },
-            { label: 'Suitable for', value: 'Fresh Consumption, French Fries' },
-            { label: 'Cooking type', value: 'B (Slightly mealy)' },
-            { label: 'Discoloration after cooking', value: 'No discoloration' },
-            { label: 'Dry matter content', value: '23.3%' },
-            { label: 'Style', value: 'Fresh/Frozen' },
-          ],
-        },
-        {
-          name: 'Courage',
-          image: '',
-        },
+        
         {
           name: 'Lady Rosetta',
           image: '/potatoes/Rosetta.png',
