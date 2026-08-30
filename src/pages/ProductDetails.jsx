@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Reveal } from '../components/animations/Reveal';
 import GuavaGallery from '../components/sections/GuavaGallery';
+import MangoGallery from '../components/sections/MangoGallery';
 import PotatoPackaging from '../components/sections/PotatoPackaging';
 
 export default function ProductDetails({ product, details, onGetInTouch }) {
@@ -93,6 +94,13 @@ export default function ProductDetails({ product, details, onGetInTouch }) {
                 <GuavaGallery />
               </Reveal>
             )}
+
+            {product.name === 'Mango' && index === 0 && (
+              <Reveal direction="up" distance={35}>
+                <MangoGallery />
+              </Reveal>
+            )}
+
           </Fragment>
         );
       })}

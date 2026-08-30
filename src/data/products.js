@@ -99,18 +99,86 @@ Recognizing this opportunity, POLYGON RESOURCE aims to develop fresh guavas as a
   {
     name: 'Mango',
     category: 'Fruits',
-    desc: 'Nearly 100 cultivars nationwide — Fazlee, Langda, Himsagar and more, sourced from Rajshahi\'s peak growing districts.',
-    tags: ['Dec–Feb blossom', 'Rajshahi'],
+    desc: 'Bangladeshi mangoes are celebrated for their exceptional sweetness, distinctive aroma and rich nutritional value. A natural source of vitamins, minerals and dietary fiber, these premium tropical fruits are increasingly attracting interest from international markets.',
+    tags: [],
     bg: 'linear-gradient(140deg,#6BA539,#2f6b2c)',
-    image: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=400&h=300&fit=crop',
+    image: '/mango/mango_top.jpeg',
+    details: {
+      overview: `Bangladeshi mangoes are celebrated for their exceptional sweetness, distinctive aroma and rich nutritional value. A natural source of vitamins, minerals and dietary fiber, these premium tropical fruits are increasingly attracting interest from international markets.
+
+Bangladesh has a long tradition of mango cultivation, supported by fertile soil, a favorable climate and established growing regions, particularly Rajshahi, Chapainawabganj, Naogaon, Dinajpur and Satkhira. While mango production has historically served the domestic market, the industry is expanding its focus towards supplying carefully selected fresh fruit to international buyers.
+
+Popular varieties such as Himsagar, Langra, Fazli, Amrapali and Haribhanga offer distinctive flavors, appealing aromas and significant export potential. Improvements in orchard management, traceability, hygienic handling, grading, Vapor Heat Treatment (VHT), modern packaging and phytosanitary compliance are creating new opportunities for Bangladeshi mangoes throughout the Middle East, Europe and Asia.
+
+Recognizing this potential, POLYGON RESOURCE is developing mangoes as a target export product by collaborating with growers, packers, logistics providers and international buyers. Our objective is to deliver fresh, carefully selected Bangladeshi mangoes while maintaining quality, food safety and timely shipment from orchard to destination.`,
+      varieties: [
+        {
+          name: 'Himsagar Mango',
+          image: '/mango/himsagar.png',
+          description: `Himsagar mangoes are prized for their rich sweetness, distinctive tropical aroma and smooth, virtually fibreless flesh. Their skin typically remains green when ripe, contrasting with the golden-yellow to orange flesh inside.
+
+With a generous proportion of pulp, a tender texture and a juicy, melt-in-the-mouth quality, Himsagar mangoes offer a memorable eating experience. These qualities make Himsagar one of Bangladesh’s most cherished mango varieties and an appealing choice for fresh-fruit markets.`,
+          specifications: [
+            { label: 'Total soluble solids (TSS)', value: '15.40–17.85 °Brix' },
+            { label: 'Total soluble sugars', value: '11.81–13.82%' },
+            { label: 'Titratable acidity', value: '0.14–0.20% as malic acid' },
+          ],
+        },
+        {
+          name: 'Langra Mango',
+          image: '/mango/langra.png',
+          description: `Langra mangoes are medium-sized, oval fruits recognised for their smooth green skin, which typically remains green even when fully ripe. Their tender yellow flesh is juicy and nearly fibreless, offering a rich sweetness balanced by a pleasant hint of acidity and a distinctive tropical aroma.
+
+With their smooth texture and refreshing flavour, Langra mangoes are especially enjoyable eaten fresh. They also lend themselves to a variety of culinary uses, including desserts, smoothies, salads, chutneys and other sweet or savoury dishes. Their appealing balance of sweetness, aroma and mild tang makes them a distinctive choice for fresh-fruit markets.`,
+          specifications: [
+            { label: 'Total soluble solids (°Brix)', value: 'Approximately 20 °Brix' },
+            { label: 'Titratable acidity', value: '0.14%' },
+            { label: 'Pulp pH', value: '4.89' },
+            { label: 'Average fruit weight', value: '230.40 g' },
+            { label: 'Edible pulp content', value: '76.64% of fruit weight' },
+            { label: 'Peel content', value: '11.99%' },
+            { label: 'Stone/seed content', value: '11.37%' },
+            { label: 'Ripe appearance', value: 'Yellowish-green skin; deep-yellow flesh' },
+          ],
+        },
+        {
+          name: 'Amrapali mangoes',
+          image: '/mango/amrapali.png',
+          description: `Amrapali mangoes are valued for their sweet flavour, pleasant aroma and distinctive deep-orange to orange-red flesh. The fruits are generally small to medium-sized and elongated, with skin that may remain predominantly green even at eating ripeness. When cut open, the richly coloured pulp reveals a smooth texture and an appealing, earthy sweetness.
+
+The Amrapali tree is naturally compact, bears fruit regularly and commonly produces clusters of mangoes. Its deeply coloured flesh is a source of β-carotene, a natural pigment that contributes to the fruit’s vibrant appearance and nutritional value.
+
+Enjoyed fresh or used in desserts, smoothies and other fruit preparations, Amrapali offers an attractive combination of flavour, colour and convenient serving size. These qualities make it a versatile addition to fresh-fruit and processed-mango product ranges.`,
+          specifications: [
+            { label: 'Total soluble solids (TSS)', value: '20.55 °Brix' },
+            { label: 'Pulp pH', value: '4.50' },
+            { label: 'Titratable acidity', value: '0.20%, as reported' },
+            { label: 'Average fruit weight', value: '246.29 g' },
+            { label: 'Edible pulp content', value: '73.60% of fruit weight' },
+            { label: 'Peel content', value: '14.06%' },
+            { label: 'Stone/seed content', value: '12.33%' },
+            { label: 'Ripe skin and flesh', value: 'Green skin; dark-orange flesh' },
+          ],
+        },
+      ],
+    },
   },
   {
     name: 'Watermelon',
     category: 'Fruits',
-    desc: 'Coastal-grown for peak sweetness — from Patuakhali, Khulna, Bhola, Noakhali and Barguna\'s sandy soils.',
-    tags: ['Feb–Apr season', 'Coastal belt'],
+    desc: 'Watermelon is a popular fruit recognized for its smooth green rind and sweet, juicy red flesh. Naturally rich in water and a source of potassium, vitamins A and C, and lycopene, watermelon offers a refreshing and nutritious choice for consumers. Its high-water content—approximately 92%—makes it especially enjoyable during warm weather and after physical activity.',
+    tags: [],
     bg: 'linear-gradient(140deg,#E24E4E,#8f2323)',
-    image: 'https://images.unsplash.com/photo-1675346980561-66d6231f8bf7?w=500&auto=format&fit=crop&q=60',
+    image: '/watermelon/watermelon_top.png',
+    details: {
+      overview: `Watermelon is a popular fruit recognized for its smooth green rind and sweet, juicy red flesh. Naturally rich in water and a source of potassium, vitamins A and C, and lycopene, watermelon offers a refreshing and nutritious choice for consumers. Its high-water content—approximately 92%—makes it especially enjoyable during warm weather and after physical activity.
+
+Bangladesh provides favorable conditions for watermelon cultivation, particularly in coastal and southern regions. Production has expanded in recent years through increased cultivation and the growing popularity of both seasonal and off-season varieties. This development is creating new opportunities for growers, traders and exporters within the country’s agricultural sector.
+
+Careful harvesting, grading, hygienic handling, suitable packaging and temperature-controlled transportation are essential for preserving the fruit’s freshness, appearance and quality during export.
+
+Recognizing its commercial potential, POLYGON RESOURCE aims to develop watermelon as a target export product by working closely with growers, packers, logistics providers and international buyers. Our objective is to supply fresh, carefully selected Bangladeshi watermelons while maintaining quality, food safety and timely delivery from farm to destination.`,
+    },
   },
   // Vegetables (4 products)
   {
