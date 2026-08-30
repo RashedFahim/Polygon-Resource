@@ -9,15 +9,92 @@ export const PRODUCT_DATA = [
     desc: 'Sourced from Madhupur, the "Pineapple Capital" of Bangladesh, prized for its red-soil sweetness.',
     tags: ['Jun–Aug harvest', 'Madhupur & Tangail'],
     bg: 'linear-gradient(140deg,#DD8F2A,#a85f13)',
-    image: 'https://images.unsplash.com/photo-1589820296156-2454bb8a6ad1?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: '/pineapple/pineapple_top.png',
+    details: {
+      overview: `Pineapples are among the world’s most popular tropical fruits, valued for their sweet flavour, refreshing taste and remarkable versatility. Rich in vitamin C, antioxidants, manganese and bromelain—a natural enzyme associated with digestive benefits—pineapples are widely enjoyed in fresh produce markets and used throughout the processed food industry.
+
+Bangladesh produces more than 234,865 metric tons of pineapples annually. Tangail district, particularly Madhupur upazila, serves as the country’s principal pineapple-producing region, accounting for a substantial share of national production.
+
+Pineapples in Bangladesh are a major tropical crop, famously led by the Geographically Indication (GI)-certified pineapples from Madhupur in Tangail.
+Production and Regions.
+Top Growing Hub: Madhupur (Tangail) is the most famous region, known for massive markets like Jalchhatra.
+Other Areas: Rangamati, Sylhet, and Chattogram also produce large quantities of varieties like the Giant Kew and Honey Queen.
+Harvest Season: Peak harvesting typically occurs during the summer and monsoon months (around June to August).`,
+      varieties: [
+        {
+          name: 'Honey Queen pineapple',
+          description: `The Honey Queen pineapple is a small, exceptionally sweet variety known for its bright yellow flesh, rich aroma, and tapered shape.
+
+Key Characteristics
+Appearance: Smaller and more tapered than the Giant Kew variety, featuring an orangish-yellow skin when ripe and thorny leaves.
+Taste and Quality: Highly sweet with high total soluble solids (TSS) and a drier, very flavorful flesh.
+Average Weight: Around 1 kg per fruit.
+Farming and Cultivation Regions: Widely grown in Bangladesh, particularly in the Chittagong Hilly Zone, Tangail (Madhupur), and Narsingdi (Polash upazila).
+Yield: A single bigha of land can yield between 1,000 and 1,200 pineapples annually.
+Harvesting: The harvest season generally starts in April.
+Reference: Detailed botanical and agricultural descriptions can be found at the Honey Queen Digital Herbarium.`,
+          specifications: [
+            { label: 'pH', value: '4.383' },
+            { label: 'TSS (°Brix)', value: '15.967° (Highest sweetness)' },
+            { label: 'Total Sugar', value: '10.700' },
+            { label: 'Titrable Acidity (TA)', value: '0.413' },
+            { label: 'Vitamin C', value: '8.733' },
+            { label: 'Sweetness Index', value: '14.667' },
+          ],
+        },
+        {
+          name: 'Giant Kew',
+          images: ['/pineapple/giantkew.png', '/pineapple/giantkew1.png'],
+          description: `The "Giant Q" (or Giant Kew) is the most widely cultivated large-sized pineapple variety in Bangladesh, primarily grown in the red-soil hill tracts of Madhupur Upazila in the Tangail district.
+
+Key Facts About Madhupur's Giant Pineapples
+The Pineapple Capital: Madhupur in Tangail is the heartland of pineapple production in Bangladesh, accounting for thousands of hectares of farming.
+Giant Q Variety: Also, locally known as Kalender, the Giant Q variety makes up about 85% of the local harvest due to its large size and juicy sweetness.
+Geographical Indication (GI): The famous pineapples of the Madhupur Garh region officially earned GI recognition for their unique regional heritage and quality.
+History: Commercial pineapple farming in the area started back in 1942 when a local Garo community member Mizi Dayamoyi Sangma brought 750 saplings from neighboring Meghalaya, India.`,
+          specifications: [
+            { label: 'pH', value: '4.343' },
+            { label: 'TSS (°Brix)', value: '13.267°' },
+            { label: 'Total Sugar', value: '9.167' },
+            { label: 'Titratable Acidity (TA)', value: '0.547' },
+            { label: 'Vitamin C', value: '11.567' },
+            { label: 'Sweetness Index', value: '12.133' },
+          ],
+        },
+        {
+          name: 'Red Spanish (Ghorashal) pineapple',
+          image: '/pineapple/redspanish.png',
+          description: `The Red Spanish (Ghorashal) pineapple is a traditional, highly-acclaimed variety of pineapple grown extensively in the Ghorashal and Palash Upazila regions of Narsingdi District in Bangladesh.
+
+Ghorashal`,
+          specifications: [
+            { label: 'pH', value: '~4.360' },
+            { label: 'TSS (°Brix)', value: '~14.360°' },
+            { label: 'Total Sugar', value: '10.200' },
+            { label: 'Titrable Acidity (TA)', value: '0.458 (Low to moderate).' },
+            { label: 'Vitamin C', value: '9.890' },
+            { label: 'Sweetness Index', value: '13.200' },
+          ],
+        },
+      ],
+    },
   },
   {
     name: 'Guava',
     category: 'Fruits',
-    desc: 'Thai guava varieties make up the bulk of national production, grown across Rajshahi\'s hill and riverine districts.',
-    tags: ['430K+ tonnes/yr BD', 'Rajshahi'],
+    desc: 'Fresh guavas are popular tropical fruits valued for their sweet and tangy flavor, pleasant aroma and high nutritional value. Naturally rich in vitamin C, antioxidants and dietary fiber, guavas are enjoyed as fresh fruit and used in juices, jams, beverages, snacks and other processed foods.',
+    tags: [],
     bg: 'linear-gradient(140deg,#9CC96B,#5f8a3a)',
-    image: 'https://images.unsplash.com/photo-1689996647327-5d263fbbc79d?w=500&auto=format&fit=crop&q=60',
+    image: '/guava/guava_top.jpeg',
+    details: {
+      overview: `Fresh guavas are popular tropical fruits valued for their sweet and tangy flavor, pleasant aroma and high nutritional value. Naturally rich in vitamin C, antioxidants and dietary fiber, guavas are enjoyed as fresh fruit and used in juices, jams, beverages, snacks and other processed foods.
+
+Growing international demand for fresh and nutritious produce has created promising opportunities for guava exporters. Careful harvesting, hygienic handling, grading, suitable packaging and efficient transportation are essential for preserving the fruit’s freshness, appearance and quality throughout the export process.
+
+Bangladesh’s fertile soil and tropical climate provide favorable conditions for guava cultivation. The country produces a wide range of local and high-yielding varieties, including several popular Kazi & Thai Guava varieties recognized for their attractive size, crisp texture and commercial potential. Guava cultivation is expanding within Bangladesh’s agricultural sector as farmers respond to rising demand in domestic and international markets.
+
+Recognizing this opportunity, POLYGON RESOURCE aims to develop fresh guavas as a target export product by working closely with growers, packers, logistics providers and international buyers. Our objective is to supply carefully selected Bangladeshi guavas while maintaining quality, food safety, freshness and timely delivery from farm to destination.`,
+    },
   },
   {
     name: 'Mango',

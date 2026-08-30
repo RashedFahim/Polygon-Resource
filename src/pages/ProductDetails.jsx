@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { Reveal } from '../components/animations/Reveal';
+import GuavaGallery from '../components/sections/GuavaGallery';
 import PotatoPackaging from '../components/sections/PotatoPackaging';
 
 export default function ProductDetails({ product, details, onGetInTouch }) {
@@ -19,9 +20,10 @@ export default function ProductDetails({ product, details, onGetInTouch }) {
   ];
 
   return (
-    <section className="w-full overflow-x-hidden bg-cream text-[#707070]">
+    <section className="w-full  bg-cream text-[#707070]">
       {sections.map((item, index) => {
         const textFirst = index % 2 === 0;
+        const itemImages = item.images || (item.image ? [item.image] : []);
 
         return (
           <Fragment key={item.name}>
@@ -66,14 +68,15 @@ export default function ProductDetails({ product, details, onGetInTouch }) {
                     )}
                   </div>
 
-                  <div className={`${textFirst ? 'lg:order-2' : 'lg:order-1'} ${item.image ? 'flex min-h-[280px] items-center justify-center sm:min-h-[360px] lg:min-h-[460px]' : 'hidden lg:block lg:min-h-[460px]'}`}>
-                    {item.image && (
+                  <div className={`${textFirst ? 'lg:order-2' : 'lg:order-1'} ${itemImages.length > 0 ? 'flex min-h-[280px] flex-col items-center justify-center gap-6 sm:min-h-[360px] sm:gap-8 lg:min-h-[460px]' : 'hidden lg:block lg:min-h-[460px]'}`}>
+                    {itemImages.map((image) => (
                       <img
-                        src={item.image}
+                        key={image}
+                        src={image}
                         alt={item.imageAlt}
-                        className={`max-h-[480px] w-full max-w-[620px] object-contain ${item.image === '/potatoes/potatoe_top.jpeg' ? 'rounded-2xl' : ''}`}
+                        className={`max-h-[480px] w-full max-w-[620px] object-contain ${image === product.image ? 'rounded-2xl' : ''}`}
                       />
-                    )}
+                    ))}
                   </div>
                 </article>
               </Reveal>
@@ -82,6 +85,12 @@ export default function ProductDetails({ product, details, onGetInTouch }) {
             {product.name === 'Potato' && index === 0 && (
               <Reveal direction="up" distance={35}>
                 <PotatoPackaging />
+              </Reveal>
+            )}
+
+            {product.name === 'Guava' && index === 0 && (
+              <Reveal direction="up" distance={35}>
+                <GuavaGallery />
               </Reveal>
             )}
           </Fragment>

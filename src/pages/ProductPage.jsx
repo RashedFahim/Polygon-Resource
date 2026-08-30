@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/animations/Reveal';
 import CTA from '../components/sections/CTA';
@@ -15,15 +14,6 @@ export default function ProductPage({ product }) {
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  useEffect(() => {
-    const previousTitle = document.title;
-    document.title = `${product.name} | Polygon Resource`;
-
-    return () => {
-      document.title = previousTitle;
-    };
-  }, [product]);
 
   return (
     <>
