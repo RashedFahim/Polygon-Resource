@@ -7,7 +7,7 @@ export default function InfiniteMarquee({ children, edgeColor }) {
   };
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="infinite-marquee relative w-full overflow-hidden">
       <div
         className="pointer-events-none absolute inset-y-0 left-0 z-20 w-12 sm:w-20 lg:w-28"
         style={leftFadeStyle}
@@ -41,6 +41,12 @@ export default function InfiniteMarquee({ children, edgeColor }) {
 
         .infinite-marquee-track {
           animation: infiniteMarqueeScroll 32s linear infinite;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          .infinite-marquee:hover .infinite-marquee-track {
+            animation-play-state: paused;
+          }
         }
 
         @media (max-width: 640px) {

@@ -5,7 +5,7 @@ import OrganicSectionDecoration from '../decorations/OrganicSectionDecoration';
 export default function CTA({ onGetInTouch }) {
   return (
     <section className="relative bg-[#1F4732] text-white py-[50px] sm:py-[60px] lg:py-[70px] text-center w-full overflow-hidden">
-      <EdgeHoneycombCluster side="left" position="bottom" color="#A9711F" fillColor="#E8B33D" opacity={0.35} />
+      <EdgeHoneycombCluster side="left" position="bottom" color="#A9711F" fillColor="#E8B33D" opacity={0.42} />
       <OrganicSectionDecoration dark />
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8">
         <h2 className="font-['Lora',serif] font-bold text-[1.6rem] sm:text-[1.8rem] lg:text-2xl text-white mb-4 sm:mb-5"><AnimatedText text="Ready to source from Polygon Resource?" /></h2>

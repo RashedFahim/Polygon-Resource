@@ -23,16 +23,17 @@ Harvest Season: Peak harvesting typically occurs during the summer and monsoon m
       varieties: [
         {
           name: 'Honey Queen pineapple',
+          image: '',
           description: `The Honey Queen pineapple is a small, exceptionally sweet variety known for its bright yellow flesh, rich aroma, and tapered shape.
 
-Key Characteristics
-Appearance: Smaller and more tapered than the Giant Kew variety, featuring an orangish-yellow skin when ripe and thorny leaves.
-Taste and Quality: Highly sweet with high total soluble solids (TSS) and a drier, very flavorful flesh.
-Average Weight: Around 1 kg per fruit.
-Farming and Cultivation Regions: Widely grown in Bangladesh, particularly in the Chittagong Hilly Zone, Tangail (Madhupur), and Narsingdi (Polash upazila).
-Yield: A single bigha of land can yield between 1,000 and 1,200 pineapples annually.
-Harvesting: The harvest season generally starts in April.
-Reference: Detailed botanical and agricultural descriptions can be found at the Honey Queen Digital Herbarium.`,
+          Key Characteristics
+          Appearance: Smaller and more tapered than the Giant Kew variety, featuring an orangish-yellow skin when ripe and thorny leaves.
+          Taste and Quality: Highly sweet with high total soluble solids (TSS) and a drier, very flavorful flesh.
+          Average Weight: Around 1 kg per fruit.
+          Farming and Cultivation Regions: Widely grown in Bangladesh, particularly in the Chittagong Hilly Zone, Tangail (Madhupur), and Narsingdi (Polash upazila).
+          Yield: A single bigha of land can yield between 1,000 and 1,200 pineapples annually.
+          Harvesting: The harvest season generally starts in April.
+          Reference: Detailed botanical and agricultural descriptions can be found at the Honey Queen Digital Herbarium.`,
           specifications: [
             { label: 'pH', value: '4.383' },
             { label: 'TSS (°Brix)', value: '15.967° (Highest sweetness)' },
@@ -113,7 +114,7 @@ Popular varieties such as Himsagar, Langra, Fazli, Amrapali and Haribhanga offer
 Recognizing this potential, POLYGON RESOURCE is developing mangoes as a target export product by collaborating with growers, packers, logistics providers and international buyers. Our objective is to deliver fresh, carefully selected Bangladeshi mangoes while maintaining quality, food safety and timely shipment from orchard to destination.`,
       varieties: [
         {
-          name: 'Himsagar Mango',
+          name: 'Himsagar',
           image: '/mango/himsagar.png',
           description: `Himsagar mangoes are prized for their rich sweetness, distinctive tropical aroma and smooth, virtually fibreless flesh. Their skin typically remains green when ripe, contrasting with the golden-yellow to orange flesh inside.
 
@@ -125,7 +126,7 @@ With a generous proportion of pulp, a tender texture and a juicy, melt-in-the-mo
           ],
         },
         {
-          name: 'Langra Mango',
+          name: 'Langra',
           image: '/mango/langra.png',
           description: `Langra mangoes are medium-sized, oval fruits recognised for their smooth green skin, which typically remains green even when fully ripe. Their tender yellow flesh is juicy and nearly fibreless, offering a rich sweetness balanced by a pleasant hint of acidity and a distinctive tropical aroma.
 
@@ -142,7 +143,7 @@ With their smooth texture and refreshing flavour, Langra mangoes are especially 
           ],
         },
         {
-          name: 'Amrapali mangoes',
+          name: 'Amrapali',
           image: '/mango/amrapali.png',
           description: `Amrapali mangoes are valued for their sweet flavour, pleasant aroma and distinctive deep-orange to orange-red flesh. The fruits are generally small to medium-sized and elongated, with skin that may remain predominantly green even at eating ripeness. When cut open, the richly coloured pulp reveals a smooth texture and an appealing, earthy sweetness.
 
@@ -160,6 +161,40 @@ Enjoyed fresh or used in desserts, smoothies and other fruit preparations, Amrap
             { label: 'Ripe skin and flesh', value: 'Green skin; dark-orange flesh' },
           ],
         },
+        {
+            name: 'Haribhanga',
+            image: '/mango/haribhanga.png',
+            description: `Haribhanga is a cherished Bangladeshi mango variety closely associated with Rangpur. Known for its rich sweetness, generous pulp and virtually fibreless texture, it offers a delightful eating experience. Its relatively thin skin and small stone further enhance its appeal.
+
+          When ripe, Haribhanga develops deep-yellow flesh with a pleasant aroma and a smooth, fleshy texture. Its distinctive flavour and vibrant colour make it an attractive choice for fresh consumption and a versatile ingredient in desserts, smoothies and other fruit preparations.
+
+          With its regional heritage and appealing eating qualities, Haribhanga holds a valued place among Bangladesh’s seasonal mango varieties.`,
+            specifications: [
+              { label: 'Total soluble solids (TSS)', value: '21.50 °Brix' },
+              { label: 'Average fruit weight', value: '310.28 g' },
+              { label: 'Edible pulp content', value: '75.90% of fruit weight' },
+              { label: 'Peel content', value: '12.01%' },
+              { label: 'Stone/seed content', value: '12.90%' },
+              { label: 'Ripe skin and flesh', value: 'Deep yellow' },
+            ],
+          },
+          {
+            name: 'Fazli',
+            image: '',
+            description: `Fazli is a distinctive late-season mango variety valued for its large size, elongated shape and generous proportion of edible pulp. Its yellowish-green skin reveals deep-yellow flesh with a pleasant aroma and a sweet flavour balanced by a refreshing tang.
+
+          Enjoyed fresh when ripe, Fazli also offers considerable potential for processing into pulp and purée. Its versatility extends to traditional products such as pickles, chutneys and mango leather, making it suitable for both fresh-fruit and processed-food markets.`,
+            specifications: [
+              { label: 'Total soluble solids (TSS)', value: '18.11 °Brix' },
+              { label: 'Pulp pH', value: '4.67' },
+              { label: 'Titratable acidity', value: '0.42%, as reported' },
+              { label: 'Average fruit weight', value: '417.59 g' },
+              { label: 'Edible pulp content', value: '80.44% of fruit weight' },
+              { label: 'Peel content', value: '8.86%' },
+              { label: 'Stone/seed content', value: '10.70%' },
+              { label: 'Ripe skin and flesh', value: 'Yellowish-green skin; deep-yellow flesh' },
+            ],
+          },
       ],
     },
   },
