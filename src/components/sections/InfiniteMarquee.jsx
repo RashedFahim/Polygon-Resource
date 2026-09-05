@@ -1,4 +1,4 @@
-export default function InfiniteMarquee({ children, edgeColor }) {
+export default function InfiniteMarquee({ children, edgeColor, pauseOnHover = true }) {
   const leftFadeStyle = {
     background: `linear-gradient(to right, ${edgeColor}, transparent)`,
   };
@@ -7,7 +7,7 @@ export default function InfiniteMarquee({ children, edgeColor }) {
   };
 
   return (
-    <div className="infinite-marquee relative w-full overflow-hidden">
+    <div className={`infinite-marquee relative w-full overflow-hidden ${pauseOnHover ? 'infinite-marquee-pauses-on-hover' : ''}`}>
       <div
         className="pointer-events-none absolute inset-y-0 left-0 z-20 w-12 sm:w-20 lg:w-28"
         style={leftFadeStyle}
@@ -44,7 +44,7 @@ export default function InfiniteMarquee({ children, edgeColor }) {
         }
 
         @media (hover: hover) and (pointer: fine) {
-          .infinite-marquee:hover .infinite-marquee-track {
+          .infinite-marquee-pauses-on-hover:hover .infinite-marquee-track {
             animation-play-state: paused;
           }
         }

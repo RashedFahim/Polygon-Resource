@@ -1,5 +1,7 @@
 import { Fragment } from 'react';
 import { Reveal } from '../components/animations/Reveal';
+import CabbageGallery from '../components/sections/CabbageGallery';
+import CauliflowerGallery from '../components/sections/CauliflowerGallery';
 import GuavaGallery from '../components/sections/GuavaGallery';
 import MangoGallery from '../components/sections/MangoGallery';
 import PotatoPackaging from '../components/sections/PotatoPackaging';
@@ -86,6 +88,18 @@ export default function ProductDetails({ product, details, onGetInTouch }) {
             {product.name === 'Potato' && index === 0 && (
               <Reveal direction="up" distance={35}>
                 <PotatoPackaging />
+              </Reveal>
+            )}
+
+            {product.name === 'Cabbage' && index === 0 && (
+              <Reveal direction="up" distance={35}>
+                <CabbageGallery />
+              </Reveal>
+            )}
+
+            {product.name === 'Cauliflower' && index === 0 && (
+              <Reveal direction="up" distance={35}>
+                <CauliflowerGallery />
               </Reveal>
             )}
 

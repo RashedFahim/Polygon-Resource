@@ -2,7 +2,7 @@ export const PRODUCT_CATEGORIES = ['Fruits', 'Vegetables', 'Oilseeds'];
 export const CATEGORIES = ['All', ...PRODUCT_CATEGORIES];
 
 export const PRODUCT_DATA = [
-  // Fruits (4 products)
+  // Fruits (5 products)
   {
     name: 'Pineapple',
     category: 'Fruits',
@@ -215,6 +215,14 @@ Careful harvesting, grading, hygienic handling, suitable packaging and temperatu
 Recognizing its commercial potential, POLYGON RESOURCE aims to develop watermelon as a target export product by working closely with growers, packers, logistics providers and international buyers. Our objective is to supply fresh, carefully selected Bangladeshi watermelons while maintaining quality, food safety and timely delivery from farm to destination.`,
     },
   },
+  {
+    name: 'Young Jackfruit',
+    category: 'Fruits',
+    desc: '',
+    tags: [],
+    bg: 'linear-gradient(140deg,#6BA539,#2f6b2c)',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/1/14/Artocarpus_heterophyllus_young_jackfruit.JPG',
+  },
   // Vegetables (4 products)
   {
     name: 'Potato',
@@ -413,18 +421,36 @@ production.`,
   {
     name: 'Cabbage',
     category: 'Vegetables',
-    desc: 'Fresh, crisp cabbage grown in the highlands of Bangladesh, perfect for export.',
-    tags: ['Fresh', 'Crisp'],
+    desc: 'Cabbage (Brassica oleracea var. capitata) is a widely cultivated leafy vegetable belonging to the Brassicaceae family. It is distinguished by layers of tightly packed leaves that form a compact, rounded head. Although green cabbage is the most common variety, red and purple varieties are also cultivated.',
+    tags: [],
     bg: 'linear-gradient(140deg,#6BA539,#4a7c32)',
-    image: 'https://images.unsplash.com/photo-1652860213441-6622f9fec77f?w=500&auto=format&fit=crop&q=60',
+    image: '/cabbage/cabbage_top.jpeg',
+    details: {
+      overview: `Cabbage (Brassica oleracea var. capitata) is a widely cultivated leafy vegetable belonging to the Brassicaceae family. It is distinguished by layers of tightly packed leaves that form a compact, rounded head. Although green cabbage is the most common variety, red and purple varieties are also cultivated.
+
+Fresh cabbage is valued for its crisp texture, mild flavour and nutritional qualities. It is naturally rich in vitamin C and also provides dietary fibre, vitamin K, folate, potassium and other beneficial nutrients. Its versatility makes it suitable for salads, stir-fries, soups, curries, pickles and a wide range of traditional and international dishes.
+
+Bangladesh’s favourable climate and agricultural resources support the cultivation of quality cabbage for domestic consumption and potential export. Firm, compact heads with fresh leaves, uniform colour and minimal physical damage are carefully selected for commercial supply. Proper harvesting, trimming, hygienic handling, grading and suitable packaging help preserve freshness, appearance and quality throughout transportation.
+
+POLYGON RESOURCE aims to connect international buyers with carefully selected fresh cabbage from Bangladesh. Our focus is on responsible sourcing, buyer-specific grading and packaging, food safety, freshness and dependable coordination from growers to destination.`,
+    },
   },
   {
     name: 'Cauliflower',
     category: 'Vegetables',
-    desc: 'Premium cauliflower, carefully cultivated and harvested for export markets.',
-    tags: ['Premium Quality', 'Fresh'],
+    desc: 'Cauliflower (Brassica oleracea var. botrytis) is a popular winter vegetable belonging to the Brassicaceae family. It is recognised by its compact, fleshy white head—commonly known as the curd—surrounded by protective green leaves.',
     bg: 'linear-gradient(140deg,#F5F5DC,#e0e0c8)',
-    image: 'https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?w=400&h=300&fit=crop',
+    image: '/cauliflower/cauliflower_top.jpeg',
+    tags: [],
+    details: {
+      overview: `Cauliflower (Brassica oleracea var. botrytis) is a popular winter vegetable belonging to the Brassicaceae family. It is recognised by its compact, fleshy white head—commonly known as the curd—surrounded by protective green leaves.
+
+Fresh cauliflower has a mild flavour and firm yet tender texture. It can be enjoyed raw or prepared in curries, stir-fries, soups, salads, pickles and numerous traditional and international dishes. It is naturally a source of vitamin C, dietary fibre and folate, and contains beneficial plant compounds, including glucosinolates, phenolic compounds and carotenoids. These nutrients can contribute to a balanced and varied diet.
+
+Bangladesh’s cool winter growing season provides favourable conditions for cultivating quality cauliflower. Commercial selection focuses on compact, evenly coloured heads with firm curds, fresh surrounding leaves and minimal blemishes or physical damage. Timely harvesting, careful trimming, hygienic handling, grading and suitable packaging help maintain freshness and appearance during transportation.
+
+POLYGON RESOURCE aims to connect international buyers with carefully selected fresh cauliflower from Bangladesh. Our focus is on responsible sourcing, buyer-specific grading and packaging, food safety, freshness and reliable coordination from growers to destination.`,
+    },
   },
   {
     name: 'Pumpkin',
