@@ -215,26 +215,7 @@ Careful harvesting, grading, hygienic handling, suitable packaging and temperatu
 Recognizing its commercial potential, POLYGON RESOURCE aims to develop watermelon as a target export product by working closely with growers, packers, logistics providers and international buyers. Our objective is to supply fresh, carefully selected Bangladeshi watermelons while maintaining quality, food safety and timely delivery from farm to destination.`,
     },
   },
-  {
-    name: 'Young Jackfruit',
-    slug: 'jackfruit',
-    category: 'Fruits',
-    desc: 'Young jackfruit—also known as green or unripe jackfruit—is harvested before the fruit develops its characteristic sweetness. Its mild flavour and firm, fibrous texture allow it to absorb seasonings easily, making it a versatile ingredient in curries, stir-fries, sandwiches, salads and a wide range of plant-based dishes.',
-    tags: [],
-    bg: 'linear-gradient(140deg,#6BA539,#2f6b2c)',
-    image: '/jackfruit/jackfruit_top.jpeg',
-    details: {
-      overview: `Young jackfruit—also known as green or unripe jackfruit—is harvested before the fruit develops its characteristic sweetness. Its mild flavour and firm, fibrous texture allow it to absorb seasonings easily, making it a versatile ingredient in curries, stir-fries, sandwiches, salads and a wide range of plant-based dishes.
-
-Bangladesh has a long tradition of jackfruit cultivation and a substantial seasonal supply. Developing young jackfruit for commercial use can diversify the market for growers, reduce pressure on the short ripe-fruit marketing period and create opportunities for value-added processing.
-
-Growing international demand for convenient plant-based foods has strengthened the commercial potential of young jackfruit. It can be supplied fresh or processed into peeled pieces, shredded products and ready-to-cook portions. Depending on buyers’ requirements, it may be canned, vacuum-packed or frozen for retail, foodservice and industrial use.
-
-Compared with fully ripe jackfruit, young fruit is generally firmer and better suited to handling and processing. Successful export nevertheless requires harvesting at the correct maturity, hygienic cutting and preparation, appropriate packaging, temperature management and compliance with the destination market’s food-safety and phytosanitary requirements.
-
-POLYGON RESOURCE aims to develop young jackfruit as a promising export product by working with growers, processors, logistics providers and international buyers. Our focus is on responsible sourcing, buyer-specific preparation and packaging, consistent quality and dependable delivery from Bangladesh to global markets.`,
-    },
-  },
+  
   // Vegetables (4 products)
   {
     name: 'Potato',
@@ -447,6 +428,28 @@ Bangladesh’s favourable climate and agricultural resources support the cultiva
 POLYGON RESOURCE aims to connect international buyers with carefully selected fresh cabbage from Bangladesh. Our focus is on responsible sourcing, buyer-specific grading and packaging, food safety, freshness and dependable coordination from growers to destination.`,
     },
   },
+
+  {
+    name: 'Young Jackfruit',
+    slug: 'jackfruit',
+    category: 'Vegetables',
+    desc: 'Young jackfruit—also known as green or unripe jackfruit—is harvested before the fruit develops its characteristic sweetness. Its mild flavour and firm, fibrous texture allow it to absorb seasonings easily, making it a versatile ingredient in curries, stir-fries, sandwiches, salads and a wide range of plant-based dishes.',
+    tags: [],
+    bg: 'linear-gradient(140deg,#6BA539,#2f6b2c)',
+    image: '/jackfruit/jackfruit_top.jpeg',
+    details: {
+      overview: `Young jackfruit—also known as green or unripe jackfruit—is harvested before the fruit develops its characteristic sweetness. Its mild flavour and firm, fibrous texture allow it to absorb seasonings easily, making it a versatile ingredient in curries, stir-fries, sandwiches, salads and a wide range of plant-based dishes.
+
+Bangladesh has a long tradition of jackfruit cultivation and a substantial seasonal supply. Developing young jackfruit for commercial use can diversify the market for growers, reduce pressure on the short ripe-fruit marketing period and create opportunities for value-added processing.
+
+Growing international demand for convenient plant-based foods has strengthened the commercial potential of young jackfruit. It can be supplied fresh or processed into peeled pieces, shredded products and ready-to-cook portions. Depending on buyers’ requirements, it may be canned, vacuum-packed or frozen for retail, foodservice and industrial use.
+
+Compared with fully ripe jackfruit, young fruit is generally firmer and better suited to handling and processing. Successful export nevertheless requires harvesting at the correct maturity, hygienic cutting and preparation, appropriate packaging, temperature management and compliance with the destination market’s food-safety and phytosanitary requirements.
+
+POLYGON RESOURCE aims to develop young jackfruit as a promising export product by working with growers, processors, logistics providers and international buyers. Our focus is on responsible sourcing, buyer-specific preparation and packaging, consistent quality and dependable delivery from Bangladesh to global markets.`,
+    },
+  },
+
   {
     name: 'Cauliflower',
     category: 'Vegetables',
