@@ -110,7 +110,7 @@ export default function ProductDropdown({
                   {products.map((product) => (
                     <Link
                       key={product.name}
-                      to={getProductPath(product.name)}
+                      to={getProductPath(product)}
                       onClick={onProductClick}
                       className={`group/product flex items-center gap-2 rounded-md px-2 py-1.5 font-['Barlow',sans-serif] text-[0.72rem] transition-all duration-300 hover:translate-x-0.5 sm:text-[0.78rem] ${
                         scrolled
@@ -193,7 +193,7 @@ export function MobileProductDropdown({
                     {products.map((product) => (
                       <Link
                         key={product.name}
-                        to={getProductPath(product.name)}
+                        to={getProductPath(product)}
                         onClick={onProductClick}
                         className={`flex items-center gap-2 rounded-md px-2 py-1.5 font-['Barlow',sans-serif] text-[0.78rem] transition-all duration-300 hover:translate-x-0.5 ${
                           scrolled

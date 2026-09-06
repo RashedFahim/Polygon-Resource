@@ -3,8 +3,10 @@ import { Reveal } from '../components/animations/Reveal';
 import CabbageGallery from '../components/sections/CabbageGallery';
 import CauliflowerGallery from '../components/sections/CauliflowerGallery';
 import GuavaGallery from '../components/sections/GuavaGallery';
+import JackfruitGallery from '../components/sections/JackfruitGallery';
 import MangoGallery from '../components/sections/MangoGallery';
 import PotatoPackaging from '../components/sections/PotatoPackaging';
+import PumpkinGallery from '../components/sections/PumpkinGallery';
 
 export default function ProductDetails({ product, details, onGetInTouch }) {
   if (!details) return null;
@@ -72,14 +74,31 @@ export default function ProductDetails({ product, details, onGetInTouch }) {
                   </div>
 
                   <div className={`${textFirst ? 'lg:order-2' : 'lg:order-1'} ${itemImages.length > 0 ? 'flex min-h-[280px] flex-col items-center justify-center gap-6 sm:min-h-[360px] sm:gap-8 lg:min-h-[460px]' : 'hidden lg:block lg:min-h-[460px]'}`}>
-                    {itemImages.map((image) => (
-                      <img
-                        key={image}
-                        src={image}
-                        alt={item.imageAlt}
-                        className={`max-h-[480px] w-full max-w-[620px] object-contain ${image === product.image ? 'rounded-2xl' : ''}`}
-                      />
-                    ))}
+                    {itemImages.map((image) => {
+                      const isProductImage = image === product.image;
+                      const isRoundedProductImage = isProductImage && (
+                        product.slug === 'jackfruit' || product.name === 'Pumpkin'
+                        || product.name === 'Guava' || product.name === 'Mango' || product.name === 'Potato'
+                        || product.name === 'Cabbage' || product.name === 'Cauliflower'
+                      );
+
+                      return (
+                        <div
+                          key={image}
+                          className={isRoundedProductImage
+                            ? 'w-fit max-w-full overflow-hidden rounded-2xl'
+                            : 'w-full max-w-[620px]'}
+                        >
+                          <img
+                            src={image}
+                            alt={item.imageAlt}
+                            className={isRoundedProductImage
+                              ? 'block h-auto max-h-[480px] max-w-full w-auto object-contain'
+                              : 'max-h-[480px] w-full object-contain'}
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
                 </article>
               </Reveal>
@@ -112,6 +131,18 @@ export default function ProductDetails({ product, details, onGetInTouch }) {
             {product.name === 'Mango' && index === 0 && (
               <Reveal direction="up" distance={35}>
                 <MangoGallery />
+              </Reveal>
+            )}
+
+            {product.name === 'Young Jackfruit' && index === 0 && (
+              <Reveal direction="up" distance={35}>
+                <JackfruitGallery />
+              </Reveal>
+            )}
+
+            {product.name === 'Pumpkin' && index === 0 && (
+              <Reveal direction="up" distance={35}>
+                <PumpkinGallery />
               </Reveal>
             )}
 

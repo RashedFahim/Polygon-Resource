@@ -14,7 +14,7 @@ function App() {
         {PRODUCT_DATA.map((product) => (
           <Route
             key={product.name}
-            path={getProductPath(product.name)}
+            path={getProductPath(product)}
             element={<ProductPage product={product} />}
           />
         ))}

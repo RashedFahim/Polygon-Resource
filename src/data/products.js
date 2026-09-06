@@ -217,11 +217,23 @@ Recognizing its commercial potential, POLYGON RESOURCE aims to develop watermelo
   },
   {
     name: 'Young Jackfruit',
+    slug: 'jackfruit',
     category: 'Fruits',
-    desc: '',
+    desc: 'Young jackfruit—also known as green or unripe jackfruit—is harvested before the fruit develops its characteristic sweetness. Its mild flavour and firm, fibrous texture allow it to absorb seasonings easily, making it a versatile ingredient in curries, stir-fries, sandwiches, salads and a wide range of plant-based dishes.',
     tags: [],
     bg: 'linear-gradient(140deg,#6BA539,#2f6b2c)',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/1/14/Artocarpus_heterophyllus_young_jackfruit.JPG',
+    image: '/jackfruit/jackfruit_top.jpeg',
+    details: {
+      overview: `Young jackfruit—also known as green or unripe jackfruit—is harvested before the fruit develops its characteristic sweetness. Its mild flavour and firm, fibrous texture allow it to absorb seasonings easily, making it a versatile ingredient in curries, stir-fries, sandwiches, salads and a wide range of plant-based dishes.
+
+Bangladesh has a long tradition of jackfruit cultivation and a substantial seasonal supply. Developing young jackfruit for commercial use can diversify the market for growers, reduce pressure on the short ripe-fruit marketing period and create opportunities for value-added processing.
+
+Growing international demand for convenient plant-based foods has strengthened the commercial potential of young jackfruit. It can be supplied fresh or processed into peeled pieces, shredded products and ready-to-cook portions. Depending on buyers’ requirements, it may be canned, vacuum-packed or frozen for retail, foodservice and industrial use.
+
+Compared with fully ripe jackfruit, young fruit is generally firmer and better suited to handling and processing. Successful export nevertheless requires harvesting at the correct maturity, hygienic cutting and preparation, appropriate packaging, temperature management and compliance with the destination market’s food-safety and phytosanitary requirements.
+
+POLYGON RESOURCE aims to develop young jackfruit as a promising export product by working with growers, processors, logistics providers and international buyers. Our focus is on responsible sourcing, buyer-specific preparation and packaging, consistent quality and dependable delivery from Bangladesh to global markets.`,
+    },
   },
   // Vegetables (4 products)
   {
@@ -455,10 +467,21 @@ POLYGON RESOURCE aims to connect international buyers with carefully selected fr
   {
     name: 'Pumpkin',
     category: 'Vegetables',
-    desc: 'Nutritious pumpkin varieties grown across Bangladesh, rich in vitamins and minerals.',
-    tags: ['Organic', 'Nutritious'],
+    desc: 'Pumpkin, locally known as Mishti Kumra or sweet gourd, is a widely cultivated vegetable in Bangladesh. Its firm outer rind, richly coloured flesh and naturally mild sweetness make it suitable for households, foodservice businesses and food-processing industries.',
+    tags: [],
     bg: 'linear-gradient(140deg,#E8A317,#c4881a)',
-    image: 'https://images.unsplash.com/photo-1570586437263-ab629fccc818?w=400&h=300&fit=crop',
+    image: '/pumpkin/pumpkin_top.jpeg',
+    details: {
+      overview: `Pumpkin, locally known as Mishti Kumra or sweet gourd, is a widely cultivated vegetable in Bangladesh. Its firm outer rind, richly coloured flesh and naturally mild sweetness make it suitable for households, foodservice businesses and food-processing industries.
+
+Pumpkin is a source of dietary fibre, vitamins and minerals. Its orange or yellow flesh contains beta-carotene, which the body can convert into vitamin A as part of a balanced diet. Pumpkin is commonly prepared in curries, soups, stews, baked dishes, desserts and purées, while its seeds, flowers and tender shoots are also used in various traditional foods.
+
+Bangladesh’s climate and fertile agricultural land support pumpkin cultivation in both winter and summer seasons. The crop is grown in conventional fields as well as coastal, riverbank, char and seasonally exposed sandbar areas. Its relatively firm rind and good storage characteristics make pumpkin practical for commercial handling and transportation.
+
+Quality selection focuses on mature, well-shaped pumpkins with firm flesh, uniform colour, intact stalks and freedom from cracks, decay and serious physical damage. Careful harvesting, cleaning, grading and suitable packaging help preserve freshness and product quality throughout the supply chain.
+
+POLYGON RESOURCE aims to connect international buyers with carefully selected pumpkins from Bangladesh. Our focus is on responsible sourcing, buyer-specific sizing and grading, appropriate packaging, food safety and dependable coordination from growers to destination.`,
+    },
   },
   // Oilseeds (2 products)
   {

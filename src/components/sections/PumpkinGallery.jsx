@@ -2,17 +2,17 @@ import AnimatedText from '../animations/AnimatedText';
 import EdgeHoneycombCluster from '../decorations/EdgeHoneycombCluster';
 import InfiniteMarquee from './InfiniteMarquee';
 
-const CAULIFLOWER_IMAGES = [
-  '/cauliflower/cauliflower1.png',
-  '/cauliflower/cauliflower2.png',
-  '/cauliflower/cauliflower3.png',
+const PUMPKIN_IMAGES = [
+  '/pumpkin/pumpkin1.png',
+  '/pumpkin/pumpkin2.png',
+  '/pumpkin/pumpkin3.png',
 ];
 
-export default function CauliflowerGallery() {
+export default function PumpkinGallery() {
   return (
     <section
       className="relative w-full overflow-hidden border-y border-[#1F4732]/10 bg-[#F7F4EA] py-12 sm:py-14 lg:py-16"
-      aria-labelledby="cauliflower-gallery-title"
+      aria-labelledby="pumpkin-gallery-title"
     >
       <EdgeHoneycombCluster
         side="right"
@@ -34,24 +34,24 @@ export default function CauliflowerGallery() {
             </div>
 
             <h2
-              id="cauliflower-gallery-title"
+              id="pumpkin-gallery-title"
               className="font-['Lora',serif] text-[1.7rem] font-bold text-[#1F4732] sm:text-[2rem] lg:text-[2.3rem]"
             >
-              <AnimatedText text="Cauliflower Images" />
+              <AnimatedText text="Pumpkin Images" />
             </h2>
           </div>
         </div>
 
         <InfiniteMarquee edgeColor="#F7F4EA">
-          {(copy) => CAULIFLOWER_IMAGES.map((image, index) => (
+          {(copy) => PUMPKIN_IMAGES.map((image, index) => (
             <div
               key={`${copy}-${image}`}
-              className="group/cauliflower mr-5 flex h-[220px] w-[250px] shrink-0 items-center justify-center overflow-hidden p-4 transition-transform duration-300 hover:-translate-y-1 sm:mr-7 sm:h-[260px] sm:w-[310px] sm:p-5 md:mr-8 md:h-[285px] md:w-[340px] lg:mr-10 lg:h-[310px] lg:w-[380px]"
+              className="group/pumpkin mr-5 flex h-[220px] w-[250px] shrink-0 items-center justify-center overflow-hidden p-4 transition-transform duration-300 hover:-translate-y-1 sm:mr-7 sm:h-[260px] sm:w-[310px] sm:p-5 md:mr-8 md:h-[285px] md:w-[340px] lg:mr-10 lg:h-[310px] lg:w-[380px]"
             >
               <img
                 src={image}
-                alt={copy === 0 ? `Cauliflower image ${index + 1}` : ''}
-                className="h-full w-full object-contain transition-transform duration-300 group-hover/cauliflower:scale-[1.03]"
+                alt={copy === 0 ? `Pumpkin image ${index + 1}` : ''}
+                className="h-full w-full object-contain transition-transform duration-300 group-hover/pumpkin:scale-[1.03]"
                 loading="lazy"
                 draggable="false"
               />

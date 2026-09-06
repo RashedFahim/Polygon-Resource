@@ -19,14 +19,14 @@ export default function ProductCard({ product, index }) {
       delay={index * 60}
       as="div"
       className="product-card scroll-mt-24 rounded-xl overflow-hidden"
-      id={getProductAnchor(product.name)}
+      id={getProductAnchor(product)}
     >
-      <Link to={getProductPath(product.name)} className="block h-full text-inherit no-underline">
+      <Link to={getProductPath(product)} className="block h-full text-inherit no-underline">
         <div className="relative overflow-hidden bg-[#f5f5f0] aspect-[4/3]">
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
+            className={`h-full w-full object-cover transition-all duration-500 hover:scale-105 ${product.slug === 'jackfruit' || product.name === 'Pumpkin' || product.name === 'Guava' || product.name === 'Mango' || product.name === 'Potato' || product.name === 'Cabbage' || product.name === 'Cauliflower' ? 'rounded-2xl' : ''}`}
             onError={handleImageError}
             loading="lazy"
           />
