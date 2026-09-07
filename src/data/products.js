@@ -490,18 +490,73 @@ POLYGON RESOURCE aims to connect international buyers with carefully selected pu
   {
     name: 'Sesame Seeds',
     category: 'Oilseeds',
-    desc: 'Premium quality sesame seeds, rich in oil content and perfect for export.',
-    tags: ['High Oil Content', 'Premium'],
+    desc: 'Sesame (Sesamumindicum L.) is widely used in many cooking techniques worldwide, and it is known as the “queen of oilseeds” because it contains polyunsaturated lipids that prevent oxidative rancidity and carry oil content.',
+    tags: [],
     bg: 'linear-gradient(140deg,#D4A373,#b8895c)',
-    image: 'https://images.unsplash.com/photo-1731970820339-e725b78f55e4?w=500&auto=format&fit=crop&q=60',
+    image: '/sesame seeds/sesame_top.jpeg',
+    details: {
+      overview: `Sesame (Sesamumindicum L.) is widely used in many cooking techniques worldwide, and it is known as the “queen of oilseeds” because it contains polyunsaturated lipids that prevent oxidative rancidity and carry oil content. Commonly known as til in Bengali, belongs to the Sesamum genus of the Pedaliaceae family. It is grown mainly for seeds that contain approximately 35-50% oil, 20-25% protein, 20% sugar, 6% fibre and many kinds of minerals. Sesame oil contains good quality poly-unsaturated fatty acids viz., 47% oleic and 39% linoleic acid.
+
+Sesame is the second largest source of edible oil in Bangladesh next to mustard both in respect of acreage and production. Sesame is one of the world’s oldest spice and oilseed crop grown mainly for its seeds that contain approximately 35-50% oil, 20-25% protein, 20% sugar, 6% fibre and many kinds of minerals. Sesame oil is quality edible oil. The oil is tasteless, odourless and also used as hair oil and as a component of cosmetics. The seed is used in making various food items like cakes, khaja, biscuits, etc.
+
+In Bangladesh, sesame occupies a remarkable area under production and contributes second-ranked production after rapeseed and mustard. However, the climatic and edaphic conditions of Bangladesh are quite suitable for the cultivation of sesame. Khulna, Jashore, Faridpur, Barisal, Patuakhali, Rajshahi, Pabna, Rangpur, Sylhet, Cumilla, Dhaka, and Mymensingh districts are the leading sesame producing areas of Bangladesh.`,
+      packagingImages: [
+        '/sesame seeds/sesame1.png',
+        '/sesame seeds/sesame2.png',
+        '/sesame seeds/sesame3.png',
+        '/sesame seeds/sesame_brown.png',
+      ],
+      varieties: [
+        {
+          name: 'Black Sesame Seed Double Skin',
+          image: '/sesame seeds/sesame1.png',
+          specifications: [
+            { label: 'Purity', value: '99.5% Min' },
+            { label: 'Admixture', value: '1.5%Max' },
+            { label: 'Moisture', value: '5-7.0 % Max' },
+            { label: 'Free Fatty Acid', value: '2-4% Max' },
+            { label: 'Oil Content', value: '42% Min' },
+            { label: 'Other Color Seed', value: '3-5% Max.' },
+          ],
+        },
+        {
+          name: 'Brown Sesame Seed Double Skin',
+          image: '/sesame seeds/sesame_brown.png',
+          specifications: [
+            { label: 'Purity', value: '99.5% Min' },
+            { label: 'Admixture', value: '1.5%Max' },
+            { label: 'Moisture', value: '5-7.0 % Max' },
+            { label: 'Free Fatty Acid', value: '2-4% Max' },
+            { label: 'Oil Content', value: '42% Min' },
+            { label: 'Other Color Seed', value: '3-5% Max.' },
+          ],
+        },
+      ],
+    },
   },
   {
     name: 'Groundnut',
     category: 'Oilseeds',
-    desc: 'High-quality groundnuts sourced from Bangladeshi farmers, suitable for oil extraction.',
-    tags: ['High Yield', 'Premium Grade'],
+    desc: 'Groundnut (Arachis hypogaea L.), commonly known as peanut or earthnut, is an important oilseed and food-legume crop.',
+    tags: [],
     bg: 'linear-gradient(140deg,#C9A227,#8a6a17)',
-    image: 'https://images.unsplash.com/photo-1694654359031-e2db00bd0e93?w=500&auto=format&fit=crop&q=60',
+    image: '/groundnut/groundnut_top.jpeg',
+    details: {
+      overview: `Groundnut (Arachis hypogaea L.), commonly known as peanut or earthnut, is an important oilseed and food-legume crop. Unlike most crops, its pods develop beneath the soil. Groundnuts are valued for their distinctive roasted flavour, high-quality plant protein, beneficial unsaturated fats and versatility in both household and industrial food applications.
+
+Groundnuts can be consumed raw, roasted, boiled or processed into peanut butter, confectionery, snacks, flour and edible oil. Groundnut cake—the solid material remaining after oil extraction—may also be used as animal feed when it meets applicable safety and quality requirements.
+
+In Bangladesh, groundnuts are cultivated during both winter and summer seasons. The crop is particularly suited to sandy and well-drained soils and is grown in conventional fields as well as coastal, riverbank and char areas. Its ability to grow on comparatively marginal land creates income opportunities for farming communities while contributing to crop diversification and soil fertility through biological nitrogen fixation.
+
+Commercial quality depends on mature, well-filled kernels with uniform size, natural colour and flavour, appropriate moisture content and freedom from insects, mould, foreign matter and physical damage. Proper drying, cleaning, grading, hygienic handling and moisture-resistant packaging are essential for maintaining quality. Careful storage and testing are especially important for controlling aflatoxin and meeting buyers’ food-safety requirements.
+
+POLYGON RESOURCE aims to connect international buyers with carefully selected groundnuts from Bangladesh. Our focus is on responsible sourcing, buyer-specific grading and packaging, food-safety compliance and dependable coordination from growers to destination.`,
+      packagingImages: [
+        '/groundnut/groundnut1.png',
+        '/groundnut/groundnut2.png',
+        '/groundnut/groundnut3.png',
+      ],
+    },
   },
 ];
 

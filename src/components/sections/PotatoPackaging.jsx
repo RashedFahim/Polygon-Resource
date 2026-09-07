@@ -11,11 +11,17 @@ const PACKAGING_IMAGES = [
   '/potatoes/package6.png',
 ];
 
-export default function PotatoPackaging() {
+export default function PotatoPackaging({
+  images = PACKAGING_IMAGES,
+  titleId = 'potato-packaging-title',
+  altPrefix = 'Potato packaging',
+  eyebrow = 'Export Ready',
+  title = 'Our Packaging',
+}) {
   return (
     <section
       className="relative w-full overflow-hidden border-y border-[#1F4732]/10 bg-[#F7F4EA] py-12 sm:py-14 lg:py-16"
-      aria-labelledby="potato-packaging-title"
+      aria-labelledby={titleId}
     >
       <EdgeHoneycombCluster
         side="right"
@@ -31,29 +37,29 @@ export default function PotatoPackaging() {
             <div className="mb-2.5 flex items-center justify-center gap-3">
               <span className="h-px w-7 bg-[#DD8F2A]/60 sm:w-10" />
               <span className="font-['Barlow',sans-serif] text-[0.63rem] font-semibold uppercase tracking-[0.18em] text-[#A9711F] sm:text-[0.7rem]">
-                Export Ready
+                {eyebrow}
               </span>
               <span className="h-px w-7 bg-[#DD8F2A]/60 sm:w-10" />
             </div>
 
             <h2
-              id="potato-packaging-title"
+              id={titleId}
               className="font-['Lora',serif] text-[1.7rem] font-bold text-[#1F4732] sm:text-[2rem] lg:text-[2.3rem]"
             >
-              <AnimatedText text="Our Packaging" />
+              <AnimatedText text={title} />
             </h2>
           </div>
         </div>
 
         <InfiniteMarquee edgeColor="#F7F4EA">
-          {(copy) => PACKAGING_IMAGES.map((image, index) => (
+          {(copy) => images.map((image, index) => (
             <div
               key={`${copy}-${image}`}
               className="group/packaging mr-5 flex h-[220px] w-[250px] shrink-0 items-center justify-center overflow-hidden p-4 transition-transform duration-300 hover:-translate-y-1 sm:mr-7 sm:h-[260px] sm:w-[310px] sm:p-5 md:mr-8 md:h-[285px] md:w-[340px] lg:mr-10 lg:h-[310px] lg:w-[380px]"
             >
               <img
                 src={image}
-                alt={copy === 0 ? `Potato packaging ${index + 1}` : ''}
+                alt={copy === 0 ? `${altPrefix} ${index + 1}` : ''}
                 className="h-full w-full object-contain transition-transform duration-300 group-hover/packaging:scale-[1.03]"
                 loading="lazy"
                 draggable="false"

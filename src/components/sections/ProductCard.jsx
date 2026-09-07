@@ -26,7 +26,7 @@ export default function ProductCard({ product, index }) {
           <img
             src={product.image}
             alt={product.name}
-            className={`h-full w-full object-cover transition-all duration-500 hover:scale-105 ${product.slug === 'jackfruit' || product.name === 'Pumpkin' || product.name === 'Guava' || product.name === 'Mango' || product.name === 'Potato' || product.name === 'Cabbage' || product.name === 'Cauliflower' ? 'rounded-2xl' : ''}`}
+            className={`h-full w-full object-cover transition-all duration-500 hover:scale-105 ${product.slug === 'jackfruit' || product.name === 'Pumpkin' || product.name === 'Guava' || product.name === 'Mango' || product.name === 'Potato' || product.name === 'Cabbage' || product.name === 'Cauliflower' || product.name === 'Sesame Seeds' || product.name === 'Groundnut' ? 'rounded-2xl' : ''}`}
             onError={handleImageError}
             loading="lazy"
           />

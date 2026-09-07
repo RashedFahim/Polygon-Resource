@@ -79,7 +79,8 @@ export default function ProductDetails({ product, details, onGetInTouch }) {
                       const isRoundedProductImage = isProductImage && (
                         product.slug === 'jackfruit' || product.name === 'Pumpkin'
                         || product.name === 'Guava' || product.name === 'Mango' || product.name === 'Potato'
-                        || product.name === 'Cabbage' || product.name === 'Cauliflower'
+                        || product.name === 'Cabbage' || product.name === 'Cauliflower' || product.name === 'Sesame Seeds'
+                        || product.name === 'Groundnut'
                       );
 
                       return (
@@ -104,9 +105,15 @@ export default function ProductDetails({ product, details, onGetInTouch }) {
               </Reveal>
             </div>
 
-            {product.name === 'Potato' && index === 0 && (
+            {(product.name === 'Potato' || details.packagingImages) && index === 0 && (
               <Reveal direction="up" distance={35}>
-                <PotatoPackaging />
+                <PotatoPackaging
+                  images={details.packagingImages}
+                  titleId={product.name === 'Potato' ? 'potato-packaging-title' : product.name === 'Sesame Seeds' ? 'sesame-packaging-title' : 'groundnut-packaging-title'}
+                  altPrefix={product.name === 'Potato' ? 'Potato packaging' : product.name === 'Sesame Seeds' ? 'Sesame seeds image' : 'Groundnut image'}
+                  eyebrow={product.name === 'Sesame Seeds' ? 'Product Gallery' : 'Export Ready'}
+                  title={product.name === 'Sesame Seeds' ? 'Sesame Seed Images' : 'Our Packaging'}
+                />
               </Reveal>
             )}
 
