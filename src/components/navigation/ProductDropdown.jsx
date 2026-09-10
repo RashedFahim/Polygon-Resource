@@ -8,8 +8,11 @@ export default function ProductDropdown({
   productsOpen,
   productsMenuRef,
   isHovered,
+  isActive,
   onHover,
+  onLeave = () => {},
   onOpen,
+  onProductsClick,
   onScheduleClose,
   onClearClose,
   onCategoryClick,
@@ -23,11 +26,14 @@ export default function ProductDropdown({
         onHover();
         onOpen();
       }}
-      onMouseLeave={onScheduleClose}
+      onMouseLeave={() => {
+        onLeave();
+        onScheduleClose();
+      }}
     >
       <button
         type="button"
-        onClick={onOpen}
+        onClick={onProductsClick}
         onFocus={onOpen}
         onBlur={(event) => {
           if (!productsMenuRef.current?.contains(event.relatedTarget)) {
@@ -36,7 +42,7 @@ export default function ProductDropdown({
         }}
         aria-haspopup="true"
         aria-expanded={productsOpen}
-        className={`relative flex items-center gap-1 pb-1 transition-all duration-300 group ${
+        className={`relative flex items-center gap-1 pb-1 cursor-pointer transition-all duration-300 group ${
           scrolled ? 'text-[#4a6b5a] hover:text-[#1F4732]' : 'text-cream/90 hover:text-white font-medium'
         }`}
       >
@@ -47,12 +53,12 @@ export default function ProductDropdown({
           className={`relative z-10 transition-transform duration-300 ${productsOpen ? 'rotate-180' : ''}`}
         />
         <span
-          className={`absolute -bottom-0.5 left-0 h-[2px] transition-all duration-500 ${
-            isHovered || productsOpen ? 'w-full' : 'w-0'
+          className={`absolute -bottom-0.5 left-0 h-[2px] transition-all duration-300 ease-out ${
+            isHovered || isActive || productsOpen ? 'w-full' : 'w-0'
           }`}
           style={{
-            background: scrolled ? 'linear-gradient(90deg, #1F4732, #6BA539)' : 'linear-gradient(90deg, #B8860B, #DAA520)',
-            boxShadow: scrolled ? '0 0 20px rgba(31,71,50,0.3)' : '0 0 20px rgba(184,134,11,0.4)',
+            background: 'linear-gradient(90deg, #B8860B, #DAA520)',
+            boxShadow: '0 0 20px rgba(184,134,11,0.4)',
           }}
         />
         <span className={`absolute -bottom-0.5 left-0 w-0 h-[1px] transition-all duration-300 group-hover:w-full ${
@@ -67,7 +73,6 @@ export default function ProductDropdown({
             : 'invisible translate-y-2 opacity-0 pointer-events-none'
         }`}
         onMouseEnter={onClearClose}
-        onMouseLeave={onScheduleClose}
         aria-hidden={!productsOpen}
       >
         <div className={`rounded-xl border p-4 shadow-2xl backdrop-blur-xl sm:p-5 ${

@@ -540,7 +540,7 @@ In Bangladesh, sesame occupies a remarkable area under production and contribute
     desc: 'Groundnut (Arachis hypogaea L.), commonly known as peanut or earthnut, is an important oilseed and food-legume crop.',
     tags: [],
     bg: 'linear-gradient(140deg,#C9A227,#8a6a17)',
-    image: '/groundnut/groundnut_top.jpeg',
+    image: '/groundnut/groundnut_top.png',
     details: {
       overview: `Groundnut (Arachis hypogaea L.), commonly known as peanut or earthnut, is an important oilseed and food-legume crop. Unlike most crops, its pods develop beneath the soil. Groundnuts are valued for their distinctive roasted flavour, high-quality plant protein, beneficial unsaturated fats and versatility in both household and industrial food applications.
 

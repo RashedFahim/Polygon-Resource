@@ -15,6 +15,9 @@ dist-ssr
 .env.*
 !.env.example
 !**/.env.example
+*.pem
+/contact-config.php
+/.contact-rate-limit/
 
 # Editor directories and files
 .vscode/*

@@ -1,8 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import RouteScrollReset from './components/routing/RouteScrollReset';
 import { PRODUCT_DATA } from './data/products';
+import Blog from './pages/Blog';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
+import TestimonialsPage from './pages/TestimonialsPage';
 import { getProductPath } from './utils/productPaths';
 
 function App() {
@@ -11,6 +13,8 @@ function App() {
       <RouteScrollReset />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/testimonials" element={<TestimonialsPage />} />
         {PRODUCT_DATA.map((product) => (
           <Route
             key={product.name}

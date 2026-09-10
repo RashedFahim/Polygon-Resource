@@ -1,0 +1,13 @@
+Options -Indexes
+
+# Configuration belongs outside public_html. This also protects a mistakenly
+# uploaded local config file if one is ever placed in this directory.
+<FilesMatch "^(?:config|contact-config).*\.php$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

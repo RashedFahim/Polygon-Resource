@@ -172,7 +172,7 @@ export default function Products({ activeCategory, onCategoryChange }) {
             {/* Scrollable Container */}
             <div
               ref={scrollContainerRef}
-              className="flex gap-4 sm:gap-5 lg:gap-6 overflow-x-auto scroll-smooth pb-4 hide-scrollbar"
+              className="flex gap-4 sm:gap-5 lg:gap-6 overflow-x-auto overflow-y-hidden scroll-smooth pb-4 hide-scrollbar"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { NAV_ITEMS } from '../../data/navigation';
 import ProductDropdown, { MobileProductDropdown } from '../navigation/ProductDropdown';
 
@@ -13,7 +13,9 @@ export default function Navbar({ onGetInTouch, onCategorySelect, isProductPage =
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mobileExpandedCategories, setMobileExpandedCategories] = useState({});
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+  const [activeNavId, setActiveNavId] = useState(() => hash.slice(1));
+  const [activeSectionId, setActiveSectionId] = useState(() => hash.slice(1) || (pathname === '/' ? 'home' : ''));
   const menuCloseTimer = useRef(null);
   const productsCloseTimer = useRef(null);
   const productsMenuRef = useRef(null);
@@ -22,9 +24,72 @@ export default function Navbar({ onGetInTouch, onCategorySelect, isProductPage =
   const menuOpenRef = useRef(false);
   const menuClosingRef = useRef(false);
 
+  const getNavHref = (item) => item.href || (pathname === '/' ? `#${item.id}` : `/#${item.id}`);
+
   useEffect(() => {
     menuOpenRef.current = menuOpen;
   }, [menuOpen]);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const nextActiveId = window.location.hash.slice(1);
+      setActiveNavId(nextActiveId);
+      setActiveSectionId(nextActiveId);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  useEffect(() => {
+    if (pathname !== '/' || !window.IntersectionObserver) return undefined;
+
+    const sections = NAV_ITEMS
+      .filter((item) => !item.href)
+      .map((item) => ({ id: item.id, element: document.getElementById(item.id) }))
+      .filter(({ element }) => element);
+
+    if (!sections.length) return undefined;
+
+    const visibility = new Map();
+    const updateActiveSection = () => {
+      const visibleSections = sections.filter(({ element }) => visibility.get(element));
+
+      if (!visibleSections.length) {
+        setActiveSectionId('');
+        return;
+      }
+
+      const sectionsPastNavbar = visibleSections.filter(
+        ({ element }) => element.getBoundingClientRect().top <= 80,
+      );
+      const candidates = sectionsPastNavbar.length ? sectionsPastNavbar : visibleSections;
+      const activeSection = candidates.reduce((current, section) => {
+        if (!current) return section;
+
+        const currentTop = current.element.getBoundingClientRect().top;
+        const sectionTop = section.element.getBoundingClientRect().top;
+        const shouldReplace = sectionsPastNavbar.length
+          ? sectionTop > currentTop
+          : sectionTop < currentTop;
+
+        return shouldReplace ? section : current;
+      }, null);
+
+      setActiveSectionId(activeSection.id);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => visibility.set(entry.target, entry.isIntersecting));
+      updateActiveSection();
+    }, {
+      rootMargin: '-80px 0px -50% 0px',
+      threshold: 0,
+    });
+
+    sections.forEach(({ element }) => observer.observe(element));
+    return () => observer.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
     menuClosingRef.current = menuClosing;
@@ -34,6 +99,14 @@ export default function Navbar({ onGetInTouch, onCategorySelect, isProductPage =
     clearTimeout(menuCloseTimer.current);
     clearTimeout(productsCloseTimer.current);
   }, []);
+
+  const routeActiveNavId = NAV_ITEMS.find((item) => item.href === pathname)?.id;
+  const isProductRoute = isProductPage && pathname !== '/' && !routeActiveNavId;
+  const isDesktopNavItemActive = (item) => {
+    if (item.href) return pathname === item.href;
+    if (pathname !== '/') return isProductRoute && item.id === 'products';
+    return activeSectionId === item.id;
+  };
 
   // Must match the mobile-menu-closing CSS animation duration (index.css) —
   // the panel is only unmounted once the collapse has fully played out.
@@ -105,6 +178,15 @@ export default function Navbar({ onGetInTouch, onCategorySelect, isProductPage =
   const handleCategoryClick = (category) => {
     if (onCategorySelect) {
       onCategorySelect(category);
+    } else {
+      navigate('/#products');
+    }
+    closeProducts();
+  };
+
+  const handleProductsClick = () => {
+    if (onCategorySelect) {
+      document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
     } else {
       navigate('/#products');
     }
@@ -196,6 +278,7 @@ export default function Navbar({ onGetInTouch, onCategorySelect, isProductPage =
         <div className="hidden lg:flex items-center gap-6 lg:gap-[34px] text-[0.85rem] lg:text-[0.9rem] font-medium">
           {NAV_ITEMS.map((item, index) => {
             const isHovered = hoveredLink === index;
+            const isActive = isDesktopNavItemActive(item);
 
             if (item.label === 'Products') {
               return (
@@ -205,8 +288,11 @@ export default function Navbar({ onGetInTouch, onCategorySelect, isProductPage =
                   productsOpen={productsOpen}
                   productsMenuRef={productsMenuRef}
                   isHovered={isHovered}
+                  isActive={isActive}
                   onHover={() => setHoveredLink(index)}
+                  onLeave={() => setHoveredLink(null)}
                   onOpen={openProducts}
+                  onProductsClick={handleProductsClick}
                   onScheduleClose={scheduleProductsClose}
                   onClearClose={clearProductsCloseTimer}
                   onCategoryClick={handleCategoryClick}
@@ -215,30 +301,40 @@ export default function Navbar({ onGetInTouch, onCategorySelect, isProductPage =
               );
             }
 
+            const NavItem = item.href ? Link : 'a';
+            const navTarget = item.href ? { to: item.href } : { href: getNavHref(item) };
+
             return (
-              <a
+              <NavItem
                 key={index}
-                href={pathname === '/' ? `#${item.id}` : `/#${item.id}`}
+                {...navTarget}
+                onClick={() => {
+                  setActiveNavId(item.id);
+                  setActiveSectionId(item.id);
+                }}
                 onMouseEnter={() => setHoveredLink(index)}
                 onMouseLeave={() => setHoveredLink(null)}
+                aria-current={isActive ? 'page' : undefined}
                 className={`relative pb-1 transition-all duration-300 group ${
-                  scrolled ? 'text-[#4a6b5a] hover:text-[#1F4732]' : 'text-cream/90 hover:text-white font-medium'
+                  scrolled
+                    ? isActive ? 'text-[#1F4732]' : 'text-[#4a6b5a] hover:text-[#1F4732]'
+                    : isActive ? 'text-white font-semibold' : 'text-cream/90 hover:text-white font-medium'
                 }`}
               >
                 <span className="relative z-10">{item.label}</span>
                 <span 
-                  className={`absolute -bottom-0.5 left-0 h-[2px] transition-all duration-500 ${
-                    isHovered ? 'w-full' : 'w-0'
+                  className={`absolute -bottom-0.5 left-0 h-[2px] transition-all duration-300 ease-out ${
+                    isHovered || isActive ? 'w-full' : 'w-0'
                   }`}
                   style={{
-                    background: scrolled ? 'linear-gradient(90deg, #1F4732, #6BA539)' : 'linear-gradient(90deg, #B8860B, #DAA520)',
-                    boxShadow: scrolled ? '0 0 20px rgba(31,71,50,0.3)' : '0 0 20px rgba(184,134,11,0.4)',
+                    background: 'linear-gradient(90deg, #B8860B, #DAA520)',
+                    boxShadow: '0 0 20px rgba(184,134,11,0.4)',
                   }}
                 />
                 <span className={`absolute -bottom-0.5 left-0 w-0 h-[1px] transition-all duration-300 group-hover:w-full ${
                   scrolled ? 'bg-[#1F4732]/20' : 'bg-cream/30'
                 }`}></span>
-              </a>
+              </NavItem>
             );
           })}
         </div>
@@ -289,18 +385,25 @@ export default function Navbar({ onGetInTouch, onCategorySelect, isProductPage =
               );
             }
 
+            const isActive = item.href ? pathname === item.href : activeNavId === item.id;
+            const NavItem = item.href ? Link : 'a';
+            const navTarget = item.href ? { to: item.href } : { href: getNavHref(item) };
+
             return (
-              <a
+              <NavItem
                 key={item.label}
-                href={pathname === '/' ? `#${item.id}` : `/#${item.id}`}
-                onClick={() => closeMenu()}
+                {...navTarget}
+                onClick={() => { setActiveNavId(item.id); closeMenu(); }}
+                aria-current={isActive ? 'page' : undefined}
                 className={`text-sm text-left font-medium tracking-wide py-2 px-3 rounded hover:bg-cream/10 transition-all duration-300 hover:pl-5 ${
-                  scrolled ? 'text-[#4a6b5a] hover:text-[#1F4732]' : 'text-cream/90 hover:text-white'
+                  scrolled
+                    ? isActive ? 'bg-[#1F4732]/10 text-[#1F4732]' : 'text-[#4a6b5a] hover:text-[#1F4732]'
+                    : isActive ? 'bg-cream/10 text-white' : 'text-cream/90 hover:text-white'
                 }`}
                 style={{ fontFamily: "'JetBrains Mono', monospace" }}
               >
                 {item.label.toUpperCase()}
-              </a>
+              </NavItem>
             );
           })}
           <div className="pt-2 border-t border-cream/10">

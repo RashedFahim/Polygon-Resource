@@ -12,6 +12,7 @@ export default function Contact() {
     email: "",
     phone: "",
     message: "",
+    website: "",
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -42,7 +43,7 @@ export default function Contact() {
 
     const selectedCountry = countryCodes.find((country) => country.code === phoneCode);
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/contact.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,6 +55,7 @@ export default function Contact() {
           phoneCode,
           country: selectedCountry?.name || "Unknown",
           message: formData.message.trim(),
+          website: formData.website,
         }),
       });
 
@@ -72,6 +74,7 @@ export default function Contact() {
         email: "",
         phone: "",
         message: "",
+        website: "",
       });
       setPhoneCode("+880");
 
@@ -671,6 +674,7 @@ export default function Contact() {
                           peer
                         "
                         required
+                        maxLength={120}
                       />
                       <label
                         htmlFor="name"
@@ -757,6 +761,7 @@ export default function Contact() {
                           peer
                         "
                         required
+                        maxLength={254}
                       />
                       <label
                         htmlFor="email"
@@ -969,6 +974,7 @@ export default function Contact() {
                             peer
                           "
                           required
+                          maxLength={30}
                         />
                         <label
                           htmlFor="phone"
@@ -1043,6 +1049,7 @@ export default function Contact() {
                           min-h-[120px]
                         "
                         required
+                        maxLength={5000}
                       />
                       <label
                         htmlFor="message"
@@ -1090,6 +1097,21 @@ export default function Contact() {
                         "
                       />
                     </div>
+                  </div>
+
+                  {/* Honeypot kept outside the visual form for basic bot filtering. */}
+                  <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      value={formData.website}
+                      onChange={handleChange}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      maxLength={200}
+                    />
                   </div>
 
                   {/* Submission feedback */}
