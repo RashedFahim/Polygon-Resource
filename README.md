@@ -307,11 +307,3 @@ Company branding, logos, product information, images, and other business-related
 The source code is provided for portfolio and development purposes unless otherwise specified.
 
 ---
-
-<p align="center">
-  Made with ❤️ for <strong>Polygon Resource</strong>
-</p>
-
-<p align="center">
-  <a href="https://polygon-resource.vercel.app/">Visit Website</a>
-</p>
