@@ -49,4 +49,4 @@ export const CONTACT_ITEMS = [
   },
 ];
 
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { MapPin } from 'lucide-react';
