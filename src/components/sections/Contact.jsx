@@ -878,6 +878,7 @@ export default function Contact() {
                             <div className="fixed inset-0 z-10" onClick={() => setIsCodeOpen(false)} />
                             <div
                               role="listbox"
+                              data-lenis-prevent
                               className="
                                 absolute
                                 left-0

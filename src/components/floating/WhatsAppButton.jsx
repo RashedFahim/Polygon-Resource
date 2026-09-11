@@ -1,17 +1,25 @@
 import { useEffect, useState } from 'react';
+import { useLenis } from 'lenis/react';
 
 // WhatsApp floating button. Sits in the scroll-to-top button's exact spot
 // until that button appears, then smoothly slides up to keep an 8px gap.
 export default function WhatsAppButton() {
-  // Mirrors ScrollToTop's visibility trigger (scrollY > 400).
-  const [scrollTopVisible, setScrollTopVisible] = useState(false);
+  const lenis = useLenis();
+  const [scrollTopVisible, setScrollTopVisible] = useState(() => (
+    typeof window !== 'undefined' && window.scrollY > 400
+  ));
 
   useEffect(() => {
+    if (lenis) {
+      return lenis.on('scroll', (instance) => {
+        setScrollTopVisible(instance.scroll > 400);
+      });
+    }
+
     const handleScroll = () => setScrollTopVisible(window.scrollY > 400);
-    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lenis]);
 
   return (
     <a

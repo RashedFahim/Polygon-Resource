@@ -172,6 +172,7 @@ export default function Products({ activeCategory, onCategoryChange }) {
             {/* Scrollable Container */}
             <div
               ref={scrollContainerRef}
+              data-lenis-prevent-horizontal
               className="flex gap-4 sm:gap-5 lg:gap-6 overflow-x-auto overflow-y-hidden scroll-smooth pb-4 hide-scrollbar"
               style={{
                 scrollbarWidth: 'none',

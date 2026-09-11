@@ -40,16 +40,8 @@ export const COUNTRY_CODES = [
 ];
 
 export const CONTACT_ITEMS = [
-  {
-    icon: Phone,
-    label: "Call Support",
-    value: "+880 1713017391",
-  },
-  {
-    icon: Mail,
-    label: "Email Support",
-    value: "polygon.resource@gmail.com",
-  },
+  
+
   {
     icon: MapPin,
     label: "Our Head Office",

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useLenis } from 'lenis/react';
 import { Reveal } from '../components/animations/Reveal';
 import CTA from '../components/sections/CTA';
 import Contact from '../components/sections/Contact';
@@ -11,8 +12,17 @@ import WhatsAppButton from '../components/floating/WhatsAppButton';
 import ProductDetails from './ProductDetails';
 
 export default function ProductPage({ product }) {
+  const lenis = useLenis();
+
   const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById('contact');
+    if (!element) return;
+
+    if (lenis) {
+      lenis.scrollTo(element);
+    } else {
+      element.scrollIntoView({ behavior: 'auto' });
+    }
   };
 
   return (

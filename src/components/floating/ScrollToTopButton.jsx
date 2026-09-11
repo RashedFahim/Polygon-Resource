@@ -1,71 +1,32 @@
 import { useEffect, useState } from 'react';
 import { ChevronUp } from 'lucide-react';
+import { useLenis } from 'lenis/react';
 
 export default function ScrollToTopButton() {
-  const [isVisible, setIsVisible] = useState(false);
+  const lenis = useLenis();
+  const [isVisible, setIsVisible] = useState(() => (
+    typeof window !== 'undefined' && window.scrollY > 400
+  ));
 
-  // Show button when page is scrolled down
   useEffect(() => {
-    let timeoutId = null;
-
-    const toggleVisibility = () => {
-      // Clear any pending timeout
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-        timeoutId = null;
-      }
-
-      if (window.scrollY > 400) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+    if (lenis) {
+      return lenis.on('scroll', (instance) => {
+        setIsVisible(instance.scroll > 400);
+      });
     };
 
-    // Check initial scroll position
-    toggleVisibility();
-
-    window.addEventListener('scroll', toggleVisibility);
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility);
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
-  }, []);
+    const handleScroll = () => setIsVisible(window.scrollY > 400);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lenis]);
 
   const scrollToTop = () => {
-    // Hide the button immediately
-    setIsVisible(false);
-    
-    // Scroll to top
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-
-    // Force reset after scroll animation completes
-    setTimeout(() => {
-      // Check if we're still at the top
-      if (window.scrollY <= 10) {
-        setIsVisible(false);
-      }
-    }, 100);
+    if (lenis) {
+      lenis.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
   };
-
-  // Handle scroll events to show/hide button
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <button

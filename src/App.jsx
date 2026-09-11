@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import LenisScroll from './components/routing/LenisScroll';
 import RouteScrollReset from './components/routing/RouteScrollReset';
 import { PRODUCT_DATA } from './data/products';
 import Blog from './pages/Blog';
@@ -9,7 +10,7 @@ import { getProductPath } from './utils/productPaths';
 
 function App() {
   return (
-    <>
+    <LenisScroll>
       <RouteScrollReset />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -24,7 +25,7 @@ function App() {
         ))}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </>
+    </LenisScroll>
   );
 }
 

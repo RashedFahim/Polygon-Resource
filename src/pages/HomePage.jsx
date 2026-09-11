@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useLenis } from 'lenis/react';
 import About from '../components/sections/About';
 import CompanyLogoCarousel from '../components/sections/CompanyLogoCarousel';
 import Contact from '../components/sections/Contact';
@@ -15,29 +16,32 @@ import ScrollToTopButton from '../components/floating/ScrollToTopButton';
 import WhatsAppButton from '../components/floating/WhatsAppButton';
 
 export default function HomePage() {
+  const lenis = useLenis();
   const [isLoading, setIsLoading] = useState(true);
   const [startWriting, setStartWriting] = useState(false);
   const [activeProductCategory, setActiveProductCategory] = useState('All');
 
-  // Smooth native scrolling for anchor links and scrollIntoView calls.
-  useEffect(() => {
-    const original = document.documentElement.style.scrollBehavior;
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = original;
-    };
-  }, []);
-
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      if (lenis) {
+        lenis.scrollTo(element);
+      } else {
+        element.scrollIntoView({ behavior: 'auto' });
+      }
     }
   };
 
   const scrollToProductCategory = (category) => {
     setActiveProductCategory(category);
-    document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById('products');
+    if (element) {
+      if (lenis) {
+        lenis.scrollTo(element);
+      } else {
+        element.scrollIntoView({ behavior: 'auto' });
+      }
+    }
   };
 
   // Start writing animation immediately after loading completes

@@ -118,7 +118,7 @@ function TestimonialLightbox({ asset, closeButtonRef, onClose }) {
           </button>
         </div>
 
-        <div className="min-h-0 flex-1 overflow-auto bg-[#f5f5f0] p-2 sm:p-4">
+        <div data-lenis-prevent className="min-h-0 flex-1 overflow-auto bg-[#f5f5f0] p-2 sm:p-4">
           <object
             data={`${documentUrl}#view=FitH`}
             type="application/pdf"

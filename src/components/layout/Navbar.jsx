@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useLenis } from 'lenis/react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { NAV_ITEMS } from '../../data/navigation';
 import ProductDropdown, { MobileProductDropdown } from '../navigation/ProductDropdown';
@@ -13,6 +14,7 @@ export default function Navbar({ onGetInTouch, onCategorySelect, isProductPage =
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mobileExpandedCategories, setMobileExpandedCategories] = useState({});
   const navigate = useNavigate();
+  const lenis = useLenis();
   const { pathname, hash } = useLocation();
   const [activeNavId, setActiveNavId] = useState(() => hash.slice(1));
   const [activeSectionId, setActiveSectionId] = useState(() => hash.slice(1) || (pathname === '/' ? 'home' : ''));
@@ -186,7 +188,14 @@ export default function Navbar({ onGetInTouch, onCategorySelect, isProductPage =
 
   const handleProductsClick = () => {
     if (onCategorySelect) {
-      document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+      const element = document.getElementById('products');
+      if (element) {
+        if (lenis) {
+          lenis.scrollTo(element);
+        } else {
+          element.scrollIntoView({ behavior: 'auto' });
+        }
+      }
     } else {
       navigate('/#products');
     }
@@ -363,6 +372,7 @@ export default function Navbar({ onGetInTouch, onCategorySelect, isProductPage =
 
       {menuOpen && (
         <div
+          data-lenis-prevent
           className={`mobile-menu-panel relative z-[210] lg:hidden px-4 pb-4 flex flex-col gap-3 max-h-[70vh] overflow-y-auto backdrop-blur-xl border-t ${
             menuClosing ? 'mobile-menu-closing' : ''
           } ${

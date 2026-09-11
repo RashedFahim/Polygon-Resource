@@ -26,6 +26,7 @@ export default function LoadingScreen({ onComplete }) {
 
   return (
     <div
+      data-lenis-prevent
       className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0A2A1A] transition-opacity duration-[400ms] ease-out ${
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
